@@ -1183,7 +1183,7 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('You. Please try again.');
+                alert('Your phone number is not registered. Please sign up first!');
             })
             .finally(() => {
                 // Reset button state
