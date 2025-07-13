@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title data-translate-key="page_title">Praxis - Real Action, Your Digital Business</title>
     <meta name="description" content="Praxis is an e-commerce builder platform specifically designed to assist MSMEs in building their own online stores.">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -886,7 +887,7 @@
             <!-- Modal Header -->
             <div class="relative flex items-center border-b-2 h-16 px-6">
                 <h2 id="modal-title" class="text-lg font-bold text-gray-800 w-full text-center" data-translate-key="modal_title">
-                    Selamat Datang di Praxis
+                    Masuk atau mendaftar
                 </h2>
                 <button onclick="closeLoginModal()" class="absolute right-4 text-gray-600 hover:text-gray-800 p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -897,7 +898,7 @@
 
             <!-- Login Form -->
             <div id="login-form" class="p-6">
-                <form id="loginForm" action="" method="POST" class="flex flex-col gap-2">
+                <form id="loginForm" onsubmit="handlePhoneCheck(event)" class="flex flex-col gap-2">
                     @csrf
                     <div class="flex flex-col gap-6">
                         <h1 class="text-2xl font-bold text-gray-800" data-translate-key="modal_welcome">Welcome to Praxis</h1>
@@ -914,6 +915,12 @@
                                     <input type="tel" id="ex_phone" name="ex_phone" class="w-[88%] border border-gray-300 rounded-r-lg focus:border-black focus:ring-0 focus:ring-black focus:outline-none px-4 py-[10px] text-lg text-gray-800" oninput="formatPhoneNumber(this)" placeholder="Masukkan nomor telepon" data-translate-key="modal_phone_placeholder">
                                     <input type="hidden" id="phone" name="phone">
                                 </div>
+                            </div>
+                            
+                            <!-- Password Field (initially hidden) -->
+                            <div id="password-field" class="hidden">
+                                <label for="password" class="block text-sm font-medium text-gray-700" data-translate-key="modal_password">Password</label>
+                                <input type="password" id="password" name="password" class="w-full mt-1 border border-gray-300 rounded-lg focus:border-black focus:ring-0 focus:ring-black focus:outline-none px-4 py-[10px] text-lg text-gray-800" placeholder="Masukkan password" data-translate-key="modal_password_placeholder">
                             </div>
                         </div>
                         <!-- Submit Button -->
@@ -988,26 +995,42 @@
                         <h1 class="text-2xl font-bold text-gray-800 mb-4" data-translate-key="modal_signup_title">Selesaikan pendaftaran</h1>
                         <label for="signup-name" class="block text-sm font-medium text-gray-700 mb-2" data-translate-key="modal_signup_name">Nama Lengkap</label>
                         <input type="text" id="signup-name" name="name" required 
-                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            class="w-full px-3 py-2 border text-base text-gray-800 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             placeholder="Masukkan nama lengkap" data-translate-key="modal_signup_name_placeholder">
                     </div>
                     <div class="mb-4">
                         <label for="signup-phone" class="block text-sm font-medium text-gray-700 mb-2" data-translate-key="modal_signup_phone">Nomor Telepon</label>
                         <div class="flex mt-1 w-full">
-                            <span class="justify-center inline-flex items-center px-2 text-lg border border-gray-300 bg-gray-100 rounded-l-lg w-[12%] font-medium">+62</span>
-                            <input type="tel" id="signup-ex-phone" name="signup_ex_phone" class="w-[88%] border border-gray-300 rounded-r-lg focus:border-black focus:ring-0 focus:ring-black focus:outline-none px-4 py-[10px] text-lg" oninput="formatSignupPhoneNumber(this)" placeholder="Masukkan nomor telepon" data-translate-key="modal_signup_phone_placeholder">
+                            <span class="justify-center inline-flex items-center px-2 text-base text-gray-700 border border-gray-300 bg-gray-100 rounded-l-lg w-[12%] font-medium">+62</span>
+                            <input type="tel" id="signup-ex-phone" name="signup_ex_phone" class="w-[88%] border border-gray-300 rounded-r-lg focus:border-black focus:ring-0 focus:ring-black focus:outline-none px-4 py-[10px] text-sm text-gray-800" oninput="formatSignupPhoneNumber(this)" placeholder="Masukkan nomor telepon" data-translate-key="modal_signup_phone_placeholder">
                             <input type="hidden" id="signup-phone" name="phone">
                         </div>
                     </div>
-                    <div class="mb-6">
-                        <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-2" data-translate-key="modal_signup_email">Email (Opsional)</label>
+                    <div class="mb-4">
+                        <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-2" data-translate-key="modal_signup_email">Email</label>
                         <input type="email" id="signup-email" name="email" 
-                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Masukkan email (opsional)" data-translate-key="modal_signup_email_placeholder">
+                            class="w-full px-3 py-2 border text-base text-gray-800 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            placeholder="Masukkan email " data-translate-key="modal_signup_email_placeholder">
                     </div>
+                    <div class="mb-4">
+                        <label for="signup-password" class="block text-sm font-medium text-gray-700 mb-2" data-translate-key="modal_signup_password">Password</label>
+                        <input type="password" id="signup-password" name="password" required 
+                            class="w-full px-3 py-2 border text-base text-gray-800 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            placeholder="Masukkan password" data-translate-key="modal_signup_password_placeholder">
+                    </div>
+                    <div class="mb-6">
+                        <label for="signup-password-confirm" class="block text-sm font-medium text-gray-700 mb-2" data-translate-key="modal_signup_password_confirm">Konfirmasi Password</label>
+                        <input type="password" id="signup-password-confirm" name="password_confirmation" required 
+                            class="w-full px-3 py-2 border text-base text-gray-800 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            placeholder="Konfirmasi password" data-translate-key="modal_signup_password_confirm_placeholder">
+                    </div>
+                    <hr class="my-4">
+                    <p class="text-gray-600 text-xs text-center mb-4" data-translate-key="modal_signup_agreement">
+                        Dengan memilih <b>Setujui dan lanjutkan</b>, saya menyetujui Ketentuan Layanan, Ketentuan Layanan Pembayaran, dan Kebijakan Non-diskriminasi layanan ini dan menerima Kebijakan Privasi.
+                    </p>
                     <button type="submit" 
                             class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-lg font-bold text-lg hover:brightness-110 transition-all duration-200" data-translate-key="modal_signup_button">
-                        Daftar
+                        Setujui dan lanjutkan
                     </button>
                 </form>
             </div>
@@ -1088,22 +1111,130 @@
         function showLoginForm() {
             document.getElementById('login-form').classList.remove('hidden');
             document.getElementById('signup-form').classList.add('hidden');
-            document.getElementById('modal-title').textContent = 'Login or Sign Up';
+            // Use translation system for modal title
+            const currentLang = localStorage.getItem('language') || 'id';
+            const modalTitle = translations[currentLang].modal_login_title;
+            document.getElementById('modal-title').textContent = modalTitle;
+            // Reset to initial state
+            document.getElementById('password-field').classList.add('hidden');
+            document.getElementById('check-phone-button').textContent = 'Lanjutkan';
+            document.getElementById('loginForm').onsubmit = handlePhoneCheck;
         }
 
         function showSignupForm() {
             document.getElementById('login-form').classList.add('hidden');
             document.getElementById('signup-form').classList.remove('hidden');
-            document.getElementById('modal-title').textContent = 'Complete Registration';
+            // Use translation system for modal title
+            const currentLang = localStorage.getItem('language') || 'id';
+            const modalTitle = translations[currentLang].modal_signup_title;
+            document.getElementById('modal-title').textContent = modalTitle;
+        }
+
+        function showPasswordField() {
+            document.getElementById('password-field').classList.remove('hidden');
+            document.getElementById('check-phone-button').textContent = 'Login';
+            document.getElementById('loginForm').onsubmit = handleLogin;
+        }
+
+        function handlePhoneCheck(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const phone = formData.get('phone');
+
+            if (!phone) {
+                alert('Please enter a phone number');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Checking...';
+            submitBtn.disabled = true;
+
+            // Make API call to check if user exists
+            fetch('/auth/check-user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    phone: phone
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    if (data.exists) {
+                        // User exists - show password field for login
+                        showPasswordField();
+                    } else {
+                        // User doesn't exist - show signup form
+                        showSignupForm();
+                        // Pre-fill the phone in signup form
+                        document.getElementById('signup-ex-phone').value = phone.replace('62', '');
+                        document.getElementById('signup-phone').value = phone;
+                    }
+                } else {
+                    // Show error message
+                    alert(data.message || 'An error occurred. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('You. Please try again.');
+            })
+            .finally(() => {
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
         }
 
         function handleLogin(event) {
             event.preventDefault();
             const formData = new FormData(event.target);
             const phone = formData.get('phone');
+            const password = formData.get('password');
 
-            // Simulate API call to check if user exists
-            checkUserExists(phone);
+            // Show loading state
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Logging in...';
+            submitBtn.disabled = true;
+
+            // Make API call to login
+            fetch('/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    phone: phone,
+                    password: password
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Login successful - redirect to dashboard
+                    window.location.href = data.redirect;
+                } else {
+                    // Show error message
+                    alert(data.message || 'Login failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            })
+            .finally(() => {
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
         }
 
         function handleSignup(event) {
@@ -1112,42 +1243,57 @@
             const name = formData.get('name');
             const phone = formData.get('phone');
             const email = formData.get('email');
+            const password = formData.get('password');
+            const password_confirmation = formData.get('password_confirmation');
 
-            // Simulate API call to create user
-            createUser(name, phone, email);
+            // Show loading state
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Creating account...';
+            submitBtn.disabled = true;
+
+            // Make API call to signup
+            fetch('/auth/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    name: name,
+                    phone: phone,
+                    email: email,
+                    password: password,
+                    password_confirmation: password_confirmation
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Signup successful - redirect to dashboard
+                    window.location.href = data.redirect;
+                } else {
+                    // Show error message
+                    if (data.errors) {
+                        const errorMessages = Object.values(data.errors).flat().join('\n');
+                        alert(errorMessages);
+                    } else {
+                        alert(data.message || 'Signup failed. Please try again.');
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            })
+            .finally(() => {
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
         }
 
-        function checkUserExists(phone) {
-            // Simulate API call - in real app, this would be a fetch request
-            console.log('Checking user:', phone);
-            
-            // For demo purposes, let's assume some phone numbers exist and others don't
-            const existingPhones = ['628123456789', '628987654321', '628111222333'];
-            
-            if (existingPhones.includes(phone)) {
-                // User exists - redirect to dashboard
-                console.log('User exists, redirecting to dashboard...');
-                window.location.href = '/dashboard';
-            } else {
-                // User doesn't exist - show signup form
-                console.log('User does not exist, showing signup form...');
-                showSignupForm();
-                // Pre-fill the phone in signup form
-                document.getElementById('signup-phone').value = phone;
-            }
-        }
 
-        function createUser(name, phone, email) {
-            // Simulate API call to create user
-            console.log('Creating user:', { name, phone, email });
-            
-            // For demo purposes, simulate successful registration
-            alert('Account created successfully! You can now login.');
-            showLoginForm();
-            // Pre-fill the phone number in login form
-            const phoneWithoutPrefix = phone.replace('62', '');
-            document.getElementById('ex_phone').value = phoneWithoutPrefix;
-        }
 
         // Close modal when clicking outside
         document.getElementById('login-modal').addEventListener('click', function(e) {
@@ -1349,7 +1495,7 @@
                     footer_location: "di Bandung, Jawa Barat, Indonesia.",
                     
                     // Modal Section
-                    modal_title: "Selamat Datang di Praxis",
+                    modal_title: "Masuk atau mendaftar",
                     modal_welcome: "Selamat Datang di Praxis",
                     modal_country: "Negara/Wilayah",
                     modal_phone: "Nomor telepon",
@@ -1364,10 +1510,19 @@
                     modal_signup_name_placeholder: "Masukkan nama lengkap",
                     modal_signup_phone: "Nomor Telepon",
                     modal_signup_phone_placeholder: "Masukkan nomor telepon",
-                    modal_signup_email: "Email (Opsional)",
-                    modal_signup_email_placeholder: "Masukkan email (opsional)",
-                    modal_signup_button: "Daftar",
-                    modal_cancel: "Batal"
+                    modal_signup_email: "Email",
+                    modal_signup_email_placeholder: "Masukkan email",
+                    modal_signup_password: "Password",
+                    modal_signup_password_placeholder: "Masukkan password",
+                    modal_signup_password_confirm: "Konfirmasi Password",
+                    modal_signup_password_confirm_placeholder: "Konfirmasi password",
+                    modal_signup_agreement: "Dengan memilih <b>Setujui dan lanjutkan</b>, saya menyetujui Ketentuan Layanan, Ketentuan Layanan Pembayaran, dan Kebijakan Non-diskriminasi layanan ini dan menerima Kebijakan Privasi.",
+                    modal_signup_button: "Setujui dan lanjutkan",
+                    modal_cancel: "Batal",
+                    modal_password: "Password",
+                    modal_password_placeholder: "Masukkan password",
+                    modal_login_title: "Login atau Daftar",
+                    modal_signup_title: "Selesaikan Pendaftaran"
                 },
                 en: {
                     // Page Meta
@@ -1551,7 +1706,7 @@
                     footer_location: "in Bandung, West Java, Indonesia.",
                     
                     // Modal Section
-                    modal_title: "Welcome to Praxis",
+                    modal_title: "Sign in or sign up",
                     modal_welcome: "Welcome to Praxis",
                     modal_country: "Country/Region",
                     modal_phone: "Phone number",
@@ -1566,10 +1721,19 @@
                     modal_signup_name_placeholder: "Enter your full name",
                     modal_signup_phone: "Phone Number",
                     modal_signup_phone_placeholder: "Enter your phone number",
-                    modal_signup_email: "Email (Optional)",
-                    modal_signup_email_placeholder: "Enter your email (optional)",
-                    modal_signup_button: "Sign Up",
-                    modal_cancel: "Cancel"
+                    modal_signup_email: "Email",
+                    modal_signup_email_placeholder: "Enter your email",
+                    modal_signup_password: "Password",
+                    modal_signup_password_placeholder: "Enter your password",
+                    modal_signup_password_confirm: "Confirm Password",
+                    modal_signup_password_confirm_placeholder: "Confirm your password",
+                    modal_signup_agreement: "By selecting <b>Agree and Continue</b>, I agree to the Service Terms, Payment Terms, and Non-Discrimination Policy of this service and accept the Privacy Policy.",
+                    modal_signup_button: "Agree and Continue",
+                    modal_cancel: "Cancel",
+                    modal_password: "Password",
+                    modal_password_placeholder: "Enter your password",
+                    modal_login_title: "Login or Sign Up",
+                    modal_signup_title: "Complete Registration"
                 }
             };
 
