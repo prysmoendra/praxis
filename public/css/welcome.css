@@ -1,0 +1,49 @@
+/* Using @apply would require a build step, so we use pure CSS for this single-file setup */
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accent Glow Effect for Buttons */
+.hover-glow {
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0px rgba(34, 165, 179, 0);
+}
+
+.hover-glow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(34, 165, 179, 0.2);
+}
+
+/* How it works - Step Cards */
+.card-step {
+    @apply bg-praxis-surface border border-praxis-border rounded-lg p-6 transition-all duration-300;
+}
+.card-step:hover {
+    @apply border-praxis-accent transform -translate-y-2;
+    box-shadow: 0 10px 25px rgba(34, 165, 179, 0.1);
+}
+.step-number {
+    @apply h-12 w-12 flex items-center justify-center mx-auto mb-4 bg-praxis-surface-secondary text-praxis-accent font-bold text-xl rounded-full border border-praxis-border;
+}
+
+/* Values Section - Value Cards */
+.value-card {
+    @apply bg-praxis-surface-secondary p-6 rounded-lg border border-transparent transition-all duration-300;
+}
+.value-card:hover {
+    @apply border-praxis-border;
+}
+
+/* Scroll Animation Placeholder */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
