@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Praxis - Real Action, Your Digital Business</title>
+    <title data-translate-key="page_title">Praxis - Real Action, Your Digital Business</title>
     <meta name="description" content="Praxis is an e-commerce builder platform specifically designed to assist MSMEs in building their own online stores.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -25,6 +25,7 @@
                             green: '#3FB950',
                             orange: '#FF8C00'
                         },
+                        'custom-orange': '#F97316',
                         neutral: {
                             100: '#F0F6FC',
                             200: '#D0D7DE',
@@ -109,26 +110,31 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="#home" class="flex items-center">
-                    <img src="/images/svg-praxis.png" alt="Praxis Logo" class="h-6 w-auto">
-                </a>
+                        <img src="/images/svg-praxis.png" alt="Praxis Logo" class="h-6 w-auto">
+                    </a>
                 </div>
 
-                <!-- Desktop Navigation -->
+                <!-- Desktop Navigation - Left Side -->
                 <div class="hidden md:flex items-center space-x-8">
-                    {{-- <a href="#home" class="nav-link text-neutral-200 hover:text-white">Home</a> --}}
-                    <a href="#about" class="nav-link text-neutral-200 hover:text-white">About</a>
-                    <a href="#features" class="nav-link text-neutral-200 hover:text-white">Features</a>
-                    <a href="#how-it-works" class="nav-link text-neutral-200 hover:text-white">How It Works</a>
-                    <a href="#values" class="nav-link text-neutral-200 hover:text-white">Values</a>
+                    <a href="#about" class="nav-link text-neutral-200 hover:text-white" data-translate-key="nav_about">Tentang Kami</a>
+                    <a href="#features" class="nav-link text-neutral-200 hover:text-white" data-translate-key="nav_features">Fitur</a>
+                    <a href="#how-it-works" class="nav-link text-neutral-200 hover:text-white" data-translate-key="nav_how_it_works">Cara Kerja</a>
+                    <a href="#values" class="nav-link text-neutral-200 hover:text-white" data-translate-key="nav_values">Esensi</a>
                 </div>
 
-                <!-- CTA Button -->
+                <!-- Right Side - Language & CTA Buttons -->
                 <div class="hidden md:flex items-center space-x-4">
-                    <button onclick="openLoginModal()" class="border border-neutral-400 text-neutral-200 px-6 py-2 rounded-lg font-medium hover:bg-neutral-400 hover:text-primary-dark transition-all duration-200">
-                        Log In
+                    <!-- Language Switcher -->
+                    <div class="flex items-center border border-neutral-500 rounded-lg overflow-hidden">
+                        <a href="#" id="lang-id" class="gradient-bg text-white font-semibold px-3 py-2 text-sm">ID</a>
+                        <a href="#" id="lang-en" class="bg-primary-elevated text-neutral-300 hover:text-white font-semibold px-3 py-2 text-sm transition-colors duration-200">EN</a>
+                    </div>
+                    
+                    <button onclick="openLoginModal()" class="border border-neutral-400 text-neutral-200 px-6 py-2 rounded-lg font-medium hover:bg-neutral-400 hover:text-primary-dark transition-all duration-200" data-translate-key="nav_login">
+                        Masuk
                     </button>
-                    <button class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:brightness-110 transition-all duration-200 transform hover:scale-105">
-                        Start for free
+                    <button class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:brightness-110 transition-all duration-200 transform hover:scale-105" data-translate-key="nav_start_free">
+                        Mulai Gratis
                     </button>
                 </div>
 
@@ -166,17 +172,17 @@
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="animate-fade-in">
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-                    <span class="gradient-text">Real Action,</span><br>
-                    <span class="text-white">Your Digital Business</span>
+                    <span class="gradient-text" data-translate-key="hero_title_1">Real Action,</span><br>
+                    <span class="text-white" data-translate-key="hero_title_2">Your Digital Business</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-neutral-200 mb-8 max-w-3xl mx-auto">
+                <p class="text-xl md:text-2xl text-neutral-200 mb-8 max-w-3xl mx-auto" data-translate-key="hero_subtitle">
                     Praxis is an e-commerce builder platform specifically designed to assist MSMEs in building their own online stores with ease.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="scrollToSection('business-model')" class="gradient-bg text-white px-8 py-4 rounded-lg font-medium text-lg hover:brightness-110 transition-all duration-200 transform hover:scale-105">
+                    <button onclick="scrollToSection('business-model')" class="gradient-bg text-white px-8 py-4 rounded-lg font-medium text-lg hover:brightness-110 transition-all duration-200 transform hover:scale-105" data-translate-key="hero_cta_1">
                         Build Your Store
                     </button>
-                    <button class="border border-neutral-400 text-neutral-200 px-8 py-4 rounded-lg font-medium text-lg hover:bg-neutral-400 hover:text-primary-dark transition-all duration-200">
+                    <button class="border border-neutral-400 text-neutral-200 px-8 py-4 rounded-lg font-medium text-lg hover:bg-neutral-400 hover:text-primary-dark transition-all duration-200" data-translate-key="hero_cta_2">
                         Watch Demo
                     </button>
                 </div>
@@ -192,8 +198,8 @@
     <section id="about" class="py-20 bg-primary-surface">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text">About Praxis</h2>
-                <p class="text-xl text-neutral-200 max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text" data-translate-key="about_title">About Praxis</h2>
+                <p class="text-xl text-neutral-200 max-w-4xl mx-auto" data-translate-key="about_subtitle">
                     Praxis is more than just a tool; it's a partner ready to help you turn your ideas into reality. With an intuitive interface and step-by-step guides, we simplify the digitalization process for MSMEs.
                 </p>
             </div>
@@ -206,12 +212,12 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Our Challenges</h3>
+                    <h3 class="text-xl font-semibold mb-4" data-translate-key="about_challenges_title">Our Challenges</h3>
                     <ul class="text-neutral-300 space-y-2">
-                        <li>• Limited access to technology</li>
-                        <li>• Lack of technical knowledge</li>
-                        <li>• High development costs</li>
-                        <li>• Time-consuming processes</li>
+                        <li data-translate-key="about_challenges_1">• Limited access to technology</li>
+                        <li data-translate-key="about_challenges_2">• Lack of technical knowledge</li>
+                        <li data-translate-key="about_challenges_3">• High development costs</li>
+                        <li data-translate-key="about_challenges_4">• Time-consuming processes</li>
                     </ul>
                 </div>
 
@@ -222,12 +228,12 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Our Mission</h3>
+                    <h3 class="text-xl font-semibold mb-4" data-translate-key="about_mission_title">Our Mission</h3>
                     <ul class="text-neutral-300 space-y-2">
-                        <li>• Easy-to-use platform</li>
-                        <li>• Practical education</li>
-                        <li>• Affordable solutions</li>
-                        <li>• Growth support</li>
+                        <li data-translate-key="about_mission_1">• Easy-to-use platform</li>
+                        <li data-translate-key="about_mission_2">• Practical education</li>
+                        <li data-translate-key="about_mission_3">• Affordable solutions</li>
+                        <li data-translate-key="about_mission_4">• Growth support</li>
                     </ul>
                 </div>
 
@@ -239,8 +245,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Our Vision</h3>
-                    <p class="text-neutral-300">
+                    <h3 class="text-xl font-semibold mb-4" data-translate-key="about_vision_title">Our Vision</h3>
+                    <p class="text-neutral-300" data-translate-key="about_vision_text">
                         To be the primary bridge for every MSME in Indonesia to access the digital market independently, inclusively, and sustainably.
                     </p>
                 </div>
@@ -252,12 +258,12 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Our Values</h3>
+                    <h3 class="text-xl font-semibold mb-4" data-translate-key="about_values_title">Our Values</h3>
                     <ul class="text-neutral-300 space-y-2">
-                        <li>• Simplicity</li>
-                        <li>• Inclusivity</li>
-                        <li>• Collaboration</li>
-                        <li>• Reliability</li>
+                        <li data-translate-key="about_values_1">• Simplicity</li>
+                        <li data-translate-key="about_values_2">• Inclusivity</li>
+                        <li data-translate-key="about_values_3">• Collaboration</li>
+                        <li data-translate-key="about_values_4">• Reliability</li>
                     </ul>
                 </div>
             </div>
@@ -268,51 +274,51 @@
     <section id="mission" class="py-20 bg-primary-surface">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text">From Challenge to Opportunity</h2>
-                <p class="text-xl text-neutral-200 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text" data-translate-key="mission_title">From Challenge to Opportunity</h2>
+                <p class="text-xl text-neutral-200 max-w-3xl mx-auto" data-translate-key="mission_subtitle">
                     We understand the hurdles MSMEs face. Our mission is to provide the solutions.
                 </p>
             </div>
             <div class="grid md:grid-cols-2 gap-12">
                 <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-8 card-hover">
-                    <h3 class="text-2xl font-semibold mb-6 text-white">The Challenges We Address</h3>
+                    <h3 class="text-2xl font-semibold mb-6 text-white" data-translate-key="mission_challenges_title">The Challenges We Address</h3>
                     <ul class="space-y-4">
                         <li class="flex items-start">
                             <span class="text-accent-orange mr-3 mt-1 text-xl">✗</span>
-                            <span class="text-neutral-300">Limited access to technology and resources.</span>
+                            <span class="text-neutral-300" data-translate-key="mission_challenges_1">Limited access to technology and resources.</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-accent-orange mr-3 mt-1 text-xl">✗</span>
-                            <span class="text-neutral-300">Lack of technical and digital marketing knowledge.</span>
+                            <span class="text-neutral-300" data-translate-key="mission_challenges_2">Lack of technical and digital marketing knowledge.</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-accent-orange mr-3 mt-1 text-xl">✗</span>
-                            <span class="text-neutral-300">High costs for site development and maintenance.</span>
+                            <span class="text-neutral-300" data-translate-key="mission_challenges_3">High costs for site development and maintenance.</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-accent-orange mr-3 mt-1 text-xl">✗</span>
-                            <span class="text-neutral-300">Time-consuming manual business processes.</span>
+                            <span class="text-neutral-300" data-translate-key="mission_challenges_4">Time-consuming manual business processes.</span>
                         </li>
                     </ul>
                 </div>
                 <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-8 card-hover">
-                    <h3 class="text-2xl font-semibold mb-6 text-white">Our Mission in Action</h3>
+                    <h3 class="text-2xl font-semibold mb-6 text-white" data-translate-key="mission_solutions_title">Our Mission in Action</h3>
                     <ul class="space-y-4">
                         <li class="flex items-start">
                             <span class="text-accent-green mr-3 mt-1 text-xl">✓</span>
-                            <span class="text-neutral-300">An all-in-one, no-code platform.</span>
+                            <span class="text-neutral-300" data-translate-key="mission_solutions_1">An all-in-one, no-code platform.</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-accent-green mr-3 mt-1 text-xl">✓</span>
-                            <span class="text-neutral-300">Practical education on digital marketing.</span>
+                            <span class="text-neutral-300" data-translate-key="mission_solutions_2">Practical education on digital marketing.</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-accent-green mr-3 mt-1 text-xl">✓</span>
-                            <span class="text-neutral-300">Affordable packages tailored to your scale.</span>
+                            <span class="text-neutral-300" data-translate-key="mission_solutions_3">Affordable packages tailored to your scale.</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-accent-green mr-3 mt-1 text-xl">✓</span>
-                            <span class="text-neutral-300">Growth support through analytics and automation.</span>
+                            <span class="text-neutral-300" data-translate-key="mission_solutions_4">Growth support through analytics and automation.</span>
                         </li>
                     </ul>
                 </div>
@@ -324,8 +330,8 @@
     <section id="features" class="py-20 bg-primary-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text">Why Choose Praxis?</h2>
-                <p class="text-xl text-neutral-200 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text" data-translate-key="features_title">Why Choose Praxis?</h2>
+                <p class="text-xl text-neutral-200 max-w-3xl mx-auto" data-translate-key="features_subtitle">
                     Our comprehensive platform provides everything you need to build, manage, and grow your online business.
                 </p>
             </div>
@@ -337,8 +343,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">No-Code Solution</h3>
-                    <p class="text-neutral-300">Build your online store without any technical knowledge. Our drag-and-drop interface makes it easy for anyone.</p>
+                    <h3 class="text-xl font-semibold mb-4" data-translate-key="features_no_code_title">No-Code Solution</h3>
+                    <p class="text-neutral-300" data-translate-key="features_no_code_desc">Build your online store without any technical knowledge. Our drag-and-drop interface makes it easy for anyone.</p>
                 </div>
 
                 <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-8 card-hover">
@@ -347,8 +353,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Affordable Pricing</h3>
-                    <p class="text-neutral-300">Flexible pricing plans that grow with your business. Start free and upgrade when you're ready.</p>
+                    <h3 class="text-xl font-semibold mb-4" data-translate-key="features_pricing_title">Affordable Pricing</h3>
+                    <p class="text-neutral-300" data-translate-key="features_pricing_desc">Flexible pricing plans that grow with your business. Start free and upgrade when you're ready.</p>
                 </div>
 
                 <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-8 card-hover">
@@ -357,8 +363,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Analytics & Reports</h3>
-                    <p class="text-neutral-300">Get detailed insights into your business performance with comprehensive analytics and actionable reports.</p>
+                    <h3 class="text-xl font-semibold mb-4" data-translate-key="features_analytics_title">Analytics & Reports</h3>
+                    <p class="text-neutral-300" data-translate-key="features_analytics_desc">Get detailed insights into your business performance with comprehensive analytics and actionable reports.</p>
                 </div>
 
                 <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-8 card-hover">
@@ -367,8 +373,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Mobile Responsive</h3>
-                    <p class="text-neutral-300">Your store will look perfect on all devices. Mobile-first design ensures optimal customer experience.</p>
+                    <h3 class="text-xl font-semibold mb-4" data-translate-key="features_mobile_title">Mobile Responsive</h3>
+                    <p class="text-neutral-300" data-translate-key="features_mobile_desc">Your store will look perfect on all devices. Mobile-first design ensures optimal customer experience.</p>
                 </div>
 
                 <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-8 card-hover">
@@ -377,8 +383,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">24/7 Support</h3>
-                    <p class="text-neutral-300">Get help whenever you need it. Our dedicated support team is always ready to assist you.</p>
+                    <h3 class="text-xl font-semibold mb-4" data-translate-key="features_support_title">24/7 Support</h3>
+                    <p class="text-neutral-300" data-translate-key="features_support_desc">Get help whenever you need it. Our dedicated support team is always ready to assist you.</p>
                 </div>
 
                 <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-8 card-hover">
@@ -387,8 +393,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Secure Payments</h3>
-                    <p class="text-neutral-300">Integrated payment gateways with bank-level security. Accept payments from various local and international methods.</p>
+                    <h3 class="text-xl font-semibold mb-4" data-translate-key="features_payments_title">Secure Payments</h3>
+                    <p class="text-neutral-300" data-translate-key="features_payments_desc">Integrated payment gateways with bank-level security. Accept payments from various local and international methods.</p>
                 </div>
             </div>
         </div>
@@ -398,8 +404,8 @@
     <section id="how-it-works" class="py-20 bg-primary-surface">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text">How Praxis Works</h2>
-                <p class="text-xl text-neutral-200 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text" data-translate-key="how_it_works_title">How Praxis Works</h2>
+                <p class="text-xl text-neutral-200 max-w-3xl mx-auto" data-translate-key="how_it_works_subtitle">
                     Get your online store up and running in just a few simple steps.
                 </p>
             </div>
@@ -410,8 +416,8 @@
                     <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
                         <span class="text-white font-bold text-xl">1</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-4">Register Account</h3>
-                    <p class="text-neutral-300">Sign up and activate your account in just minutes with our simple registration process.</p>
+                    <h3 class="text-lg font-semibold mb-4" data-translate-key="how_it_works_step1_title">Register Account</h3>
+                    <p class="text-neutral-300" data-translate-key="how_it_works_step1_desc">Sign up and activate your account in just minutes with our simple registration process.</p>
                 </div>
 
                 <!-- Step 2 -->
@@ -419,8 +425,8 @@
                     <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
                         <span class="text-white font-bold text-xl">2</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-4">Choose Template</h3>
-                    <p class="text-neutral-300">Select from our collection of professional templates that suit your business needs.</p>
+                    <h3 class="text-lg font-semibold mb-4" data-translate-key="how_it_works_step2_title">Choose Template</h3>
+                    <p class="text-neutral-300" data-translate-key="how_it_works_step2_desc">Select from our collection of professional templates that suit your business needs.</p>
                 </div>
 
                 <!-- Step 3 -->
@@ -428,8 +434,8 @@
                     <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
                         <span class="text-white font-bold text-xl">3</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-4">Add Products</h3>
-                    <p class="text-neutral-300">Upload your products, organize categories, and integrate payment methods easily.</p>
+                    <h3 class="text-lg font-semibold mb-4" data-translate-key="how_it_works_step3_title">Add Products</h3>
+                    <p class="text-neutral-300" data-translate-key="how_it_works_step3_desc">Upload your products, organize categories, and integrate payment methods easily.</p>
                 </div>
 
                 <!-- Step 4 -->
@@ -437,8 +443,8 @@
                     <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
                         <span class="text-white font-bold text-xl">4</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-4">Customize Store</h3>
-                    <p class="text-neutral-300">Customize your store with your logo, colors, and promotional content to match your brand.</p>
+                    <h3 class="text-lg font-semibold mb-4" data-translate-key="how_it_works_step4_title">Customize Store</h3>
+                    <p class="text-neutral-300" data-translate-key="how_it_works_step4_desc">Customize your store with your logo, colors, and promotional content to match your brand.</p>
                 </div>
 
                 <!-- Step 5 -->
@@ -446,8 +452,8 @@
                     <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
                         <span class="text-white font-bold text-xl">5</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-4">Go Live</h3>
-                    <p class="text-neutral-300">Publish your store and manage orders and inventory from one centralized dashboard.</p>
+                    <h3 class="text-lg font-semibold mb-4" data-translate-key="how_it_works_step5_title">Go Live</h3>
+                    <p class="text-neutral-300" data-translate-key="how_it_works_step5_desc">Publish your store and manage orders and inventory from one centralized dashboard.</p>
                 </div>
             </div>
         </div>
@@ -464,8 +470,8 @@
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 animate-fade-in">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text">Our Core Values</h2>
-                <p class="text-xl text-neutral-200 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text" data-translate-key="values_title">Our Core Values</h2>
+                <p class="text-xl text-neutral-200 max-w-3xl mx-auto" data-translate-key="values_subtitle">
                     The principles that guide our innovation and partnership with you.
                 </p>
             </div>
@@ -478,8 +484,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
-                    <h4 class="text-xl font-semibold text-white mb-4 group-hover:text-accent-blue transition-colors duration-300">Simplicity</h4>
-                    <p class="text-neutral-300 group-hover:text-neutral-200 transition-colors duration-300">Simplifying every step without technical jargon.</p>
+                    <h4 class="text-xl font-semibold text-white mb-4 group-hover:text-accent-blue transition-colors duration-300" data-translate-key="values_simplicity_title">Simplicity</h4>
+                    <p class="text-neutral-300 group-hover:text-neutral-200 transition-colors duration-300" data-translate-key="values_simplicity_desc">Simplifying every step without technical jargon.</p>
                 </div>
 
                 <!-- Inclusivity -->
@@ -489,8 +495,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
                     </div>
-                    <h4 class="text-xl font-semibold text-white mb-4 group-hover:text-accent-purple transition-colors duration-300">Inclusivity</h4>
-                    <p class="text-neutral-300 group-hover:text-neutral-200 transition-colors duration-300">Empowering businesses of all sizes and backgrounds.</p>
+                    <h4 class="text-xl font-semibold text-white mb-4 group-hover:text-accent-purple transition-colors duration-300" data-translate-key="values_inclusivity_title">Inclusivity</h4>
+                    <p class="text-neutral-300 group-hover:text-neutral-200 transition-colors duration-300" data-translate-key="values_inclusivity_desc">Empowering businesses of all sizes and backgrounds.</p>
                 </div>
 
                 <!-- Collaboration -->
@@ -500,8 +506,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
                         </svg>
                     </div>
-                    <h4 class="text-xl font-semibold text-white mb-4 group-hover:text-accent-green transition-colors duration-300">Collaboration</h4>
-                    <p class="text-neutral-300 group-hover:text-neutral-200 transition-colors duration-300">Listening to user feedback for continuous innovation.</p>
+                    <h4 class="text-xl font-semibold text-white mb-4 group-hover:text-accent-green transition-colors duration-300" data-translate-key="values_collaboration_title">Collaboration</h4>
+                    <p class="text-neutral-300 group-hover:text-neutral-200 transition-colors duration-300" data-translate-key="values_collaboration_desc">Listening to user feedback for continuous innovation.</p>
                 </div>
 
                 <!-- Reliability -->
@@ -511,8 +517,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h4 class="text-xl font-semibold text-white mb-4 group-hover:text-accent-orange transition-colors duration-300">Reliability</h4>
-                    <p class="text-neutral-300 group-hover:text-neutral-200 transition-colors duration-300">High uptime and full support to keep your store running.</p>
+                    <h4 class="text-xl font-semibold text-white mb-4 group-hover:text-accent-orange transition-colors duration-300" data-translate-key="values_reliability_title">Reliability</h4>
+                    <p class="text-neutral-300 group-hover:text-neutral-200 transition-colors duration-300" data-translate-key="values_reliability_desc">High uptime and full support to keep your store running.</p>
                 </div>
             </div>
         </div>
@@ -522,8 +528,8 @@
     <section id="business-model" class="py-20 bg-primary-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text">Our Business Model</h2>
-                <p class="text-xl text-neutral-200 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text" data-translate-key="business_model_title">Our Business Model</h2>
+                <p class="text-xl text-neutral-200 max-w-3xl mx-auto" data-translate-key="business_model_subtitle">
                     Flexible SaaS pricing with freemium and paid plans to suit every business size and budget.
                 </p>
             </div>
@@ -744,17 +750,17 @@
     <!-- CTA Section -->
     <section id="cta" class="py-20 bg-primary-dark">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-5xl font-bold mb-6">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6" data-translate-key="cta_title">
                 Ready to Transform Your Business?
             </h2>
-            <p class="text-xl text-neutral-200 mb-8 max-w-2xl mx-auto">
+            <p class="text-xl text-neutral-200 mb-8 max-w-2xl mx-auto" data-translate-key="cta_subtitle">
                 With Praxis, your path to digital success is more focused, faster, and more affordable. Let's take concrete action together to build the future of your business.
             </p>
                             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="scrollToSection('business-model')" class="gradient-bg text-white px-8 py-4 rounded-lg font-medium text-lg hover:brightness-110 transition-all duration-200 transform hover:scale-105">
+                    <button onclick="scrollToSection('business-model')" class="gradient-bg text-white px-8 py-4 rounded-lg font-medium text-lg hover:brightness-110 transition-all duration-200 transform hover:scale-105" data-translate-key="cta_trial_button">
                         Start Your Free Trial
                     </button>
-                    <button onclick="scrollToSection('business-model')" class="border border-neutral-400 text-neutral-200 px-8 py-4 rounded-lg font-medium text-lg hover:bg-neutral-400 hover:text-primary-dark transition-all duration-200">
+                    <button onclick="scrollToSection('business-model')" class="border border-neutral-400 text-neutral-200 px-8 py-4 rounded-lg font-medium text-lg hover:bg-neutral-400 hover:text-primary-dark transition-all duration-200" data-translate-key="cta_demo_button">
                         Schedule a Demo
                     </button>
                 </div>
@@ -770,37 +776,37 @@
                     <a href="#" class="flex items-center mb-6">
                     <img src="/images/svg-praxis.png" alt="Praxis Logo" class="h-8 w-auto">
                 </a>
-                    <p class="text-neutral-200 mb-4 font-medium">Real Action, Your Digital Business</p>
-                    <p class="text-neutral-400 text-sm leading-relaxed">Empowering MSMEs to build successful online stores with ease and confidence. We believe that every business owner has great potential, and with practical technology, they can compete globally without losing their local identity.</p>
+                    <p class="text-neutral-200 mb-4 font-medium" data-translate-key="footer_tagline">Real Action, Your Digital Business</p>
+                    <p class="text-neutral-400 text-sm leading-relaxed" data-translate-key="footer_description">Empowering MSMEs to build successful online stores with ease and confidence. We believe that every business owner has great potential, and with practical technology, they can compete globally without losing their local identity.</p>
                 </div>
 
                 <!-- Quick Links -->
                 <div>
-                    <h4 class="text-lg font-semibold mb-6 text-white">Quick Links</h4>
+                    <h4 class="text-lg font-semibold mb-6 text-white" data-translate-key="footer_quick_links_title">Quick Links</h4>
                     <ul class="space-y-3">
-                        <li><a href="#about" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium">About Us</a></li>
-                        <li><a href="#features" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium">Features</a></li>
-                        <li><a href="#how-it-works" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium">How It Works</a></li>
-                        <li><a href="#pricing" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium">Pricing</a></li>
-                        <li><a href="#contact" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium">Contact</a></li>
+                        <li><a href="#about" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium" data-translate-key="footer_quick_links_about">About Us</a></li>
+                        <li><a href="#features" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium" data-translate-key="footer_quick_links_features">Features</a></li>
+                        <li><a href="#how-it-works" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium" data-translate-key="footer_quick_links_how_it_works">How It Works</a></li>
+                        <li><a href="#pricing" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium" data-translate-key="footer_quick_links_pricing">Pricing</a></li>
+                        <li><a href="#contact" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium" data-translate-key="footer_quick_links_contact">Contact</a></li>
                     </ul>
                 </div>
 
                 <!-- Services -->
                 <div>
-                    <h4 class="text-lg font-semibold mb-6 text-white">Services</h4>
+                    <h4 class="text-lg font-semibold mb-6 text-white" data-translate-key="footer_services_title">Services</h4>
                     <ul class="space-y-3">
-                        <li><a href="#" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium">E-commerce Platform</a></li>
-                        <li><a href="#" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium">Training & Webinars</a></li>
-                        <li><a href="#" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium">Courier Integration</a></li>
-                        <li><a href="#" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium">Marketing Automation</a></li>
-                        <li><a href="#" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium">Performance Reports</a></li>
+                        <li><a href="#" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium" data-translate-key="footer_services_platform">E-commerce Platform</a></li>
+                        <li><a href="#" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium" data-translate-key="footer_services_training">Training & Webinars</a></li>
+                        <li><a href="#" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium" data-translate-key="footer_services_courier">Courier Integration</a></li>
+                        <li><a href="#" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium" data-translate-key="footer_services_marketing">Marketing Automation</a></li>
+                        <li><a href="#" class="text-neutral-300 hover:text-white transition-colors duration-200 font-medium" data-translate-key="footer_services_reports">Performance Reports</a></li>
                     </ul>
                 </div>
 
                 <!-- Contact & Social -->
                 <div>
-                    <h4 class="text-lg font-semibold mb-6 text-white">Connect With Us</h4>
+                    <h4 class="text-lg font-semibold mb-6 text-white" data-translate-key="footer_connect_title">Connect With Us</h4>
                     <div class="space-y-4">
                         <div class="flex items-center space-x-3">
                             <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
@@ -822,7 +828,7 @@
                     
                     <!-- Social Media -->
                     <div class="mt-6">
-                        <h5 class="text-sm font-semibold mb-4 text-neutral-200">Follow Us</h5>
+                        <h5 class="text-sm font-semibold mb-4 text-neutral-200" data-translate-key="footer_follow_title">Follow Us</h5>
                         <div class="flex space-x-3">
                             <!-- LinkedIn -->
                             <a href="https://www.linkedin.com/in/krismahendra/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center hover:brightness-110 transition-all duration-200 transform hover:scale-105 group">
@@ -861,13 +867,13 @@
             <div class="mt-12 pt-8 border-t border-neutral-500">
                 <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                     <div class="flex items-center space-x-6">
-                        <span class="text-neutral-400 text-sm">&copy; {{ date('Y') }} Praxis. All Rights Reserved.</span>
-                        <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors duration-200">Privacy Policy</a>
-                        <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors duration-200">Terms of Service</a>
-                        <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors duration-200">Cookie Policy</a>
+                        <span class="text-neutral-400 text-sm" data-translate-key="footer_copyright">&copy; {{ date('Y') }} Praxis. All Rights Reserved.</span>
+                        <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors duration-200" data-translate-key="footer_privacy">Privacy Policy</a>
+                        <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors duration-200" data-translate-key="footer_terms">Terms of Service</a>
+                        <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors duration-200" data-translate-key="footer_cookies">Cookie Policy</a>
                     </div>
                     <div class="flex items-center space-x-2">
-                        <p class="text-neutral-400 text-sm">Made with <b class="text-red-600 font-extrabold">Dakode</b> in Bandung, West Java, Indonesia.</p>
+                        <p class="text-neutral-400 text-sm"><span data-translate-key="footer_made_with">Made with</span> <b class="text-red-600 font-extrabold">Dakode</b> <span data-translate-key="footer_location">in Bandung, West Java, Indonesia.</span></p>
                     </div>
                 </div>
             </div>
@@ -879,8 +885,8 @@
         <div class="bg-white rounded-xl w-full max-w-lg mx-4 flex flex-col">
             <!-- Modal Header -->
             <div class="relative flex items-center border-b-2 h-16 px-6">
-                <h2 id="modal-title" class="text-lg font-bold text-gray-800 w-full text-center">
-                    Login or Sign Up
+                <h2 id="modal-title" class="text-lg font-bold text-gray-800 w-full text-center" data-translate-key="modal_title">
+                    Selamat Datang di Praxis
                 </h2>
                 <button onclick="closeLoginModal()" class="absolute right-4 text-gray-600 hover:text-gray-800 p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -894,33 +900,33 @@
                 <form id="loginForm" action="" method="POST" class="flex flex-col gap-2">
                     @csrf
                     <div class="flex flex-col gap-6">
-                        <h1 class="text-2xl font-bold text-gray-800">Welcome to Praxis</h1>
+                        <h1 class="text-2xl font-bold text-gray-800" data-translate-key="modal_welcome">Welcome to Praxis</h1>
                         <div class="flex flex-col gap-4">
                             <div>
-                                <label for="country" class="block text-sm font-medium text-gray-700">Country/Region</label>
+                                <label for="country" class="block text-sm font-medium text-gray-700" data-translate-key="modal_country">Negara/Wilayah</label>
                                 <div id="country" class="dropdown bg-gray-100 p-2 text-base border border-gray-300 rounded-lg pointer-events-none mt-1 px-4 py-[10px] text-gray-800">Indonesia (+62)</div>
                             </div>
                             <div>
                                 <!-- Phone Number Field -->
-                                <label for="phone" class="block text-sm font-medium text-gray-700">Phone number</label>
+                                <label for="phone" class="block text-sm font-medium text-gray-700" data-translate-key="modal_phone">Nomor telepon</label>
                                 <div class="flex mt-1 w-full">
                                     <span class="justify-center inline-flex items-center px-2 text-lg border border-gray-300 bg-gray-100 rounded-l-lg w-[12%] font-medium text-gray-800">+62</span>
-                                    <input type="tel" id="ex_phone" name="ex_phone" class="w-[88%] border border-gray-300 rounded-r-lg focus:border-black focus:ring-0 focus:ring-black focus:outline-none px-4 py-[10px] text-lg text-gray-800" oninput="formatPhoneNumber(this)" placeholder="Enter your phone number">
+                                    <input type="tel" id="ex_phone" name="ex_phone" class="w-[88%] border border-gray-300 rounded-r-lg focus:border-black focus:ring-0 focus:ring-black focus:outline-none px-4 py-[10px] text-lg text-gray-800" oninput="formatPhoneNumber(this)" placeholder="Masukkan nomor telepon" data-translate-key="modal_phone_placeholder">
                                     <input type="hidden" id="phone" name="phone">
                                 </div>
                             </div>
                         </div>
                         <!-- Submit Button -->
                         <div class="flex justify-end">
-                            <button type="submit" id="check-phone-button" class="w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:brightness-110 font-bold text-lg transition-all duration-200">Continue</button>
-                            <button type="button" id="cancel-button" class="mr-2 px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400 hidden">Cancel</button>
+                            <button type="submit" id="check-phone-button" class="w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:brightness-110 font-bold text-lg transition-all duration-200" data-translate-key="modal_continue">Lanjutkan</button>
+                            <button type="button" id="cancel-button" class="mr-2 px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400 hidden" data-translate-key="modal_cancel">Cancel</button>
                         </div>
                     </div>
 
                     {{-- boundary line --}}
                     <div class="flex flex-row justify-center items-center w-full">
                         <hr class="w-full my-0">
-                        <h1 class="p-4 text-gray-500">or</h1>
+                        <h1 class="p-4 text-gray-500" data-translate-key="modal_or">atau</h1>
                         <hr class="w-full my-0">
                     </div>
 
@@ -937,8 +943,8 @@
                                 </svg>
                             </div>
                             <div class="flex justify-center items-center w-full">
-                                <h1 class="font-bold text-gray-800">
-                                    Continue with Google
+                                <h1 class="font-bold text-gray-800" data-translate-key="modal_google">
+                                    Lanjutkan dengan Google
                                 </h1>
                             </div>
                             <div class=""></div>
@@ -951,8 +957,8 @@
                                 </svg>
                             </div>
                             <div class="flex justify-center items-center w-full">
-                                <h1 class="font-bold text-gray-800">
-                                    Continue with Facebook
+                                <h1 class="font-bold text-gray-800" data-translate-key="modal_facebook">
+                                    Lanjutkan dengan Facebook
                                 </h1>
                             </div>
                             <div class=""></div>
@@ -965,8 +971,8 @@
                                 </svg>
                             </div>
                             <div class="flex justify-center items-center w-full">
-                                <h1 class="font-bold text-gray-800">
-                                    Continue with Apple
+                                <h1 class="font-bold text-gray-800" data-translate-key="modal_apple">
+                                    Lanjutkan dengan Apple
                                 </h1>
                             </div>
                             <div class=""></div>
@@ -979,28 +985,28 @@
             <div id="signup-form" class="p-6 hidden">
                 <form id="signupForm" onsubmit="handleSignup(event)">
                     <div class="mb-4">
-                        <h1 class="text-2xl font-bold text-gray-800 mb-4">Selesaikan pendaftaran</h1>
-                        <label for="signup-name" class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
+                        <h1 class="text-2xl font-bold text-gray-800 mb-4" data-translate-key="modal_signup_title">Selesaikan pendaftaran</h1>
+                        <label for="signup-name" class="block text-sm font-medium text-gray-700 mb-2" data-translate-key="modal_signup_name">Nama Lengkap</label>
                         <input type="text" id="signup-name" name="name" required 
                             class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Masukkan nama lengkap">
+                            placeholder="Masukkan nama lengkap" data-translate-key="modal_signup_name_placeholder">
                     </div>
                     <div class="mb-4">
-                        <label for="signup-phone" class="block text-sm font-medium text-gray-700 mb-2">Nomor Telepon</label>
+                        <label for="signup-phone" class="block text-sm font-medium text-gray-700 mb-2" data-translate-key="modal_signup_phone">Nomor Telepon</label>
                         <div class="flex mt-1 w-full">
                             <span class="justify-center inline-flex items-center px-2 text-lg border border-gray-300 bg-gray-100 rounded-l-lg w-[12%] font-medium">+62</span>
-                            <input type="tel" id="signup-ex-phone" name="signup_ex_phone" class="w-[88%] border border-gray-300 rounded-r-lg focus:border-black focus:ring-0 focus:ring-black focus:outline-none px-4 py-[10px] text-lg" oninput="formatSignupPhoneNumber(this)" placeholder="Masukkan nomor telepon">
+                            <input type="tel" id="signup-ex-phone" name="signup_ex_phone" class="w-[88%] border border-gray-300 rounded-r-lg focus:border-black focus:ring-0 focus:ring-black focus:outline-none px-4 py-[10px] text-lg" oninput="formatSignupPhoneNumber(this)" placeholder="Masukkan nomor telepon" data-translate-key="modal_signup_phone_placeholder">
                             <input type="hidden" id="signup-phone" name="phone">
                         </div>
                     </div>
                     <div class="mb-6">
-                        <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-2">Email (Opsional)</label>
+                        <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-2" data-translate-key="modal_signup_email">Email (Opsional)</label>
                         <input type="email" id="signup-email" name="email" 
                             class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Masukkan email (opsional)">
+                            placeholder="Masukkan email (opsional)" data-translate-key="modal_signup_email_placeholder">
                     </div>
                     <button type="submit" 
-                            class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-lg font-bold text-lg hover:brightness-110 transition-all duration-200">
+                            class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-lg font-bold text-lg hover:brightness-110 transition-all duration-200" data-translate-key="modal_signup_button">
                         Daftar
                     </button>
                 </form>
@@ -1155,6 +1161,472 @@
             if (e.key === 'Escape') {
                 closeLoginModal();
             }
+        });
+
+        // Language Switching Functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. COMPREHENSIVE TRANSLATIONS DICTIONARY
+            const translations = {
+                id: {
+                    // Page Meta
+                    page_title: "Praxis - Aksi Nyata, Bisnis Digital Anda",
+                    page_description: "Praxis adalah platform pembangun e-commerce yang dirancang khusus untuk membantu UMKM membangun toko online mereka sendiri.",
+                    
+                    // Navigation
+                    nav_about: "Tentang Kami",
+                    nav_features: "Fitur",
+                    nav_how_it_works: "Cara Kerja",
+                    nav_values: "Esensi",
+                    nav_login: "Masuk",
+                    nav_start_free: "Mulai Gratis",
+                    
+                    // Hero Section
+                    hero_title_1: "Aksi Nyata,",
+                    hero_title_2: "Bisnis Digital Anda",
+                    hero_subtitle: "Praxis adalah platform pembangun e-commerce yang dirancang khusus untuk membantu UMKM membangun toko online mereka sendiri dengan mudah.",
+                    hero_cta_1: "Buat Toko Anda",
+                    hero_cta_2: "Tonton Demo",
+                    
+                    // About Section
+                    about_title: "Tentang Praxis",
+                    about_subtitle: "Praxis lebih dari sekadar alat; ini adalah mitra yang siap membantu Anda mewujudkan ide-ide Anda. Dengan antarmuka yang intuitif dan panduan langkah demi langkah, kami menyederhanakan proses digitalisasi untuk UMKM.",
+                    about_challenges_title: "Tantangan Kami",
+                    about_challenges_1: "• Akses teknologi yang terbatas",
+                    about_challenges_2: "• Kurangnya pengetahuan teknis",
+                    about_challenges_3: "• Biaya pengembangan yang tinggi",
+                    about_challenges_4: "• Proses yang memakan waktu",
+                    about_mission_title: "Misi Kami",
+                    about_mission_1: "• Platform yang mudah digunakan",
+                    about_mission_2: "• Pendidikan praktis",
+                    about_mission_3: "• Solusi yang terjangkau",
+                    about_mission_4: "• Dukungan pertumbuhan",
+                    about_vision_title: "Visi Kami",
+                    about_vision_text: "Menjadi jembatan utama bagi setiap UMKM di Indonesia untuk mengakses pasar digital secara mandiri, inklusif, dan berkelanjutan.",
+                    about_values_title: "Nilai-Nilai Kami",
+                    about_values_1: "• Kesederhanaan",
+                    about_values_2: "• Inklusivitas",
+                    about_values_3: "• Kolaborasi",
+                    about_values_4: "• Keandalan",
+                    
+                    // Mission Section
+                    mission_title: "Dari Tantangan ke Peluang",
+                    mission_subtitle: "Kami memahami hambatan yang dihadapi UMKM. Misi kami adalah memberikan solusi.",
+                    mission_challenges_title: "Tantangan yang Kami Atasi",
+                    mission_challenges_1: "Akses teknologi dan sumber daya yang terbatas.",
+                    mission_challenges_2: "Kurangnya pengetahuan teknis dan pemasaran digital.",
+                    mission_challenges_3: "Biaya tinggi untuk pengembangan dan pemeliharaan situs.",
+                    mission_challenges_4: "Proses bisnis manual yang memakan waktu.",
+                    mission_solutions_title: "Misi Kami dalam Aksi",
+                    mission_solutions_1: "Platform all-in-one tanpa kode.",
+                    mission_solutions_2: "Pendidikan praktis tentang pemasaran digital.",
+                    mission_solutions_3: "Paket terjangkau yang disesuaikan dengan skala Anda.",
+                    mission_solutions_4: "Dukungan pertumbuhan melalui analitik dan otomatisasi.",
+                    
+                    // Features Section
+                    features_title: "Mengapa Memilih Praxis?",
+                    features_subtitle: "Platform komprehensif kami menyediakan semua yang Anda butuhkan untuk membangun, mengelola, dan mengembangkan bisnis online Anda.",
+                    features_no_code_title: "Solusi Tanpa Kode",
+                    features_no_code_desc: "Buat toko online Anda tanpa pengetahuan teknis. Antarmuka drag-and-drop kami memudahkan siapa saja.",
+                    features_pricing_title: "Harga Terjangkau",
+                    features_pricing_desc: "Paket harga fleksibel yang berkembang bersama bisnis Anda. Mulai gratis dan upgrade saat Anda siap.",
+                    features_analytics_title: "Analitik & Laporan",
+                    features_analytics_desc: "Dapatkan wawasan mendalam tentang kinerja bisnis Anda dengan analitik komprehensif dan laporan yang dapat ditindaklanjuti.",
+                    features_mobile_title: "Responsif Mobile",
+                    features_mobile_desc: "Toko Anda akan terlihat sempurna di semua perangkat. Desain mobile-first memastikan pengalaman pelanggan yang optimal.",
+                    features_support_title: "Dukungan 24/7",
+                    features_support_desc: "Dapatkan bantuan kapan pun Anda membutuhkannya. Tim dukungan kami selalu siap membantu Anda.",
+                    features_payments_title: "Pembayaran Aman",
+                    features_payments_desc: "Gateway pembayaran terintegrasi dengan keamanan tingkat bank. Terima pembayaran dari berbagai metode lokal dan internasional.",
+                    
+                    // How It Works Section
+                    how_it_works_title: "Cara Kerja Praxis",
+                    how_it_works_subtitle: "Dapatkan toko online Anda berjalan hanya dalam beberapa langkah sederhana.",
+                    how_it_works_step1_title: "Daftar Akun",
+                    how_it_works_step1_desc: "Daftar dan aktifkan akun Anda hanya dalam beberapa menit dengan proses pendaftaran sederhana kami.",
+                    how_it_works_step2_title: "Pilih Template",
+                    how_it_works_step2_desc: "Pilih dari koleksi template profesional kami yang sesuai dengan kebutuhan bisnis Anda.",
+                    how_it_works_step3_title: "Tambah Produk",
+                    how_it_works_step3_desc: "Upload produk Anda, atur kategori, dan integrasikan metode pembayaran dengan mudah.",
+                    how_it_works_step4_title: "Sesuaikan Toko",
+                    how_it_works_step4_desc: "Sesuaikan toko Anda dengan logo, warna, dan konten promosi untuk mencocokkan merek Anda.",
+                    how_it_works_step5_title: "Go Live",
+                    how_it_works_step5_desc: "Publikasikan toko Anda dan kelola pesanan serta inventaris dari satu dashboard terpusat.",
+                    
+                    // Core Values Section
+                    values_title: "Nilai-Nilai Inti Kami",
+                    values_subtitle: "Prinsip-prinsip yang memandu inovasi dan kemitraan kami dengan Anda.",
+                    values_simplicity_title: "Kesederhanaan",
+                    values_simplicity_desc: "Menyederhanakan setiap langkah tanpa jargon teknis.",
+                    values_inclusivity_title: "Inklusivitas",
+                    values_inclusivity_desc: "Memberdayakan bisnis dari semua ukuran dan latar belakang.",
+                    values_collaboration_title: "Kolaborasi",
+                    values_collaboration_desc: "Mendengarkan umpan balik pengguna untuk inovasi berkelanjutan.",
+                    values_reliability_title: "Keandalan",
+                    values_reliability_desc: "Uptime tinggi dan dukungan penuh untuk menjaga toko Anda tetap berjalan.",
+                    
+                    // Business Model Section
+                    business_model_title: "Model Bisnis Kami",
+                    business_model_subtitle: "Pricing SaaS fleksibel dengan paket freemium dan berbayar untuk menyesuaikan setiap ukuran dan anggaran bisnis.",
+                    business_model_plans_title: "Paket Fleksibel untuk Pertumbuhan Anda",
+                    business_model_plans_desc: "Model Software-as-a-Service (SaaS) kami memastikan Anda hanya membayar apa yang Anda butuhkan. Mulai gratis dan upgrade saat bisnis Anda berkembang.",
+                    business_model_freemium_title: "Paket Freemium",
+                    business_model_freemium_desc: "Coba fitur dasar gratis. Sempurna untuk memulai.",
+                    business_model_premium_title: "Paket Premium",
+                    business_model_premium_desc: "Buka domain kustom, analitik mendalam, dan dukungan prioritas.",
+                    business_model_custom_title: "Layanan Kustom",
+                    business_model_custom_desc: "Untuk bisnis yang memerlukan integrasi khusus dan fitur tambahan.",
+                    business_model_services_title: "Layanan Tambahan",
+                    business_model_services_desc: "Semua yang Anda butuhkan untuk mengoptimalkan dan menskalakan.",
+                    business_model_services_1: "Pelatihan online & webinar",
+                    business_model_services_2: "Integrasi kurir lokal & internasional",
+                    business_model_services_3: "Pemasaran email & media sosial otomatis",
+                    business_model_services_4: "Laporan kinerja penjualan lengkap",
+                    business_model_free_plan_title: "Paket Freemium",
+                    business_model_free_plan_price: "Rp.0,-",
+                    business_model_free_plan_desc: "Sempurna untuk memulai",
+                    business_model_free_plan_feature: "Dukungan komunitas",
+                    business_model_free_plan_cta: "Mulai Gratis",
+                    business_model_pro_plan_title: "Paket Premium",
+                    business_model_pro_plan_price: "Rp.100.000,-",
+                    business_model_pro_plan_period: "Per bulan",
+                    business_model_pro_plan_popular: "Paling Populer",
+                    business_model_pro_plan_feature1: "Semua fitur Free",
+                    business_model_pro_plan_feature2: "Produk tak terbatas",
+                    business_model_pro_plan_feature3: "Domain kustom",
+                    business_model_pro_plan_feature4: "Analitik lanjutan",
+                    business_model_pro_plan_feature5: "Dukungan prioritas",
+                    business_model_pro_plan_cta: "Mulai Paket Pro",
+                    business_model_enterprise_title: "Enterprise",
+                    business_model_enterprise_price: "Kustom",
+                    business_model_enterprise_desc: "Untuk bisnis besar",
+                    business_model_enterprise_feature1: "Semua fitur Pro",
+                    business_model_enterprise_feature2: "Integrasi kustom",
+                    business_model_enterprise_feature3: "Dukungan khusus",
+                    business_model_enterprise_feature4: "Opsi white-label",
+                    business_model_enterprise_feature5: "Jaminan SLA",
+                    business_model_enterprise_cta: "Hubungi Penjualan",
+                    
+                    // Additional Services Section
+                    additional_services_title: "Layanan Tambahan",
+                    additional_services_subtitle: "Di luar platform kami, kami menawarkan layanan komprehensif untuk membantu Anda sukses di pasar digital.",
+                    additional_services_training_title: "Pelatihan & Webinar",
+                    additional_services_training_desc: "Sesi pelatihan online dan webinar untuk optimasi penjualan dan strategi pemasaran digital.",
+                    additional_services_courier_title: "Integrasi Kurir",
+                    additional_services_courier_desc: "Integrasi mulus dengan kurir pengiriman lokal dan internasional untuk pemenuhan pesanan yang efisien.",
+                    additional_services_marketing_title: "Otomatisasi Pemasaran",
+                    additional_services_marketing_desc: "Fitur pemasaran otomatis melalui email dan media sosial untuk membantu mengembangkan basis pelanggan Anda.",
+                    additional_services_reports_title: "Laporan Kinerja",
+                    additional_services_reports_desc: "Laporan kinerja penjualan lengkap dengan rekomendasi yang dapat ditindaklanjuti untuk pertumbuhan bisnis.",
+                    
+                    // CTA Section
+                    cta_title: "Siap Mengubah Bisnis Anda?",
+                    cta_subtitle: "Dengan Praxis, jalan menuju kesuksesan digital Anda lebih fokus, lebih cepat, dan lebih terjangkau. Mari kita ambil aksi nyata bersama untuk membangun masa depan bisnis Anda.",
+                    cta_trial_button: "Mulai Uji Coba Gratis",
+                    cta_demo_button: "Jadwalkan Demo",
+                    
+                    // Footer Section
+                    footer_tagline: "Aksi Nyata, Bisnis Digital Anda",
+                    footer_description: "Memberdayakan UMKM untuk membangun toko online yang sukses dengan mudah dan percaya diri. Kami percaya bahwa setiap pemilik bisnis memiliki potensi besar, dan dengan teknologi praktis, mereka dapat bersaing secara global tanpa kehilangan identitas lokal mereka.",
+                    footer_quick_links_title: "Tautan Cepat",
+                    footer_quick_links_about: "Tentang Kami",
+                    footer_quick_links_features: "Fitur",
+                    footer_quick_links_how_it_works: "Cara Kerja",
+                    footer_quick_links_pricing: "Harga",
+                    footer_quick_links_contact: "Kontak",
+                    footer_services_title: "Layanan",
+                    footer_services_platform: "Platform E-commerce",
+                    footer_services_training: "Pelatihan & Webinar",
+                    footer_services_courier: "Integrasi Kurir",
+                    footer_services_marketing: "Otomatisasi Pemasaran",
+                    footer_services_reports: "Laporan Kinerja",
+                    footer_connect_title: "Terhubung Dengan Kami",
+                    footer_follow_title: "Ikuti Kami",
+                    footer_copyright: "© {{ date('Y') }} Praxis. Semua Hak Dilindungi.",
+                    footer_privacy: "Kebijakan Privasi",
+                    footer_terms: "Ketentuan Layanan",
+                    footer_cookies: "Kebijakan Cookie",
+                    footer_made_with: "Dibuat dengan",
+                    footer_location: "di Bandung, Jawa Barat, Indonesia.",
+                    
+                    // Modal Section
+                    modal_title: "Selamat Datang di Praxis",
+                    modal_welcome: "Selamat Datang di Praxis",
+                    modal_country: "Negara/Wilayah",
+                    modal_phone: "Nomor telepon",
+                    modal_phone_placeholder: "Masukkan nomor telepon",
+                    modal_continue: "Lanjutkan",
+                    modal_or: "atau",
+                    modal_google: "Lanjutkan dengan Google",
+                    modal_facebook: "Lanjutkan dengan Facebook",
+                    modal_apple: "Lanjutkan dengan Apple",
+                    modal_signup_title: "Selesaikan pendaftaran",
+                    modal_signup_name: "Nama Lengkap",
+                    modal_signup_name_placeholder: "Masukkan nama lengkap",
+                    modal_signup_phone: "Nomor Telepon",
+                    modal_signup_phone_placeholder: "Masukkan nomor telepon",
+                    modal_signup_email: "Email (Opsional)",
+                    modal_signup_email_placeholder: "Masukkan email (opsional)",
+                    modal_signup_button: "Daftar",
+                    modal_cancel: "Batal"
+                },
+                en: {
+                    // Page Meta
+                    page_title: "Praxis - Real Action, Your Digital Business",
+                    page_description: "Praxis is an e-commerce builder platform specifically designed to assist MSMEs in building their own online stores.",
+                    
+                    // Navigation
+                    nav_about: "About",
+                    nav_features: "Features",
+                    nav_how_it_works: "How It Works",
+                    nav_values: "Values",
+                    nav_login: "Log In",
+                    nav_start_free: "Start for free",
+                    
+                    // Hero Section
+                    hero_title_1: "Real Action,",
+                    hero_title_2: "Your Digital Business",
+                    hero_subtitle: "Praxis is an e-commerce builder platform specifically designed to assist MSMEs in building their own online stores with ease.",
+                    hero_cta_1: "Build Your Store",
+                    hero_cta_2: "Watch Demo",
+                    
+                    // About Section
+                    about_title: "About Praxis",
+                    about_subtitle: "Praxis is more than just a tool; it's a partner ready to help you turn your ideas into reality. With an intuitive interface and step-by-step guides, we simplify the digitalization process for MSMEs.",
+                    about_challenges_title: "Our Challenges",
+                    about_challenges_1: "• Limited access to technology",
+                    about_challenges_2: "• Lack of technical knowledge",
+                    about_challenges_3: "• High development costs",
+                    about_challenges_4: "• Time-consuming processes",
+                    about_mission_title: "Our Mission",
+                    about_mission_1: "• Easy-to-use platform",
+                    about_mission_2: "• Practical education",
+                    about_mission_3: "• Affordable solutions",
+                    about_mission_4: "• Growth support",
+                    about_vision_title: "Our Vision",
+                    about_vision_text: "To be the primary bridge for every MSME in Indonesia to access the digital market independently, inclusively, and sustainably.",
+                    about_values_title: "Our Values",
+                    about_values_1: "• Simplicity",
+                    about_values_2: "• Inclusivity",
+                    about_values_3: "• Collaboration",
+                    about_values_4: "• Reliability",
+                    
+                    // Mission Section
+                    mission_title: "From Challenge to Opportunity",
+                    mission_subtitle: "We understand the hurdles MSMEs face. Our mission is to provide the solutions.",
+                    mission_challenges_title: "The Challenges We Address",
+                    mission_challenges_1: "Limited access to technology and resources.",
+                    mission_challenges_2: "Lack of technical and digital marketing knowledge.",
+                    mission_challenges_3: "High costs for site development and maintenance.",
+                    mission_challenges_4: "Time-consuming manual business processes.",
+                    mission_solutions_title: "Our Mission in Action",
+                    mission_solutions_1: "An all-in-one, no-code platform.",
+                    mission_solutions_2: "Practical education on digital marketing.",
+                    mission_solutions_3: "Affordable packages tailored to your scale.",
+                    mission_solutions_4: "Growth support through analytics and automation.",
+                    
+                    // Features Section
+                    features_title: "Why Choose Praxis?",
+                    features_subtitle: "Our comprehensive platform provides everything you need to build, manage, and grow your online business.",
+                    features_no_code_title: "No-Code Solution",
+                    features_no_code_desc: "Build your online store without any technical knowledge. Our drag-and-drop interface makes it easy for anyone.",
+                    features_pricing_title: "Affordable Pricing",
+                    features_pricing_desc: "Flexible pricing plans that grow with your business. Start free and upgrade when you're ready.",
+                    features_analytics_title: "Analytics & Reports",
+                    features_analytics_desc: "Get detailed insights into your business performance with comprehensive analytics and actionable reports.",
+                    features_mobile_title: "Mobile Responsive",
+                    features_mobile_desc: "Your store will look perfect on all devices. Mobile-first design ensures optimal customer experience.",
+                    features_support_title: "24/7 Support",
+                    features_support_desc: "Get help whenever you need it. Our dedicated support team is always ready to assist you.",
+                    features_payments_title: "Secure Payments",
+                    features_payments_desc: "Integrated payment gateways with bank-level security. Accept payments from various local and international methods.",
+                    
+                    // How It Works Section
+                    how_it_works_title: "How Praxis Works",
+                    how_it_works_subtitle: "Get your online store up and running in just a few simple steps.",
+                    how_it_works_step1_title: "Register Account",
+                    how_it_works_step1_desc: "Sign up and activate your account in just minutes with our simple registration process.",
+                    how_it_works_step2_title: "Choose Template",
+                    how_it_works_step2_desc: "Select from our collection of professional templates that suit your business needs.",
+                    how_it_works_step3_title: "Add Products",
+                    how_it_works_step3_desc: "Upload your products, organize categories, and integrate payment methods easily.",
+                    how_it_works_step4_title: "Customize Store",
+                    how_it_works_step4_desc: "Customize your store with your logo, colors, and promotional content to match your brand.",
+                    how_it_works_step5_title: "Go Live",
+                    how_it_works_step5_desc: "Publish your store and manage orders and inventory from one centralized dashboard.",
+                    
+                    // Core Values Section
+                    values_title: "Our Core Values",
+                    values_subtitle: "The principles that guide our innovation and partnership with you.",
+                    values_simplicity_title: "Simplicity",
+                    values_simplicity_desc: "Simplifying every step without technical jargon.",
+                    values_inclusivity_title: "Inclusivity",
+                    values_inclusivity_desc: "Empowering businesses of all sizes and backgrounds.",
+                    values_collaboration_title: "Collaboration",
+                    values_collaboration_desc: "Listening to user feedback for continuous innovation.",
+                    values_reliability_title: "Reliability",
+                    values_reliability_desc: "High uptime and full support to keep your store running.",
+                    
+                    // Business Model Section
+                    business_model_title: "Our Business Model",
+                    business_model_subtitle: "Flexible SaaS pricing with freemium and paid plans to suit every business size and budget.",
+                    business_model_plans_title: "Flexible Plans for Your Growth",
+                    business_model_plans_desc: "Our Software-as-a-Service (SaaS) model ensures you only pay for what you need. Start for free and upgrade as your business expands.",
+                    business_model_freemium_title: "Freemium Plan",
+                    business_model_freemium_desc: "Try basic features for free. Perfect for getting started.",
+                    business_model_premium_title: "Premium Plans",
+                    business_model_premium_desc: "Unlock custom domains, in-depth analytics, and priority support.",
+                    business_model_custom_title: "Custom Services",
+                    business_model_custom_desc: "For businesses requiring special integrations and additional features.",
+                    business_model_services_title: "Additional Services",
+                    business_model_services_desc: "Everything you need to optimize and scale.",
+                    business_model_services_1: "Online training & webinars",
+                    business_model_services_2: "Local & international courier integration",
+                    business_model_services_3: "Automated email & social media marketing",
+                    business_model_services_4: "Complete sales performance reports",
+                    business_model_free_plan_title: "Freemium Plan",
+                    business_model_free_plan_price: "Rp.0,-",
+                    business_model_free_plan_desc: "Perfect for getting started",
+                    business_model_free_plan_feature: "Community support",
+                    business_model_free_plan_cta: "Get Started Free",
+                    business_model_pro_plan_title: "Premium Plan",
+                    business_model_pro_plan_price: "Rp.100.000,-",
+                    business_model_pro_plan_period: "Per month",
+                    business_model_pro_plan_popular: "Most Popular",
+                    business_model_pro_plan_feature1: "Everything in Free",
+                    business_model_pro_plan_feature2: "Unlimited products",
+                    business_model_pro_plan_feature3: "Custom domain",
+                    business_model_pro_plan_feature4: "Advanced analytics",
+                    business_model_pro_plan_feature5: "Priority support",
+                    business_model_pro_plan_cta: "Start Pro Plan",
+                    business_model_enterprise_title: "Enterprise",
+                    business_model_enterprise_price: "Custom",
+                    business_model_enterprise_desc: "For large businesses",
+                    business_model_enterprise_feature1: "Everything in Pro",
+                    business_model_enterprise_feature2: "Custom integrations",
+                    business_model_enterprise_feature3: "Dedicated support",
+                    business_model_enterprise_feature4: "White-label options",
+                    business_model_enterprise_feature5: "SLA guarantee",
+                    business_model_enterprise_cta: "Contact Sales",
+                    
+                    // Additional Services Section
+                    additional_services_title: "Additional Services",
+                    additional_services_subtitle: "Beyond our platform, we offer comprehensive services to help you succeed in the digital marketplace.",
+                    additional_services_training_title: "Training & Webinars",
+                    additional_services_training_desc: "Online training sessions and webinars for sales optimization and digital marketing strategies.",
+                    additional_services_courier_title: "Courier Integration",
+                    additional_services_courier_desc: "Seamless integration with local and international shipping couriers for efficient order fulfillment.",
+                    additional_services_marketing_title: "Marketing Automation",
+                    additional_services_marketing_desc: "Automated marketing features via email and social media to help grow your customer base.",
+                    additional_services_reports_title: "Performance Reports",
+                    additional_services_reports_desc: "Complete sales performance reports with actionable recommendations for business growth.",
+                    
+                    // CTA Section
+                    cta_title: "Ready to Transform Your Business?",
+                    cta_subtitle: "With Praxis, your path to digital success is more focused, faster, and more affordable. Let's take concrete action together to build the future of your business.",
+                    cta_trial_button: "Start Your Free Trial",
+                    cta_demo_button: "Schedule a Demo",
+                    
+                    // Footer Section
+                    footer_tagline: "Real Action, Your Digital Business",
+                    footer_description: "Empowering MSMEs to build successful online stores with ease and confidence. We believe that every business owner has great potential, and with practical technology, they can compete globally without losing their local identity.",
+                    footer_quick_links_title: "Quick Links",
+                    footer_quick_links_about: "About Us",
+                    footer_quick_links_features: "Features",
+                    footer_quick_links_how_it_works: "How It Works",
+                    footer_quick_links_pricing: "Pricing",
+                    footer_quick_links_contact: "Contact",
+                    footer_services_title: "Services",
+                    footer_services_platform: "E-commerce Platform",
+                    footer_services_training: "Training & Webinars",
+                    footer_services_courier: "Courier Integration",
+                    footer_services_marketing: "Marketing Automation",
+                    footer_services_reports: "Performance Reports",
+                    footer_connect_title: "Connect With Us",
+                    footer_follow_title: "Follow Us",
+                    footer_copyright: "© {{ date('Y') }} Praxis. All Rights Reserved.",
+                    footer_privacy: "Privacy Policy",
+                    footer_terms: "Terms of Service",
+                    footer_cookies: "Cookie Policy",
+                    footer_made_with: "Made with",
+                    footer_location: "in Bandung, West Java, Indonesia.",
+                    
+                    // Modal Section
+                    modal_title: "Welcome to Praxis",
+                    modal_welcome: "Welcome to Praxis",
+                    modal_country: "Country/Region",
+                    modal_phone: "Phone number",
+                    modal_phone_placeholder: "Enter your phone number",
+                    modal_continue: "Continue",
+                    modal_or: "or",
+                    modal_google: "Continue with Google",
+                    modal_facebook: "Continue with Facebook",
+                    modal_apple: "Continue with Apple",
+                    modal_signup_title: "Complete registration",
+                    modal_signup_name: "Full Name",
+                    modal_signup_name_placeholder: "Enter your full name",
+                    modal_signup_phone: "Phone Number",
+                    modal_signup_phone_placeholder: "Enter your phone number",
+                    modal_signup_email: "Email (Optional)",
+                    modal_signup_email_placeholder: "Enter your email (optional)",
+                    modal_signup_button: "Sign Up",
+                    modal_cancel: "Cancel"
+                }
+            };
+
+            // Get language buttons
+            const langIdButton = document.getElementById('lang-id');
+            const langEnButton = document.getElementById('lang-en');
+
+            // 2. FUNCTION TO SET LANGUAGE AND UPDATE UI
+            const setLanguage = (lang) => {
+                // Apply translations to all elements with data-translate-key attribute
+                document.querySelectorAll('[data-translate-key]').forEach(element => {
+                    const key = element.getAttribute('data-translate-key');
+                    const translation = translations[lang][key];
+
+                    if (translation !== undefined) {
+                        // Check if element is input and key is for placeholder
+                        if (element.tagName === 'INPUT' && key.includes('placeholder')) {
+                            element.placeholder = translation;
+                        } else {
+                            // Use innerHTML to render HTML tags like <span>
+                            element.innerHTML = translation;
+                        }
+                    }
+                });
+
+                // Update language button styles
+                if (lang === 'id') {
+                    langIdButton.classList.remove('bg-primary-elevated', 'text-neutral-300', 'hover:text-white');
+                    langIdButton.classList.add('gradient-bg', 'text-white');
+                    langEnButton.classList.remove('gradient-bg', 'text-white');
+                    langEnButton.classList.add('bg-primary-elevated', 'text-neutral-300', 'hover:text-white');
+                } else {
+                    langEnButton.classList.remove('bg-primary-elevated', 'text-neutral-300', 'hover:text-white');
+                    langEnButton.classList.add('gradient-bg', 'text-white');
+                    langIdButton.classList.remove('gradient-bg', 'text-white');
+                    langIdButton.classList.add('bg-primary-elevated', 'text-neutral-300', 'hover:text-white');
+                }
+
+                // Save language preference in localStorage
+                localStorage.setItem('language', lang);
+                document.documentElement.lang = lang; // Update lang attribute in <html> tag
+            };
+
+            // 3. EVENT LISTENERS FOR LANGUAGE BUTTONS
+            langIdButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                setLanguage('id');
+            });
+
+            langEnButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                setLanguage('en');
+            });
+
+            // 4. SET INITIAL LANGUAGE WHEN PAGE LOADS
+            const savedLang = localStorage.getItem('language') || 'id'; // Default to 'id' if none saved
+            setLanguage(savedLang);
         });
 
         // Phone number formatting function
