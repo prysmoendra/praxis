@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
-<head>
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -47,7 +47,7 @@
             }
         }
     </script>
-    <style>
+            <style>
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -101,8 +101,8 @@
         .mobile-menu.active {
             transform: translateX(0);
         }
-    </style>
-</head>
+            </style>
+    </head>
 <body class="bg-primary-dark text-white font-inter antialiased">
     <!-- Navigation -->
     <nav class="fixed w-full top-0 z-50 bg-primary-dark/40 backdrop-blur-sm border-b border-neutral-500/30">
@@ -165,7 +165,7 @@
                 </svg>
             </button>
         </div>
-    </nav>
+                </nav>
 
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -211,7 +211,7 @@
                     <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-                        </svg>
+                                    </svg>
                     </div>
                     <h3 class="text-xl font-semibold mb-4" data-translate-key="about_challenges_title">Our Challenges</h3>
                     <ul class="text-neutral-300 space-y-2">
@@ -342,7 +342,7 @@
                     <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
+                                    </svg>
                     </div>
                     <h3 class="text-xl font-semibold mb-4" data-translate-key="features_no_code_title">No-Code Solution</h3>
                     <p class="text-neutral-300" data-translate-key="features_no_code_desc">Build your online store without any technical knowledge. Our drag-and-drop interface makes it easy for anyone.</p>
@@ -614,7 +614,7 @@
                         <li class="flex items-center text-neutral-300">
                             <svg class="w-5 h-5 text-accent-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
+                    </svg>
                             Everything in Free
                         </li>
                         <li class="flex items-center text-neutral-300">
@@ -658,7 +658,7 @@
                         <li class="flex items-center text-neutral-300">
                             <svg class="w-5 h-5 text-accent-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
+                    </svg>
                             Everything in Pro
                         </li>
                         <li class="flex items-center text-neutral-300">
@@ -709,11 +709,11 @@
                     <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-6">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                        </svg>
-                    </div>
+                    </svg>
+                </div>
                     <h3 class="text-xl font-semibold mb-4">Training & Webinars</h3>
                     <p class="text-neutral-300">Online training sessions and webinars for sales optimization and digital marketing strategies.</p>
-                </div>
+        </div>
 
                 <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-8 card-hover text-center">
                     <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-6">
@@ -1833,5 +1833,5 @@
             document.getElementById('signup-phone').value = fullPhoneNumber;
         }
     </script>
-</body>
+    </body>
 </html>
