@@ -20,8 +20,14 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'phone',
         'password',
+        'phone',
+        'onboarding_status',
+        'selected_theme',
+        'store_domain',
+        'store_name',
+        'store_description',
+        'store_logo',
     ];
 
     /**
@@ -44,6 +50,15 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'onboarding_status' => 'array',
         ];
+    }
+
+    /**
+     * Get the products for this user's store.
+     */
+    public function products()
+    {
+        return $this->hasMany(\App\Models\Product::class);
     }
 }

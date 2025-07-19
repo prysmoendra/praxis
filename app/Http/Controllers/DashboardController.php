@@ -17,7 +17,8 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $onboardingStatus = $user->onboarding_status ?? [];
         
-        return view('dashboard', compact('user'));
+        return view('dashboard.dashboard', compact('user', 'onboardingStatus'));
     }
 }
