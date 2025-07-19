@@ -14,9 +14,12 @@
     $isNewUser = $user->created_at->diffInDays(now()) <= 7;
     $setupCompleted = false; // This would be stored in database in real implementation
     
+    // Get user's store
+    $store = \App\Models\Store::where('user_id', $user->id)->first();
+    
     // Check if all three steps in "Sell online" section are complete
     $hasAddedProduct = isset($onboardingStatus['has_added_product']) && $onboardingStatus['has_added_product'];
-    $hasDomain = $user->store_domain && trim($user->store_domain) !== '';
+    $hasDomain = $store && $store->domain && trim($store->domain) !== '';
     $hasDesignedStore = isset($onboardingStatus['designed_store']) && $onboardingStatus['designed_store']; // Design store is complete if theme is set
     
     $sellOnlineComplete = $hasAddedProduct && $hasDomain && $hasDesignedStore;
@@ -177,7 +180,6 @@
                             @php
                                 $isStoreNameSet = $onboardingStatus['set_store_name'] ?? false;
                                 $isStoreDomainSet = $onboardingStatus['set_store_domain'] ?? false;
-                                $store = $user->stores()->first();
                             @endphp
                             <div class="flex items-start space-x-4 p-4 bg-background-main rounded-lg">
                                 <div class="w-8 h-8 {{ $isStoreDomainSet ? 'bg-green-500' : 'bg-interactive-secondary' }} rounded-full flex items-center justify-center flex-shrink-0">
@@ -195,7 +197,7 @@
                                     @if($isStoreDomainSet && $store)
                                         <p class="text-sm text-gray-600">Domain toko Anda: {{ $store->domain }}</p>
                                     @else
-                                        <div x-data="{ editing: false, domain: '{{ $store->domain ?? '' }}' }">
+                                        <div x-data="{ editing: false, domain: '' }">
                                             <p x-show="!editing" @click="editing = true" class="text-sm text-blue-500 font-semibold hover:underline cursor-pointer">Set a custom domain for your store.</p>
                                             <form x-show="editing" action="{{ route('dashboard.store.update') }}" method="POST" class="flex items-center gap-2 mt-2">
                                                 @csrf
@@ -233,7 +235,6 @@
                                 @php
                                     $isStoreNameSet = $onboardingStatus['set_store_name'] ?? false;
                                     $isStoreDomainSet = $onboardingStatus['set_store_domain'] ?? false;
-                                    $store = $user->stores()->first();
                                 @endphp
                                 <div class="w-8 h-8 {{ $isStoreNameSet ? 'bg-green-500' : 'bg-interactive-secondary' }} rounded-full flex items-center justify-center flex-shrink-0">
                                     @if($isStoreNameSet)
@@ -250,7 +251,7 @@
                                     @if($isStoreNameSet && $store)
                                         <p class="text-sm text-gray-600">Nama toko Anda: {{ $store->name }}</p>
                                     @else
-                                        <div x-data="{ editing: false, name: '{{ $store->name ?? '' }}' }">
+                                        <div x-data="{ editing: false, name: '' }">
                                             <p x-show="!editing" @click="editing = true" class="text-sm text-blue-500 font-semibold hover:underline cursor-pointer">Set a name for your store.</p>
                                             <form x-show="editing" action="{{ route('dashboard.store.update') }}" method="POST" class="flex items-center gap-2 mt-2">
                                                 @csrf
@@ -273,9 +274,9 @@
                                 <div class="flex-1">
                                     <h4 class="text-text-primary font-semibold mb-1" data-translate-key="dashboard_review_shipping">Review your shipping rates</h4>
                                     <p class="text-text-secondary text-sm mb-3" data-translate-key="dashboard_review_shipping_desc">Configure shipping options and rates for your customers.</p>
-                                    <button class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    <a href="{{ route('shipping-zones.index') }}" class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
                                         <span data-translate-key="dashboard_configure_shipping">Configure shipping</span>
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="flex-shrink-0">
                                     <img alt="" src="https://cdn.shopify.com/b/shopify-guidance-dashboard-public/2l1xr6rqkjhw0ktznk0bxc33zgr7.svgz" class="w-36 h-28 mr-2">
@@ -307,9 +308,9 @@
                                 <div class="flex-1">
                                     <h4 class="text-text-primary font-semibold mb-1" data-translate-key="dashboard_place_test_order">Place a test order</h4>
                                     <p class="text-text-secondary text-sm mb-3" data-translate-key="dashboard_place_test_order_desc">Make sure things are running smoothly by placing a test order from your own store.</p>
-                                    <button class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    <a href="{{ url('/store/' . ($store->domain ?? '')) . '?test=1' }}" target="_blank" class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
                                         <span data-translate-key="dashboard_place_test_order_btn">Place test order</span>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                             
@@ -320,9 +321,12 @@
                                 <div class="flex-1">
                                     <h4 class="text-text-primary font-semibold mb-1" data-translate-key="dashboard_unlock_store">Unlock your store</h4>
                                     <p class="text-text-secondary text-sm mb-3" data-translate-key="dashboard_unlock_store_desc">Remove the password protection and make your store live.</p>
-                                    <button class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                        <span data-translate-key="dashboard_unlock_store_btn">Unlock store</span>
-                                    </button>
+                                    <form action="{{ route('dashboard.store.unlock') }}" method="POST" class="inline">
+                                        @csrf
+                                        <button type="submit" class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                            <span data-translate-key="dashboard_unlock_store_btn">Unlock store</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -351,9 +355,9 @@
                                 <div class="flex-1">
                                     <h4 class="text-text-primary font-semibold mb-1" data-translate-key="dashboard_configure_pos">Configure POS settings</h4>
                                     <p class="text-text-secondary text-sm mb-3" data-translate-key="dashboard_configure_pos_desc">Set up your point of sale system for in-person sales.</p>
-                                    <button class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    <a href="{{ route('dashboard.pos') }}" class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
                                         <span data-translate-key="dashboard_setup_pos">Set up POS</span>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
