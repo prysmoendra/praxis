@@ -14,6 +14,19 @@
     <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full text-center">
         <h2 class="text-2xl font-bold mb-4 text-green-700">Dashboard Siap Digunakan!</h2>
         <p class="mb-6">Dashboard Anda sudah siap untuk meng-handle transaksi. Silakan mulai menggunakan fitur-fitur yang tersedia.</p>
+        <!-- Countdown timer -->
+        <div id="countdown-timer" class="flex flex-col items-center mb-8 hidden">
+            <span class="text-gray-600 text-sm mb-4">Merefresh halaman dalam</span>
+            <div class="relative w-16 h-16 flex items-center justify-center">
+                <svg class="absolute top-0 left-0 w-16 h-16" viewBox="0 0 64 64">
+                    <circle id="countdown-circle-bg" cx="32" cy="32" r="28" stroke="#e5e7eb" stroke-width="6" fill="none"/>
+                    <circle id="countdown-circle" cx="32" cy="32" r="28" stroke="#22c55e" stroke-width="6" fill="none"
+                        stroke-dasharray="176" stroke-dashoffset="0" stroke-linecap="round" 
+                        style="transition: stroke-dashoffset 0.5s ease-in-out;" />
+                </svg>
+                <span id="countdown-number" class="text-2xl font-bold text-green-600 transition-all duration-300 ease-in-out transform scale-100">5</span>
+            </div>
+        </div>
         <button id="closeDashboardReadyModal" class="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold">Konfirmasi</button>
     </div>
 </div>
@@ -114,7 +127,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <h4 class="text-text-primary font-semibold mb-1" data-translate-key="dashboard_add_first_product">Add your first product</h4>
-                                    <p class="text-text-secondary text-sm mb-3" data-translate-key="dashboard_add_first_product_desc">Write a description, add photos, and set pricing for the products you plan to sell.</p>
+                                    <p class="text-text-secondary text-sm mb-6" data-translate-key="dashboard_add_first_product_desc">Write a description, add photos, and set pricing for the products you plan to sell.</p>
                                     @if(!isset($onboardingStatus['has_added_product']) || !$onboardingStatus['has_added_product'])
                                         <div class="flex space-x-3">
                                             <a href="{{ route('products.create') }}">
@@ -159,7 +172,7 @@
                                             </span>
                                         @endif
                                     </h4>
-                                    <p class="text-text-secondary text-sm mb-3" data-translate-key="dashboard_design_store_desc">Customize your store's appearance and layout.</p>
+                                    <p class="text-text-secondary text-sm mb-6" data-translate-key="dashboard_design_store_desc">Customize your store's appearance and layout.</p>
                                     @if(isset($onboardingStatus['designed_store']) && $onboardingStatus['designed_store'])
                                         <div class="flex items-center space-x-2">
                                             <span class="text-green-600 text-sm font-medium">✓ Completed</span>
@@ -189,7 +202,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <h4 class="font-semibold text-gray-800 mb-1">Set your store domain</h4>
-                                    <p class="text-text-secondary text-sm mb-3">Set up a custom domain for your online store.</p>
+                                    <p class="text-text-secondary text-sm mb-4">Set up a custom domain for your online store.</p>
                                     @if($hasDomain && $store)
                                         <div class="mt-2 p-3 bg-gray-100 rounded-md">
                                             <p class="text-sm text-gray-600 font-medium">Domain Anda: <strong>{{ $store->domain }}</strong></p>
@@ -247,7 +260,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <h4 class="font-semibold text-gray-800 mb-1">Add store name</h4>
-                                    <p class="text-text-secondary text-sm mb-3">Add a touch of brilliance name to your store.</p>
+                                    <p class="text-text-secondary text-sm mb-4">Add a touch of brilliance name to your store.</p>
                                     @if($hasStoreName && $store)
                                         <div class="flex items-center space-x-2">
                                             <span class="text-green-600 text-sm font-medium">✓ Completed</span>
@@ -282,7 +295,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <h4 class="text-text-primary font-semibold mb-1" data-translate-key="dashboard_review_shipping">Review your shipping rates</h4>
-                                    <p class="text-text-secondary text-sm mb-3" data-translate-key="dashboard_review_shipping_desc">Configure shipping options and rates for your customers.</p>
+                                    <p class="text-text-secondary text-sm mb-6" data-translate-key="dashboard_review_shipping_desc">Configure shipping options and rates for your customers.</p>
                                     @if($hasShippingZones)
                                         <div class="flex items-center space-x-2">
                                             <span class="text-green-600 text-sm font-medium">✓ Completed</span>
@@ -367,7 +380,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <h4 class="text-text-primary font-semibold mb-1" data-translate-key="dashboard_unlock_store">Unlock your store</h4>
-                                    <p class="text-text-secondary text-sm mb-3" data-translate-key="dashboard_unlock_store_desc">Remove the password protection and make your store live.</p>
+                                    <p class="text-text-secondary text-sm mb-6" data-translate-key="dashboard_unlock_store_desc">Remove the password protection and make your store live.</p>
                                     @if(isset($onboardingStatus['has_unlocked_store']) && $onboardingStatus['has_unlocked_store'])
                                         <div class="flex items-center space-x-2">
                                             <span class="text-green-600 text-sm font-medium">✓ Completed</span>
@@ -422,7 +435,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <h4 class="text-text-primary font-semibold mb-1" data-translate-key="dashboard_configure_pos">Configure POS settings</h4>
-                                    <p class="text-text-secondary text-sm mb-3" data-translate-key="dashboard_configure_pos_desc">Set up your point of sale system for in-person sales.</p>
+                                    <p class="text-text-secondary text-sm mb-6" data-translate-key="dashboard_configure_pos_desc">Set up your point of sale system for in-person sales.</p>
                                     @if(isset($onboardingStatus['has_setup_pos']) && $onboardingStatus['has_setup_pos'])
                                         <div class="flex items-center space-x-2">
                                             <span class="text-green-600 text-sm font-medium">✓ Completed</span>
@@ -929,20 +942,69 @@
                         if (posTask) {
                             posTask.innerHTML = '<div class="flex items-center space-x-2"><span class="text-green-600 text-sm font-medium">✓ Completed</span></div>';
                         }
-                        // Tampilkan modal
-                        document.getElementById('dashboardReadyModal').classList.remove('hidden');
+                        // Tampilkan modal dan countdown
+                        showDashboardReadyModalWithCountdown();
                     }
                 });
             });
         }
         // Modal Dashboard Ready
-        if (localStorage.getItem('showDashboardReadyModal') === '1') {
+        function showDashboardReadyModalWithCountdown() {
             document.getElementById('dashboardReadyModal').classList.remove('hidden');
-            // Sembunyikan modal setelah konfirmasi
+            const countdownTimer = document.getElementById('countdown-timer');
+            const countdownNumber = document.getElementById('countdown-number');
+            const countdownCircle = document.getElementById('countdown-circle');
+            countdownTimer.classList.remove('hidden');
+            let seconds = 5;
+            let totalDash = 2 * Math.PI * 28; // 2πr, r=28
+            countdownCircle.setAttribute('stroke-dasharray', totalDash);
+            countdownCircle.setAttribute('stroke-dashoffset', 0);
+            
+            function animateCountdown(sec) {
+                // Efek animasi untuk angka
+                countdownNumber.style.transform = 'scale(1.2)';
+                countdownNumber.style.opacity = '0.7';
+                
+                setTimeout(() => {
+                    countdownNumber.textContent = sec;
+                    countdownNumber.style.transform = 'scale(1)';
+                    countdownNumber.style.opacity = '1';
+                }, 150);
+                
+                // Animate circle dengan transisi halus
+                let offset = totalDash * (1 - sec / 5);
+                countdownCircle.setAttribute('stroke-dashoffset', offset);
+            }
+            
+            animateCountdown(seconds);
+            
+            let interval = setInterval(function() {
+                seconds--;
+                if (seconds > 0) {
+                    animateCountdown(seconds);
+                } else {
+                    animateCountdown(0);
+                    clearInterval(interval);
+                    
+                    // Efek akhir yang lebih menarik
+                    countdownNumber.style.transform = 'scale(1.3)';
+                    countdownNumber.style.color = '#059669';
+                    countdownNumber.textContent = '✓';
+                    
+                    setTimeout(function() {
+                        countdownNumber.style.transform = 'scale(1)';
+                        location.reload();
+                    }, 800);
+                }
+            }, 1000);
+            
             document.getElementById('closeDashboardReadyModal').onclick = function() {
                 localStorage.setItem('scrollToStats', '1');
                 location.reload();
             };
+        }
+        if (localStorage.getItem('showDashboardReadyModal') === '1') {
+            showDashboardReadyModalWithCountdown();
         }
         // Setelah reload, jika scrollToStats==1, scroll ke stats cards dan hapus flag
         if (localStorage.getItem('scrollToStats') === '1') {
