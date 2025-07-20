@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Praxis Store - Horizon Theme</title>
+    <title>{{ $store_name ?? 'Store' }} - Horizon Theme</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -17,7 +17,7 @@
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
                 <div class="flex-shrink-0">
-                    <h1 class="text-2xl font-bold text-gray-900">{{ $store_name ?? 'PRAXIS' }}</h1>
+                    <h1 class="text-2xl font-bold text-gray-900">{{ $store_name ?? 'STORE' }}</h1>
                 </div>
                 
                 <!-- Navigation -->
@@ -126,7 +126,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <!-- Brand -->
                 <div class="col-span-1 md:col-span-2">
-                    <h3 class="text-2xl font-bold mb-4">{{ $store_name ?? 'PRAXIS' }}</h3>
+                    <h3 class="text-2xl font-bold mb-4">{{ $store_name ?? 'STORE' }}</h3>
                     <p class="text-gray-400 mb-4">{{ $store_description ?? 'Premium fashion and lifestyle products for the modern individual.' }}</p>
                 </div>
                 
@@ -154,7 +154,7 @@
             </div>
             
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 Praxis Store. All rights reserved.</p>
+                <p>&copy; 2024 {{ $store_name ?? 'Store' }}. All rights reserved.</p>
             </div>
         </div>
     </footer>

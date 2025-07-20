@@ -38,7 +38,7 @@
         <!-- Popular Free Themes -->
         <div class="mb-8">
             <h3 class="text-lg font-medium text-text-primary mb-4">Popular free themes</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Horizon Theme -->
                 <div class="border border-border-primary rounded-lg overflow-hidden">
                     <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
@@ -62,17 +62,40 @@
                     </div>
                 </div>
 
+                <!-- Craft Theme -->
+                <div class="border border-border-primary rounded-lg overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <h4 class="text-lg font-semibold mb-2">Craft</h4>
+                            <p class="text-sm opacity-90">Bookstore</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold text-text-primary mb-2">Craft</h4>
+                        <p class="text-text-secondary text-sm mb-3">A clean, elegant bookstore theme with hero section and testimonials.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-green-600 text-sm font-medium">Free</span>
+                            <form action="{{ route('themes.apply', 'craft') }}" method="POST" class="inline">
+                                @csrf
+                                <button type="submit" class="bg-interactive-primary text-interactive-primaryText px-3 py-1 rounded text-sm font-medium transition-colors">
+                                    Add
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Sense Theme -->
                 <div class="border border-border-primary rounded-lg overflow-hidden">
-                    <div class="h-48 bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center">
+                    <div class="h-48 bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center">
                         <div class="text-center text-white">
                             <h4 class="text-lg font-semibold mb-2">Sense</h4>
-                            <p class="text-sm opacity-90">Minimalist</p>
+                            <p class="text-sm opacity-90">Modern Books</p>
                         </div>
                     </div>
                     <div class="p-4">
                         <h4 class="font-semibold text-text-primary mb-2">Sense</h4>
-                        <p class="text-text-secondary text-sm mb-3">A minimalist theme focused on content and user experience.</p>
+                        <p class="text-text-secondary text-sm mb-3">A modern bookstore theme with statistics and featured books.</p>
                         <div class="flex items-center justify-between">
                             <span class="text-green-600 text-sm font-medium">Free</span>
                             <form action="{{ route('themes.apply', 'sense') }}" method="POST" class="inline">
@@ -85,20 +108,24 @@
                     </div>
                 </div>
 
-                <!-- Craft Theme -->
-                <div class="border border-border-primary rounded-lg overflow-hidden">
-                    <div class="h-48 bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center">
+                <!-- Minimal Theme -->
+                <div class="border border-border-primary rounded-lg overflow-hidden relative">
+                    <!-- New Badge -->
+                    <div class="absolute top-2 right-2 z-10">
+                        <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold">Tema Baru</span>
+                    </div>
+                    <div class="h-48 bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center">
                         <div class="text-center text-white">
-                            <h4 class="text-lg font-semibold mb-2">Craft</h4>
-                            <p class="text-sm opacity-90">Artisan</p>
+                            <h4 class="text-lg font-semibold mb-2">Minimal</h4>
+                            <p class="text-sm opacity-90">Clean & Simple</p>
                         </div>
                     </div>
                     <div class="p-4">
-                        <h4 class="font-semibold text-text-primary mb-2">Craft</h4>
-                        <p class="text-text-secondary text-sm mb-3">An artisan theme perfect for handmade and craft products.</p>
+                        <h4 class="font-semibold text-text-primary mb-2">Minimal</h4>
+                        <p class="text-text-secondary text-sm mb-3">A minimalist theme focused on typography and clean design.</p>
                         <div class="flex items-center justify-between">
                             <span class="text-green-600 text-sm font-medium">Free</span>
-                            <form action="{{ route('themes.apply', 'craft') }}" method="POST" class="inline">
+                            <form action="{{ route('themes.apply', 'minimal') }}" method="POST" class="inline">
                                 @csrf
                                 <button type="submit" class="bg-interactive-primary text-interactive-primaryText px-3 py-1 rounded text-sm font-medium transition-colors">
                                     Add

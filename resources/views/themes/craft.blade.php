@@ -3,236 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Praxis Store - Craft Theme</title>
+    <title>{{ $store_name ?? 'Bookstore' }} - Craft Theme</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        .craft-font { font-family: 'Quicksand', sans-serif; }
-        .script-font { font-family: 'Dancing Script', cursive; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-sans { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body class="bg-white craft-font">
+<body class="bg-white font-sans">
     <!-- Header -->
-    <header class="bg-white shadow-sm border-b border-amber-100 py-4">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between">
+    <header class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
                 <div class="flex-shrink-0">
-                    <h1 class="script-font text-3xl font-semibold text-amber-800">{{ $store_name ?? 'Praxis' }}</h1>
-                    <p class="text-xs text-amber-600 -mt-1">Handcrafted with Love</p>
+                    <h1 class="text-2xl font-serif font-bold text-green-600">{{ $store_name ?? 'Z' }}</h1>
                 </div>
                 
                 <!-- Navigation -->
-                <nav class="flex space-x-6">
-                    <a href="#" class="text-amber-800 hover:text-amber-600 text-sm font-medium transition-colors">Shop</a>
-                    <a href="#" class="text-amber-800 hover:text-amber-600 text-sm font-medium transition-colors">About</a>
-                    <a href="#" class="text-amber-800 hover:text-amber-600 text-sm font-medium transition-colors">Contact</a>
-                    <button class="text-amber-800 hover:text-amber-600 transition-colors">
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-900 hover:text-green-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                    <a href="#" class="text-gray-900 hover:text-green-600 px-3 py-2 text-sm font-medium transition-colors">Pages</a>
+                    <a href="#" class="text-gray-900 hover:text-green-600 px-3 py-2 text-sm font-medium transition-colors">Shop</a>
+                    <a href="#" class="text-gray-900 hover:text-green-600 px-3 py-2 text-sm font-medium transition-colors">Blog</a>
+                </nav>
+                
+                <!-- Cart Icon -->
+                <div class="flex items-center">
+                    <button class="p-2 text-gray-900 hover:text-green-600 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
                         </svg>
                     </button>
-                </nav>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- About Section -->
-    <section class="py-16 bg-gradient-to-br from-amber-50 to-orange-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Hero Section -->
+    <section class="relative py-20 bg-gradient-to-br from-green-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- About Image -->
+                <!-- Left Content -->
                 <div class="text-center lg:text-left">
-                    <!-- TODO: Replace with your artisan/craftsman image -->
-                    <img src="https://via.placeholder.com/500x600" alt="Our Artisan" class="w-full max-w-md mx-auto lg:mx-0 rounded-lg shadow-lg">
+                    <h2 class="text-4xl md:text-6xl font-serif font-bold text-gray-900 mb-6 leading-tight">
+                        Buy and sell your textbooks for the best price
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
+                        Find the perfect textbooks for your studies or sell your old ones to fellow students.
+                    </p>
+                    
+                    <!-- Search Bar -->
+                    <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto lg:mx-0">
+                        <input type="text" placeholder="Search for ISBN number" 
+                               class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        <button class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                            Search
+                        </button>
+                    </div>
                 </div>
                 
-                <!-- About Content -->
-                <div>
-                    <h2 class="script-font text-4xl lg:text-5xl font-semibold text-amber-800 mb-6">
-                        Made with Heart
-                    </h2>
-                    <p class="text-lg text-amber-700 mb-6 leading-relaxed">
-                        Every piece in our collection is lovingly crafted by skilled artisans who pour their passion 
-                        and expertise into creating unique, high-quality products. We believe in the beauty of 
-                        handmade items and the stories they tell.
-                    </p>
-                    <p class="text-amber-700 mb-8 leading-relaxed">
-                        From our workshop to your home, each creation carries the warmth and authenticity that only 
-                        handcrafted items can provide.
-                    </p>
-                    <button class="bg-amber-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-amber-700 transition-colors shadow-md">
-                        Meet Our Artisans
-                    </button>
+                <!-- Right Content - Featured Book -->
+                <div class="relative">
+                    <div class="relative z-10">
+                        <img src="https://via.placeholder.com/400x600/4F46E5/FFFFFF?text=Gone+Dead" 
+                             alt="Gone Dead by C.R Bernard" 
+                             class="w-full max-w-sm mx-auto shadow-2xl rounded-lg">
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-green-600 rounded-full opacity-20"></div>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="text-center mt-12">
+                <div class="w-6 h-10 border-2 border-gray-400 rounded-full mx-auto flex justify-center">
+                    <div class="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-bounce"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="py-16">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Best Seller Books Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h3 class="script-font text-3xl font-semibold text-amber-800 mb-4">Featured Creations</h3>
-                <p class="text-amber-700 text-lg">Discover our most beloved handcrafted pieces</p>
+                <h3 class="text-3xl font-serif font-bold text-gray-900 mb-4">Best Seller Books</h3>
             </div>
             
             <!-- Product Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 @if($products->count() > 0)
-                    @foreach($products as $product)
-                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-amber-100">
+                    @foreach($products->take(4) as $product)
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
                         <!-- Product Image -->
-                        <div class="relative overflow-hidden">
+                        <div class="relative overflow-hidden group">
                             @if($product->images->count() > 0)
-                                <!-- TODO: Replace with your product image -->
-                                <img src="{{ $product->images->first()->url }}" alt="{{ $product->title }}" class="w-full h-80 object-cover">
+                                <img src="{{ $product->images->first()->url }}" alt="{{ $product->title }}" 
+                                     class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300">
                             @else
-                                <img src="https://via.placeholder.com/400x500" alt="{{ $product->title }}" class="w-full h-80 object-cover">
+                                <img src="https://via.placeholder.com/400x500/6B7280/FFFFFF?text={{ urlencode($product->title) }}" 
+                                     alt="{{ $product->title }}" 
+                                     class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300">
                             @endif
-                            <div class="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-medium">
-                                Handmade
+                            
+                            <!-- Discount Badge -->
+                            <div class="absolute top-2 left-2 bg-green-600 text-white px-2 py-1 rounded text-sm font-semibold">
+                                {{ rand(5, 15) }}% Off
                             </div>
                         </div>
                         
                         <!-- Product Info -->
-                        <div class="p-6">
-                            <h4 class="text-lg font-semibold text-amber-800 mb-2">{{ $product->title }}</h4>
-                            <p class="text-amber-600 text-sm mb-3">{{ Str::limit($product->description, 50) }}</p>
-                            <div class="flex items-center justify-between">
-                                <p class="text-xl font-bold text-amber-800">
-                                    @if($product->variants->count() > 0)
-                                        Rp {{ number_format($product->variants->first()->price, 0, ',', '.') }}
-                                    @else
-                                        Rp 0
-                                    @endif
-                                </p>
-                                
+                        <div class="p-6 text-center">
+                            <h4 class="text-lg font-serif font-semibold text-gray-900 mb-2">{{ $product->title }}</h4>
+                            <p class="text-xl font-bold text-gray-900">
                                 @if($product->variants->count() > 0)
-                                    <form action="{{ route('cart.add', $product->id) }}" method="POST" class="inline">
-                                        @csrf
-                                        <input type="hidden" name="variant_id" value="{{ $product->variants->first()->id }}">
-                                        <input type="hidden" name="quantity" value="1">
-                                        <button type="submit" class="bg-amber-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-amber-700 transition-colors">
-                                            Add to Cart
-                                        </button>
-                                    </form>
+                                    Rp {{ number_format($product->variants->first()->price, 0, ',', '.') }}
                                 @else
-                                    <button class="bg-amber-300 text-amber-600 px-4 py-2 rounded-lg font-medium cursor-not-allowed">
-                                        Out of Stock
-                                    </button>
+                                    Rp 0
                                 @endif
-                            </div>
+                            </p>
+                            
+                            @if($product->variants->count() > 0)
+                                <form action="{{ route('cart.add', $product->id) }}" method="POST" class="mt-4">
+                                    @csrf
+                                    <input type="hidden" name="variant_id" value="{{ $product->variants->first()->id }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors">
+                                        Add to Cart
+                                    </button>
+                                </form>
+                            @else
+                                <button class="w-full bg-gray-300 text-gray-500 py-2 px-4 rounded-lg cursor-not-allowed mt-4">
+                                    Out of Stock
+                                </button>
+                            @endif
                         </div>
                     </div>
                     @endforeach
                 @else
                     <div class="col-span-full text-center py-12">
-                        <p class="text-amber-600 text-lg">No products available yet.</p>
+                        <p class="text-gray-500 text-lg">No products available yet.</p>
                     </div>
                 @endif
+            </div>
+            
+            <!-- Pagination Indicator -->
+            <div class="flex justify-center mt-8">
+                <div class="flex space-x-2">
+                    <div class="w-2 h-2 bg-green-600 rounded-full"></div>
+                    <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+                    <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Value Proposition Section -->
-    <section class="py-16 bg-gradient-to-br from-orange-50 to-amber-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h3 class="script-font text-3xl font-semibold text-amber-800 mb-4">Why Choose Handcrafted?</h3>
-                <p class="text-amber-700 text-lg">The unique benefits of our artisan-made products</p>
+                <h3 class="text-3xl font-serif font-bold text-gray-900 mb-4">Our Customer</h3>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Handmade -->
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
-                        </svg>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                        </div>
                     </div>
-                    <h4 class="text-xl font-semibold text-amber-800 mb-2">Buatan Tangan</h4>
-                    <p class="text-amber-700">Setiap produk dibuat dengan tangan oleh pengrajin berpengalaman</p>
+                    <p class="text-gray-600 mb-6">"Amazing service! I found all the textbooks I needed for my semester at great prices. The quality was excellent and shipping was fast."</p>
+                    <div class="flex items-center">
+                        <img src="https://via.placeholder.com/50x50/6B7280/FFFFFF?text=CW" alt="Cameron Williamson" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Cameron Williamson</h4>
+                            <p class="text-gray-500 text-sm">Web Designer</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <!-- Local Materials -->
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                        </div>
                     </div>
-                    <h4 class="text-xl font-semibold text-amber-800 mb-2">Bahan Lokal</h4>
-                    <p class="text-amber-700">Menggunakan bahan berkualitas dari sumber lokal terpercaya</p>
+                    <p class="text-gray-600 mb-6">"I sold my old textbooks and made back most of what I paid for them. The platform is so easy to use and the community is great!"</p>
+                    <div class="flex items-center">
+                        <img src="https://via.placeholder.com/50x50/6B7280/FFFFFF?text=JC" alt="Jane Cooper" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Jane Cooper</h4>
+                            <p class="text-gray-500 text-sm">Marketing Coordinator</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Image -->
+                <div class="relative">
+                    <img src="https://via.placeholder.com/600x400/6B7280/FFFFFF?text=Student+Reading" 
+                         alt="Student reading" 
+                         class="w-full rounded-lg shadow-lg">
                 </div>
                 
-                <!-- Quality Guaranteed -->
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                <!-- Right Content -->
+                <div class="text-center lg:text-left">
+                    <h3 class="text-3xl font-serif font-bold text-gray-900 mb-6">We Provide You The Experience</h3>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Browse the collection of our best selling and top interesting products.
+                    </p>
+                    <button class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors inline-flex items-center">
+                        See our products
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                         </svg>
-                    </div>
-                    <h4 class="text-xl font-semibold text-amber-800 mb-2">Kualitas Terjamin</h4>
-                    <p class="text-amber-700">Setiap produk melalui kontrol kualitas yang ketat</p>
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-amber-800 text-white py-12">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- Brand -->
-                <div class="col-span-1 md:col-span-2">
-                    <h4 class="script-font text-2xl font-semibold mb-4">{{ $store_name ?? 'Praxis' }}</h4>
-                    <p class="text-amber-200 mb-4">{{ $store_description ?? 'Handcrafted with love and care. Every piece tells a story.' }}</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-amber-200 hover:text-white transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="text-amber-200 hover:text-white transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="text-amber-200 hover:text-white transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Quick Links -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Help -->
                 <div>
-                    <h5 class="font-semibold mb-4">Quick Links</h5>
-                    <ul class="space-y-2 text-amber-200">
-                        <li><a href="#" class="hover:text-white transition-colors">Shop All</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">New Arrivals</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Best Sellers</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Sale</a></li>
+                    <h4 class="text-lg font-semibold mb-4">Help</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Legal Notice</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
                     </ul>
                 </div>
                 
-                <!-- Support -->
+                <!-- Secure Payment -->
                 <div>
-                    <h5 class="font-semibold mb-4">Support</h5>
-                    <ul class="space-y-2 text-amber-200">
-                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Shipping Info</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Returns</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                    <h4 class="text-lg font-semibold mb-4">Secure Payment</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Payment Methods</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Security</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Social Networks -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Social Networks</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Pinterest</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Facebook</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Instagram</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div class="border-t border-amber-700 mt-8 pt-8 text-center">
-                <p class="text-amber-200">&copy; 2024 Praxis Store. Handcrafted with love.</p>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 {{ $store_name ?? 'Bookstore' }}. All rights reserved.</p>
             </div>
         </div>
     </footer>
