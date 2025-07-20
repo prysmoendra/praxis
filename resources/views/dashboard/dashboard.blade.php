@@ -53,6 +53,8 @@
     $storeSettingsComplete = $hasStoreName && $hasShippingZones;
     $launchStoreComplete = $hasPlacedTestOrder && $hasUnlockedStore;
     $posSetupComplete = $hasSetupPOS;
+
+    $setupCompleted = ($completedTasks === $totalTasks);
 @endphp
 
 @if($isNewUser && !$setupCompleted)
