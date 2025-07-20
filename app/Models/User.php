@@ -23,7 +23,6 @@ class User extends Authenticatable
         'password',
         'phone',
         'onboarding_status',
-        'selected_theme',
         'store_domain',
         'store_name',
         'store_description',
@@ -60,5 +59,13 @@ class User extends Authenticatable
     public function products()
     {
         return $this->hasMany(\App\Models\Product::class);
+    }
+
+    /**
+     * Relasi yang mendefinisikan bahwa satu user bisa punya banyak toko.
+     */
+    public function stores()
+    {
+        return $this->hasMany(Store::class);
     }
 }

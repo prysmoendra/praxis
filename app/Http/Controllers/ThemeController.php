@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Store;
 
 class ThemeController extends Controller
 {
@@ -27,10 +28,22 @@ class ThemeController extends Controller
     {
         $user = Auth::user();
         
-        // Update user's selected theme
-        \Illuminate\Support\Facades\DB::table('users')
-            ->where('id', $user->id)
-            ->update(['selected_theme' => $themeId]);
+        // Get or create user's store
+        $store = Store::where('user_id', $user->id)->first();
+        if (!$store) {
+            // Create a default store for the user
+            $store = Store::create([
+                'user_id' => $user->id,
+                'name' => $user->name . "'s Store",
+                'domain' => null, // Let user set their own domain
+                'description' => 'Welcome to our store',
+                'status' => 'active',
+                'is_locked' => true,
+            ]);
+        }
+        
+        // Update store's selected theme
+        $store->update(['selected_theme' => $themeId]);
         
         // Update onboarding status
         $onboardingStatus = $user->onboarding_status ?? [];

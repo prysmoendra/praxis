@@ -16,12 +16,14 @@ class StorefrontController extends Controller
      */
     public function show($userDomain)
     {
-        // Find user by store domain
-        $user = User::where('store_domain', $userDomain)->first();
+        // Find store by domain
+        $store = \App\Models\Store::where('domain', $userDomain)->first();
         
-        if (!$user) {
+        if (!$store) {
             abort(404, 'Store not found');
         }
+
+        $user = $store->user;
 
         // Get user's products
         $products = Product::where('user_id', $user->id)
@@ -29,20 +31,25 @@ class StorefrontController extends Controller
                           ->with(['images', 'variants'])
                           ->get();
 
-        // Get selected theme
-        $theme = $user->selected_theme ?? 'horizon';
+        // Get selected theme from store
+        $theme = $store->selected_theme ?? 'horizon';
 
         // Prepare data for the theme
         $storeData = [
             'user' => $user,
             'products' => $products,
-            'store_name' => $user->store_name ?? $user->name . "'s Store",
-            'store_description' => $user->store_description ?? 'Welcome to our store',
-            'store_logo' => $user->store_logo,
+            'store_name' => $store->name ?? $user->name . "'s Store",
+            'store_description' => $store->description ?? 'Welcome to our store',
+            'store_logo' => $store->logo,
         ];
 
-        // Render the appropriate theme
-        return view("themes.{$theme}", $storeData);
+        // Ganti baris yang menentukan view
+        // LAMA: return view("themes.{$theme}", $storeData);
+        // BARU: Gunakan view dari direktori storefronts yang baru dibuat
+        $templateView = "storefronts.{$userDomain}.index";
+
+        // Pastikan variabel lain seperti $store, $customizations, $products tetap di-passing
+        return view($templateView, $storeData);
     }
 
     /**
@@ -58,7 +65,7 @@ class StorefrontController extends Controller
         
         // Check if domain already exists
         $counter = 1;
-        while (User::where('store_domain', $domain)->exists()) {
+        while (\App\Models\Store::where('domain', $domain)->exists()) {
             $domain = $baseDomain . $counter . '.praxis.com';
             $counter++;
         }

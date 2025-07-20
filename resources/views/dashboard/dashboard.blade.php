@@ -33,9 +33,14 @@
     if ($hasDomain) $completedTasks++;
     if ($hasDesignedStore) $completedTasks++;
     
-    // Store Settings Section (2 tasks) - Currently not implemented, so always 0
-    // Add store name - not implemented yet
-    // Review shipping rates - not implemented yet
+    // Store Settings Section (2 tasks)
+    $hasStoreName = $store && $store->name && trim($store->name) !== '';
+    $hasShippingZones = $store && $store->shippingZones()->count() > 0;
+    
+    if ($hasStoreName) $completedTasks++;
+    if ($hasShippingZones) $completedTasks++;
+    
+    $storeSettingsComplete = $hasStoreName && $hasShippingZones;
     
     // Launch Store Section (2 tasks) - Currently not implemented, so always 0
     // Place test order - not implemented yet
@@ -49,8 +54,8 @@
         'Add your first product' => $hasAddedProduct ? '✅ Complete' : '❌ Not done',
         'Design your store' => $hasDesignedStore ? '✅ Complete' : '❌ Not done',
         'Customize your domain' => $hasDomain ? '✅ Complete' : '❌ Not done',
-        'Add store name' => '❌ Not implemented',
-        'Review shipping rates' => '❌ Not implemented',
+        'Add store name' => $hasStoreName ? '✅ Complete' : '❌ Not done',
+        'Review shipping rates' => $hasShippingZones ? '✅ Complete' : '❌ Not done',
         'Place test order' => '❌ Not implemented',
         'Unlock store' => '❌ Not implemented',
         'Configure POS settings' => '❌ Not implemented'
@@ -177,13 +182,9 @@
                                 </div>
                             </div>
                             
-                            @php
-                                $isStoreNameSet = $onboardingStatus['set_store_name'] ?? false;
-                                $isStoreDomainSet = $onboardingStatus['set_store_domain'] ?? false;
-                            @endphp
                             <div class="flex items-start space-x-4 p-4 bg-background-main rounded-lg">
-                                <div class="w-8 h-8 {{ $isStoreDomainSet ? 'bg-green-500' : 'bg-interactive-secondary' }} rounded-full flex items-center justify-center flex-shrink-0">
-                                    @if($isStoreDomainSet)
+                                <div class="w-8 h-8 {{ $hasDomain ? 'bg-green-500' : 'bg-interactive-secondary' }} rounded-full flex items-center justify-center flex-shrink-0">
+                                    @if($hasDomain)
                                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
                                         </svg>
@@ -192,17 +193,19 @@
                                     @endif
                                 </div>
                                 <div class="flex-1">
-                                    <h4 class="font-semibold text-gray-800 mb-1">Customize your domain</h4>
+                                    <h4 class="font-semibold text-gray-800 mb-1">Set your store domain</h4>
                                     <p class="text-text-secondary text-sm mb-3">Set up a custom domain for your online store.</p>
-                                    @if($isStoreDomainSet && $store)
-                                        <p class="text-sm text-gray-600">Domain toko Anda: {{ $store->domain }}</p>
+                                    @if($hasDomain && $store)
+                                        <div class="mt-2 p-3 bg-gray-100 rounded-md">
+                                            <p class="text-sm text-gray-800 font-medium">Domain Anda: <strong>{{ $store->domain }}</strong></p>
+                                            <p class="text-xs text-gray-500 mt-1">Nama domain tidak dapat diubah setelah disimpan.</p>
+                                        </div>
                                     @else
                                         <div x-data="{ editing: false, domain: '' }">
-                                            <p x-show="!editing" @click="editing = true" class="text-sm text-blue-500 font-semibold hover:underline cursor-pointer">Set a custom domain for your store.</p>
+                                            <p x-show="!editing" @click="editing = true" class="text-sm text-blue-500 font-semibold hover:underline cursor-pointer">Set a unique domain for your store (e.g., toko-anda.com).</p>
                                             <form x-show="editing" action="{{ route('dashboard.store.update') }}" method="POST" class="flex items-center gap-2 mt-2">
                                                 @csrf
-                                                <input type="hidden" name="store_id" value="{{ $store->id ?? '' }}">
-                                                <input type="text" name="domain" x-model="domain" class="block w-[70%] h-9 pl-3 border-gray-300 rounded-md shadow-sm sm:text-sm" placeholder="e.g. myshop">
+                                                <input type="text" name="domain" x-model="domain" class="block w-[70%] h-9 pl-3 border-gray-300 rounded-md shadow-sm sm:text-sm" placeholder="toko-anda.com">
                                                 <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-lg">Save</button>
                                             </form>
                                         </div>
@@ -220,8 +223,14 @@
                 <div class="border-t border-border-primary">
                     <button onclick="toggleAccordion('store-settings')" class="accordion-trigger w-full flex justify-between items-center py-4 px-0 cursor-pointer rounded-lg transition-colors">
                         <div class="flex items-center space-x-3">
-                            <div class="w-6 h-6 bg-interactive-secondary rounded-full flex items-center justify-center">
-                                <span class="text-interactive-secondaryText text-xs font-semibold">2</span>
+                            <div class="w-6 h-6 {{ $storeSettingsComplete ? 'bg-green-500' : 'bg-interactive-secondary' }} rounded-full flex items-center justify-center">
+                                @if($storeSettingsComplete)
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                @else
+                                    <span class="text-interactive-secondaryText text-xs font-semibold">2</span>
+                                @endif
                             </div>
                             <span class="text-text-primary font-semibold" data-translate-key="dashboard_store_settings">Store settings</span>
                         </div>
@@ -232,12 +241,8 @@
                     <div id="store-settings-content" class="accordion-content pb-4">
                         <div class="ml-9 space-y-4">
                             <div class="flex items-start space-x-4 p-4 bg-background-main rounded-lg">
-                                @php
-                                    $isStoreNameSet = $onboardingStatus['set_store_name'] ?? false;
-                                    $isStoreDomainSet = $onboardingStatus['set_store_domain'] ?? false;
-                                @endphp
-                                <div class="w-8 h-8 {{ $isStoreNameSet ? 'bg-green-500' : 'bg-interactive-secondary' }} rounded-full flex items-center justify-center flex-shrink-0">
-                                    @if($isStoreNameSet)
+                                <div class="w-8 h-8 {{ $hasStoreName ? 'bg-green-500' : 'bg-interactive-secondary' }} rounded-full flex items-center justify-center flex-shrink-0">
+                                    @if($hasStoreName)
                                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
                                         </svg>
@@ -248,10 +253,13 @@
                                 <div class="flex-1">
                                     <h4 class="font-semibold text-gray-800 mb-1">Add store name</h4>
                                     <p class="text-text-secondary text-sm mb-3">Add a touch of brilliance name to your store.</p>
-                                    @if($isStoreNameSet && $store)
-                                        <p class="text-sm text-gray-600">Nama toko Anda: {{ $store->name }}</p>
+                                    @if($hasStoreName && $store)
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-green-600 text-sm font-medium">✓ Completed</span>
+                                            <span class="text-text-secondary text-sm">Store name: {{ $store->name }}</span>
+                                        </div>
                                     @else
-                                        <div x-data="{ editing: false, name: '' }">
+                                        <div x-data="{ editing: false, name: '{{ $store->name ?? '' }}' }">
                                             <p x-show="!editing" @click="editing = true" class="text-sm text-blue-500 font-semibold hover:underline cursor-pointer">Set a name for your store.</p>
                                             <form x-show="editing" action="{{ route('dashboard.store.update') }}" method="POST" class="flex items-center gap-2 mt-2">
                                                 @csrf
@@ -268,15 +276,28 @@
                             </div>
                             
                             <div class="flex items-start space-x-4 p-4 bg-background-main rounded-lg">
-                                <div class="w-8 h-8 bg-interactive-secondary rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-interactive-secondaryText text-xs font-semibold">2</span>
+                                <div class="w-8 h-8 {{ $hasShippingZones ? 'bg-green-500' : 'bg-interactive-secondary' }} rounded-full flex items-center justify-center flex-shrink-0">
+                                    @if($hasShippingZones)
+                                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                    @else
+                                        <span class="text-interactive-secondaryText text-xs font-semibold">2</span>
+                                    @endif
                                 </div>
                                 <div class="flex-1">
                                     <h4 class="text-text-primary font-semibold mb-1" data-translate-key="dashboard_review_shipping">Review your shipping rates</h4>
                                     <p class="text-text-secondary text-sm mb-3" data-translate-key="dashboard_review_shipping_desc">Configure shipping options and rates for your customers.</p>
-                                    <a href="{{ route('shipping-zones.index') }}" class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                        <span data-translate-key="dashboard_configure_shipping">Configure shipping</span>
-                                    </a>
+                                    @if($hasShippingZones)
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-green-600 text-sm font-medium">✓ Completed</span>
+                                            <span class="text-text-secondary text-sm">({{ $store->shippingZones()->count() }} zone{{ $store->shippingZones()->count() > 1 ? 's' : '' }} configured)</span>
+                                        </div>
+                                    @else
+                                        <a href="{{ route('shipping-zones.index') }}" class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                            <span data-translate-key="dashboard_configure_shipping">Configure shipping</span>
+                                        </a>
+                                    @endif
                                 </div>
                                 <div class="flex-shrink-0">
                                     <img alt="" src="https://cdn.shopify.com/b/shopify-guidance-dashboard-public/2l1xr6rqkjhw0ktznk0bxc33zgr7.svgz" class="w-36 h-28 mr-2">
@@ -307,10 +328,13 @@
                                 </div>
                                 <div class="flex-1">
                                     <h4 class="text-text-primary font-semibold mb-1" data-translate-key="dashboard_place_test_order">Place a test order</h4>
-                                    <p class="text-text-secondary text-sm mb-3" data-translate-key="dashboard_place_test_order_desc">Make sure things are running smoothly by placing a test order from your own store.</p>
+                                    <p class="text-text-secondary text-sm mb-6" data-translate-key="dashboard_place_test_order_desc">Make sure things are running smoothly by placing a test order from your own store.</p>
                                     <a href="{{ url('/store/' . ($store->domain ?? '')) . '?test=1' }}" target="_blank" class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
                                         <span data-translate-key="dashboard_place_test_order_btn">Place test order</span>
                                     </a>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <img alt="" src="https://cdn.shopify.com/b/shopify-guidance-dashboard-public/m66z0a57ues1gygrane8proz6gqn.svgz" class="w-36 h-28">
                                 </div>
                             </div>
                             
