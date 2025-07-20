@@ -38,17 +38,25 @@ class StorefrontController extends Controller
         $storeData = [
             'user' => $user,
             'products' => $products,
-            'store_name' => $store->name ?? $user->name . "'s Store",
+            'store_name' => $store->name ?? 'My Store',
             'store_description' => $store->description ?? 'Welcome to our store',
             'store_logo' => $store->logo,
         ];
 
-        // Ganti baris yang menentukan view
-        // LAMA: return view("themes.{$theme}", $storeData);
-        // BARU: Gunakan view dari direktori storefronts yang baru dibuat
-        $templateView = "storefronts.{$userDomain}.index";
+        // Check if this is a test order request
+        if (request()->has('test') && request()->get('test') == '1') {
+            // For test orders, use the selected theme directly
+            return view("themes.{$theme}", $storeData);
+        }
 
-        // Pastikan variabel lain seperti $store, $customizations, $products tetap di-passing
+        // For normal storefront, check if user has a custom template
+        $templateView = "storefronts.{$userDomain}.index";
+        
+        // If custom template doesn't exist, use the selected theme
+        if (!view()->exists($templateView)) {
+            return view("themes.{$theme}", $storeData);
+        }
+
         return view($templateView, $storeData);
     }
 

@@ -39,7 +39,7 @@ class DashboardController extends Controller
             // Create new store if doesn't exist
             $store = \App\Models\Store::create([
                 'user_id' => $user->id,
-                'name' => $validated['name'] ?? $user->name . "'s Store",
+                'name' => $validated['name'] ?? null, // Jangan buat nama otomatis
                 'domain' => $validated['domain'] ?? null,
                 'description' => 'Welcome to our store',
                 'status' => 'active',

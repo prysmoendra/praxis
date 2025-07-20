@@ -31,15 +31,15 @@ class ThemeController extends Controller
         // Get or create user's store
         $store = Store::where('user_id', $user->id)->first();
         if (!$store) {
-            // Create a default store for the user
-            $store = Store::create([
-                'user_id' => $user->id,
-                'name' => $user->name . "'s Store",
-                'domain' => null, // Let user set their own domain
-                'description' => 'Welcome to our store',
-                'status' => 'active',
-                'is_locked' => true,
-            ]);
+                    // Create a default store for the user
+        $store = Store::create([
+            'user_id' => $user->id,
+            'name' => null, // Let user set their own name
+            'domain' => null, // Let user set their own domain
+            'description' => 'Welcome to our store',
+            'status' => 'active',
+            'is_locked' => true,
+        ]);
         }
         
         // Update store's selected theme
