@@ -197,7 +197,7 @@
                                     <p class="text-text-secondary text-sm mb-3">Set up a custom domain for your online store.</p>
                                     @if($hasDomain && $store)
                                         <div class="mt-2 p-3 bg-gray-100 rounded-md">
-                                            <p class="text-sm text-gray-800 font-medium">Domain Anda: <strong>{{ $store->domain }}</strong></p>
+                                            <p class="text-sm text-gray-600 font-medium">Domain Anda: <strong>{{ $store->domain }}</strong></p>
                                             <p class="text-xs text-gray-500 mt-1">Nama domain tidak dapat diubah setelah disimpan.</p>
                                         </div>
                                     @else
@@ -256,7 +256,7 @@
                                     @if($hasStoreName && $store)
                                         <div class="flex items-center space-x-2">
                                             <span class="text-green-600 text-sm font-medium">✓ Completed</span>
-                                            <span class="text-text-secondary text-sm">Store name: {{ $store->name }}</span>
+                                            <span class="text-gray-600 text-sm">Store name: <strong>{{ $store->name }}</strong></span>
                                         </div>
                                     @else
                                         <div x-data="{ editing: false, name: '{{ $store->name ?? '' }}' }">
@@ -311,8 +311,14 @@
                 <div class="border-t border-border-primary">
                     <button onclick="toggleAccordion('launch-store')" class="accordion-trigger w-full flex justify-between items-center py-4 px-0 cursor-pointer rounded-lg transition-colors">
                         <div class="flex items-center space-x-3">
-                            <div class="w-6 h-6 bg-interactive-secondary rounded-full flex items-center justify-center">
-                                <span class="text-interactive-secondaryText text-xs font-semibold">3</span>
+                            <div class="w-6 h-6 {{ (isset($onboardingStatus['has_unlocked_store']) && $onboardingStatus['has_unlocked_store']) ? 'bg-green-500' : 'bg-interactive-secondary' }} rounded-full flex items-center justify-center">
+                                @if(isset($onboardingStatus['has_unlocked_store']) && $onboardingStatus['has_unlocked_store'])
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                @else
+                                    <span class="text-interactive-secondaryText text-xs font-semibold">3</span>
+                                @endif
                             </div>
                             <span class="text-text-primary font-semibold" data-translate-key="dashboard_launch_store">Launch your online store</span>
                         </div>
@@ -323,15 +329,31 @@
                     <div id="launch-store-content" class="accordion-content pb-4">
                         <div class="ml-9 space-y-4">
                             <div class="flex items-start space-x-4 p-4 bg-background-main rounded-lg">
-                                <div class="w-8 h-8 bg-interactive-secondary rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-interactive-secondaryText text-xs font-semibold">1</span>
+                                <div class="w-8 h-8 {{ (isset($onboardingStatus['has_placed_test_order']) && $onboardingStatus['has_placed_test_order']) ? 'bg-green-500' : 'bg-interactive-secondary' }} rounded-full flex items-center justify-center flex-shrink-0">
+                                    @if(isset($onboardingStatus['has_placed_test_order']) && $onboardingStatus['has_placed_test_order'])
+                                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                    @else
+                                        <span class="text-interactive-secondaryText text-xs font-semibold">1</span>
+                                    @endif
                                 </div>
                                 <div class="flex-1">
                                     <h4 class="text-text-primary font-semibold mb-1" data-translate-key="dashboard_place_test_order">Place a test order</h4>
                                     <p class="text-text-secondary text-sm mb-6" data-translate-key="dashboard_place_test_order_desc">Make sure things are running smoothly by placing a test order from your own store.</p>
-                                    <a href="{{ url('/store/' . ($store->domain ?? '')) . '?test=1' }}" target="_blank" class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                        <span data-translate-key="dashboard_place_test_order_btn">Place test order</span>
-                                    </a>
+                                    @if(isset($onboardingStatus['has_placed_test_order']) && $onboardingStatus['has_placed_test_order'])
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-green-600 text-sm font-medium">✓ Completed</span>
+                                        </div>
+                                    @else
+                                        <button
+                                            id="test-order-btn"
+                                            class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors"
+                                            data-store-url="{{ url('/store/' . ($store->domain ?? '')) . '?test=1' }}"
+                                        >
+                                            <span data-translate-key="dashboard_place_test_order_btn">Place test order</span>
+                                        </button>
+                                    @endif
                                 </div>
                                 <div class="flex-shrink-0">
                                     <img alt="" src="https://cdn.shopify.com/b/shopify-guidance-dashboard-public/m66z0a57ues1gygrane8proz6gqn.svgz" class="w-36 h-28">
@@ -339,18 +361,33 @@
                             </div>
                             
                             <div class="flex items-start space-x-4 p-4 bg-background-main rounded-lg">
-                                <div class="w-8 h-8 bg-interactive-secondary rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-interactive-secondaryText text-xs font-semibold">2</span>
+                                <div class="w-8 h-8 {{ (isset($onboardingStatus['has_unlocked_store']) && $onboardingStatus['has_unlocked_store']) ? 'bg-green-500' : 'bg-interactive-secondary' }} rounded-full flex items-center justify-center flex-shrink-0">
+                                    @if(isset($onboardingStatus['has_unlocked_store']) && $onboardingStatus['has_unlocked_store'])
+                                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                    @else
+                                        <span class="text-interactive-secondaryText text-xs font-semibold">2</span>
+                                    @endif
                                 </div>
                                 <div class="flex-1">
                                     <h4 class="text-text-primary font-semibold mb-1" data-translate-key="dashboard_unlock_store">Unlock your store</h4>
                                     <p class="text-text-secondary text-sm mb-3" data-translate-key="dashboard_unlock_store_desc">Remove the password protection and make your store live.</p>
-                                    <form action="{{ route('dashboard.store.unlock') }}" method="POST" class="inline">
-                                        @csrf
-                                        <button type="submit" class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                            <span data-translate-key="dashboard_unlock_store_btn">Unlock store</span>
-                                        </button>
-                                    </form>
+                                    @if(isset($onboardingStatus['has_unlocked_store']) && $onboardingStatus['has_unlocked_store'])
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-green-600 text-sm font-medium">✓ Completed</span>
+                                        </div>
+                                    @else
+                                        <form action="{{ route('dashboard.store.unlock') }}" method="POST" class="inline">
+                                            @csrf
+                                            <button type="submit" class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                                <span data-translate-key="dashboard_unlock_store_btn">Unlock store</span>
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <img alt="" src="https://cdn.shopify.com/shopifycloud/shopify/assets/admin/home/onboarding/detail-images/launch-store-task-a76f144875f76dfce52a49830e86865767433564f080749237058964763c6c27.svg" class="w-36 h-28">
                                 </div>
                             </div>
                         </div>
@@ -382,6 +419,9 @@
                                     <a href="{{ route('dashboard.pos') }}" class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
                                         <span data-translate-key="dashboard_setup_pos">Set up POS</span>
                                     </a>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <img alt="" src="/images/hero_pos.png" class="w-36 h-24">
                                 </div>
                             </div>
                         </div>
@@ -603,7 +643,7 @@
             dashboard_setup_domain: 'Atur domain',
             dashboard_store_settings_title: 'Pengaturan Toko',
             dashboard_add_store_name: 'Tambah nama toko',
-            dashboard_add_store_name_desc: 'Nama toko sementara Anda saat ini adalah "My Store". Nama toko muncul di admin dan toko online Anda.',
+            dashboard_add_store_name_desc: 'Your temporary store name is currently "My Store". The store name appears in your admin and your online store.',
             dashboard_update_store_name: 'Perbarui nama toko',
             dashboard_review_shipping: 'Tinjau tarif pengiriman Anda',
             dashboard_review_shipping_desc: 'Konfigurasikan opsi dan tarif pengiriman untuk pelanggan Anda.',
@@ -824,6 +864,28 @@
         if (firstAccordion && firstIcon) {
             firstAccordion.classList.add('open');
             firstIcon.classList.add('rotated');
+        }
+
+        const btn = document.getElementById('test-order-btn');
+        if (btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                fetch("{{ route('dashboard.onboarding.test-order') }}", {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        window.open(btn.getAttribute('data-store-url'), '_blank');
+                        location.reload();
+                    }
+                });
+            });
         }
     });
 </script> 
