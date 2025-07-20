@@ -9,57 +9,50 @@
     <p class="text-text-secondary" data-translate-key="dashboard_manage_store">Manage your Praxis e-commerce store and track your business performance.</p>
 </div>
 
+<!-- Modal Dashboard Ready -->
+<div id="dashboardReadyModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
+    <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full text-center">
+        <h2 class="text-2xl font-bold mb-4 text-green-700">Dashboard Siap Digunakan!</h2>
+        <p class="mb-6">Dashboard Anda sudah siap untuk meng-handle transaksi. Silakan mulai menggunakan fitur-fitur yang tersedia.</p>
+        <button id="closeDashboardReadyModal" class="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold">Konfirmasi</button>
+    </div>
+</div>
+
 @php
-    // Check if user is new (created within last 7 days and no setup completed)
-    $isNewUser = $user->created_at->diffInDays(now()) <= 7;
-    $setupCompleted = false; // This would be stored in database in real implementation
-    
     // Get user's store
     $store = \App\Models\Store::where('user_id', $user->id)->first();
-    
-    // Check if all three steps in "Sell online" section are complete
-    $hasAddedProduct = isset($onboardingStatus['has_added_product']) && $onboardingStatus['has_added_product'];
-    $hasDomain = $store && $store->domain && trim($store->domain) !== '';
-    $hasDesignedStore = isset($onboardingStatus['designed_store']) && $onboardingStatus['designed_store']; // Design store is complete if theme is set
-    
-    $sellOnlineComplete = $hasAddedProduct && $hasDomain && $hasDesignedStore;
-    
-    // Calculate progress for all tasks
+
+    $isNewUser = $user->created_at->diffInDays(now()) <= 7;
+    $setupCompleted = false;
+
     $completedTasks = 0;
     $totalTasks = 8;
-    
-    // Sell Online Section (3 tasks)
-    if ($hasAddedProduct) $completedTasks++;
-    if ($hasDomain) $completedTasks++;
-    if ($hasDesignedStore) $completedTasks++;
-    
-    // Store Settings Section (2 tasks)
+
+    // Sub-task checks
+    $hasAddedProduct = isset($onboardingStatus['has_added_product']) && $onboardingStatus['has_added_product'];
+    $hasDesignedStore = isset($onboardingStatus['designed_store']) && $onboardingStatus['designed_store'];
+    $hasDomain = $store && $store->domain && trim($store->domain) !== '';
     $hasStoreName = $store && $store->name && trim($store->name) !== '';
     $hasShippingZones = $store && $store->shippingZones()->count() > 0;
-    
+    $hasPlacedTestOrder = isset($onboardingStatus['has_placed_test_order']) && $onboardingStatus['has_placed_test_order'];
+    $hasUnlockedStore = isset($onboardingStatus['has_unlocked_store']) && $onboardingStatus['has_unlocked_store'];
+    $hasSetupPOS = isset($onboardingStatus['has_setup_pos']) && $onboardingStatus['has_setup_pos'];
+
+    // Increment for each completed sub-task
+    if ($hasAddedProduct) $completedTasks++;
+    if ($hasDesignedStore) $completedTasks++;
+    if ($hasDomain) $completedTasks++;
     if ($hasStoreName) $completedTasks++;
     if ($hasShippingZones) $completedTasks++;
-    
+    if ($hasPlacedTestOrder) $completedTasks++;
+    if ($hasUnlockedStore) $completedTasks++;
+    if ($hasSetupPOS) $completedTasks++;
+
+    // Section completion checks
+    $sellOnlineComplete = $hasAddedProduct && $hasDomain && $hasDesignedStore;
     $storeSettingsComplete = $hasStoreName && $hasShippingZones;
-    
-    // Launch Store Section (2 tasks) - Currently not implemented, so always 0
-    // Place test order - not implemented yet
-    // Unlock store - not implemented yet
-    
-    // Point of Sale Section (1 task) - Currently not implemented, so always 0
-    // Configure POS settings - not implemented yet
-    
-    // Debug: Show task status (temporary for checking)
-    $taskStatus = [
-        'Add your first product' => $hasAddedProduct ? '✅ Complete' : '❌ Not done',
-        'Design your store' => $hasDesignedStore ? '✅ Complete' : '❌ Not done',
-        'Customize your domain' => $hasDomain ? '✅ Complete' : '❌ Not done',
-        'Add store name' => $hasStoreName ? '✅ Complete' : '❌ Not done',
-        'Review shipping rates' => $hasShippingZones ? '✅ Complete' : '❌ Not done',
-        'Place test order' => '❌ Not implemented',
-        'Unlock store' => '❌ Not implemented',
-        'Configure POS settings' => '❌ Not implemented'
-    ];
+    $launchStoreComplete = $hasPlacedTestOrder && $hasUnlockedStore;
+    $posSetupComplete = $hasSetupPOS;
 @endphp
 
 @if($isNewUser && !$setupCompleted)
@@ -398,8 +391,14 @@
                 <div class="border-t border-border-primary">
                     <button onclick="toggleAccordion('pos-setup')" class="accordion-trigger w-full flex justify-between items-center py-4 px-0 cursor-pointer rounded-lg transition-colors">
                         <div class="flex items-center space-x-3">
-                            <div class="w-6 h-6 bg-interactive-secondary rounded-full flex items-center justify-center">
-                                <span class="text-interactive-secondaryText text-xs font-semibold">4</span>
+                            <div class="w-6 h-6 {{ (isset($onboardingStatus['has_setup_pos']) && $onboardingStatus['has_setup_pos']) ? 'bg-green-500' : 'bg-interactive-secondary' }} rounded-full flex items-center justify-center">
+                                @if(isset($onboardingStatus['has_setup_pos']) && $onboardingStatus['has_setup_pos'])
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                @else
+                                    <span class="text-interactive-secondaryText text-xs font-semibold">4</span>
+                                @endif
                             </div>
                             <span class="text-text-primary font-semibold" data-translate-key="dashboard_pos_setup">Set up Point of Sale</span>
                         </div>
@@ -410,15 +409,27 @@
                     <div id="pos-setup-content" class="accordion-content pb-4">
                         <div class="ml-9 space-y-4">
                             <div class="flex items-start space-x-4 p-4 bg-background-main rounded-lg">
-                                <div class="w-8 h-8 bg-interactive-secondary rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-interactive-secondaryText text-xs font-semibold">1</span>
+                                <div class="w-8 h-8 {{ (isset($onboardingStatus['has_setup_pos']) && $onboardingStatus['has_setup_pos']) ? 'bg-green-500' : 'bg-interactive-secondary' }} rounded-full flex items-center justify-center flex-shrink-0">
+                                    @if(isset($onboardingStatus['has_setup_pos']) && $onboardingStatus['has_setup_pos'])
+                                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                    @else
+                                        <span class="text-interactive-secondaryText text-xs font-semibold">1</span>
+                                    @endif
                                 </div>
                                 <div class="flex-1">
                                     <h4 class="text-text-primary font-semibold mb-1" data-translate-key="dashboard_configure_pos">Configure POS settings</h4>
                                     <p class="text-text-secondary text-sm mb-3" data-translate-key="dashboard_configure_pos_desc">Set up your point of sale system for in-person sales.</p>
-                                    <a href="{{ route('dashboard.pos') }}" class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                        <span data-translate-key="dashboard_setup_pos">Set up POS</span>
-                                    </a>
+                                    @if(isset($onboardingStatus['has_setup_pos']) && $onboardingStatus['has_setup_pos'])
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-green-600 text-sm font-medium">✓ Completed</span>
+                                        </div>
+                                    @else
+                                        <a href="#" id="setup-pos-btn" class="action-btn-primary bg-interactive-primary text-interactive-primaryText px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                            <span data-translate-key="dashboard_setup_pos">Set up POS</span>
+                                        </a>
+                                    @endif
                                 </div>
                                 <div class="flex-shrink-0">
                                     <img alt="" src="/images/hero_pos.png" class="w-36 h-24">
@@ -886,6 +897,58 @@
                     }
                 });
             });
+        }
+
+        const setupPosBtn = document.getElementById('setup-pos-btn');
+        if (setupPosBtn) {
+            setupPosBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                fetch("{{ route('dashboard.onboarding.setup-pos') }}", {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        // Update UI: lingkaran dan tombol completed
+                        document.querySelectorAll('[data-translate-key="dashboard_pos_setup"]').forEach(el => {
+                            const circle = el.previousElementSibling;
+                            if (circle) {
+                                circle.classList.remove('bg-interactive-secondary');
+                                circle.classList.add('bg-green-500');
+                                circle.innerHTML = '<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>';
+                            }
+                        });
+                        const posTask = setupPosBtn.closest('.flex-1');
+                        if (posTask) {
+                            posTask.innerHTML = '<div class="flex items-center space-x-2"><span class="text-green-600 text-sm font-medium">✓ Completed</span></div>';
+                        }
+                        // Tampilkan modal
+                        document.getElementById('dashboardReadyModal').classList.remove('hidden');
+                    }
+                });
+            });
+        }
+        // Modal Dashboard Ready
+        if (localStorage.getItem('showDashboardReadyModal') === '1') {
+            document.getElementById('dashboardReadyModal').classList.remove('hidden');
+            // Sembunyikan modal setelah konfirmasi
+            document.getElementById('closeDashboardReadyModal').onclick = function() {
+                localStorage.setItem('scrollToStats', '1');
+                location.reload();
+            };
+        }
+        // Setelah reload, jika scrollToStats==1, scroll ke stats cards dan hapus flag
+        if (localStorage.getItem('scrollToStats') === '1') {
+            var stats = document.querySelector('.grid.md\:grid-cols-2.lg\:grid-cols-4');
+            if (stats) {
+                stats.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            localStorage.removeItem('scrollToStats');
         }
     });
 </script> 
