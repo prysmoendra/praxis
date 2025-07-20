@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Models\User;
+use App\Http\Controllers\ShippingZoneController;
+use App\Http\Controllers\ShippingRateController;
 
 // Home route
 Route::get('/', function () {
@@ -76,6 +78,11 @@ Route::get('/{userDomain}', [App\Http\Controllers\StorefrontController::class, '
     ->where('userDomain', '[a-z0-9-]+\.praxis\.com')
     ->name('storefront.show');
 
+// Test order route for development
+Route::get('/store/{userDomain}', [App\Http\Controllers\StorefrontController::class, 'show'])
+    ->where('userDomain', '[a-z0-9-]+')
+    ->name('storefront.test');
+
 // Cart routes
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'show'])->name('cart.show');
 Route::post('/cart/add/{productId}', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
@@ -87,3 +94,9 @@ Route::post('/cart/clear', [App\Http\Controllers\CartController::class, 'clear']
 Route::get('/checkout', [App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/checkout', [App\Http\Controllers\CheckoutController::class, 'process'])->name('checkout.process');
 Route::get('/checkout/success/{orderId}', [App\Http\Controllers\CheckoutController::class, 'success'])->name('checkout.success');
+
+Route::post('/dashboard/store/update', [DashboardController::class, 'updateStore'])->name('dashboard.store.update');
+Route::post('/dashboard/store/unlock', [DashboardController::class, 'unlockStore'])->name('dashboard.store.unlock');
+Route::get('/dashboard/pos', [DashboardController::class, 'pos'])->name('dashboard.pos');
+Route::resource('dashboard/shipping-zones', ShippingZoneController::class);
+Route::resource('dashboard/shipping-rates', ShippingRateController::class);
