@@ -134,7 +134,7 @@
                     <button onclick="openLoginModal()" class="border border-neutral-400 text-neutral-200 px-6 py-2 rounded-lg font-medium hover:bg-neutral-400 hover:text-primary-dark transition-all duration-200" data-translate-key="nav_login">
                         Masuk
                     </button>
-                    <button class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:brightness-110 transition-all duration-200 transform hover:scale-105" data-translate-key="nav_start_free">
+                    <button id="start-free-btn" class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:brightness-110 transition-all duration-200 transform hover:scale-105" data-translate-key="nav_start_free">
                         Mulai Gratis
                     </button>
                 </div>
@@ -1378,7 +1378,7 @@
                     features_analytics_title: "Analitik & Laporan",
                     features_analytics_desc: "Dapatkan wawasan mendalam tentang kinerja bisnis Anda dengan analitik komprehensif dan laporan yang dapat ditindaklanjuti.",
                     features_mobile_title: "Responsif Mobile",
-                    features_mobile_desc: "Toko Anda akan terlihat sempurna di semua perangkat. Desain mobile-first memastikan pengalaman pelanggan yang optimal.",
+                    features_mobile_desc: "Toko Anda akan terlihat sempurna di semua perangkat. Mobile-first design ensures optimal customer experience.",
                     features_support_title: "Dukungan 24/7",
                     features_support_desc: "Dapatkan bantuan kapan pun Anda membutuhkannya. Tim dukungan kami selalu siap membantu Anda.",
                     features_payments_title: "Pembayaran Aman",
@@ -1832,6 +1832,14 @@
             const fullPhoneNumber = '62' + value;
             document.getElementById('signup-phone').value = fullPhoneNumber;
         }
+
+        // Event listener for "Mulai Gratis" button to open signup modal directly
+        document.getElementById('start-free-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('login-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            showSignupForm();
+        });
     </script>
     </body>
 </html>
