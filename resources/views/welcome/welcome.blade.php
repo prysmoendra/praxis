@@ -101,11 +101,55 @@
         .mobile-menu.active {
             transform: translateX(0);
         }
+        .gradient-background {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .gradient-background-video__dark {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.55);
+            z-index: 1;
+        }
+        .gradient-background-video__dark_shape {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .background-video {
+            z-index: 0;
+            object-fit: cover;
+        }
+        .background-video--static {
+            display: none;
+        }
+        .background-video--animated {
+            z-index: 0;
+            opacity: 1;
+            transition: opacity 0.5s;
+        }
+        @media (max-width: 768px) {
+            .background-video--animated {
+                display: none;
+            }
+            .background-video--static {
+                display: block;
+            }
+        }
             </style>
     </head>
 <body class="bg-primary-dark text-white font-inter antialiased">
     <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 bg-primary-dark/40 backdrop-blur-sm border-b border-neutral-500/30">
+    <nav class="fixed w-full top-0 z-50 bg-primary-dark/70 backdrop-blur-sm border-b border-neutral-500/30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
@@ -169,7 +213,28 @@
 
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-primary-dark via-primary-surface to-primary-elevated"></div>
+        <div class="gradient-background absolute inset-0 w-full h-full pointer-events-none z-0">
+            <div class="gradient-background-video__dark absolute inset-0 w-full h-full"></div>
+            <span class="gradient-background-video__dark_shape absolute inset-0 w-full h-full">
+                <svg viewBox="0 0 1280 581" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                    <g filter="url(#filter0_f_815_235507)">
+                        <path d="M1301.92 -0.355469H-136.085C-56.741 47.8854 -75.62 447.259 187.562 382.036C466.635 312.874 368.281 635.125 958.888 382.036C1219.16 270.504 1301.92 487.281 1301.92 -0.355469Z" fill="#060606"></path>
+                        <path d="M1301.92 -0.355469H-136.085C-56.741 47.8854 -75.62 447.259 187.562 382.036C466.635 312.874 368.281 635.125 958.888 382.036C1219.16 270.504 1301.92 487.281 1301.92 -0.355469Z" stroke="black"></path>
+                    </g>
+                    <defs>
+                        <filter id="filter0_f_815_235507" x="-236.87" y="-99.8555" width="1638.28" height="680" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+                            <feGaussianBlur stdDeviation="49.5" result="effect1_foregroundBlur_815_235507"></feGaussianBlur>
+                        </filter>
+                    </defs>
+                </svg>
+            </span>
+            <img class="background-video background-video--static absolute inset-0 w-full h-full object-cover" src="https://cdn.shopify.com/static/images/identity/merchant-moving-bg.webp" alt="">
+            <video class="background-video background-video--animated fade-in absolute inset-0 w-full h-full object-cover" loop muted playsinline preload="none" poster="https://cdn.shopify.com/static/images/identity/merchant-moving-bg.webp" autoplay>
+                <source src="https://cdn.shopify.com/static/videos/identity/merchant-moving-bg.mp4" type="video/mp4">
+            </video>
+        </div>
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="animate-fade-in">
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
@@ -199,7 +264,7 @@
     <section id="about" class="py-20 bg-primary-surface">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text" data-translate-key="about_title">About Praxis</h2>
+                <h2 class="text-3xl md:text-5xl font-bold pb-6 gradient-text" data-translate-key="about_title">About Praxis</h2>
                 <p class="text-xl text-neutral-200 max-w-4xl mx-auto" data-translate-key="about_subtitle">
                     Praxis is more than just a tool; it's a partner ready to help you turn your ideas into reality. With an intuitive interface and step-by-step guides, we simplify the digitalization process for MSMEs.
                 </p>
@@ -275,7 +340,7 @@
     <section id="mission" class="py-20 bg-primary-surface">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text" data-translate-key="mission_title">From Challenge to Opportunity</h2>
+                <h2 class="text-3xl md:text-5xl font-bold pb-6 gradient-text" data-translate-key="mission_title">From Challenge to Opportunity</h2>
                 <p class="text-xl text-neutral-200 max-w-3xl mx-auto" data-translate-key="mission_subtitle">
                     We understand the hurdles MSMEs face. Our mission is to provide the solutions.
                 </p>
@@ -331,7 +396,7 @@
     <section id="features" class="py-20 bg-primary-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text" data-translate-key="features_title">Why Choose Praxis?</h2>
+                <h2 class="text-3xl md:text-5xl font-bold pb-6 gradient-text" data-translate-key="features_title">Why Choose Praxis?</h2>
                 <p class="text-xl text-neutral-200 max-w-3xl mx-auto" data-translate-key="features_subtitle">
                     Our comprehensive platform provides everything you need to build, manage, and grow your online business.
                 </p>
@@ -405,7 +470,7 @@
     <section id="how-it-works" class="py-20 bg-primary-surface">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text" data-translate-key="how_it_works_title">How Praxis Works</h2>
+                <h2 class="text-3xl md:text-5xl font-bold pb-6 gradient-text" data-translate-key="how_it_works_title">How Praxis Works</h2>
                 <p class="text-xl text-neutral-200 max-w-3xl mx-auto" data-translate-key="how_it_works_subtitle">
                     Get your online store up and running in just a few simple steps.
                 </p>
@@ -471,7 +536,7 @@
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 animate-fade-in">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text" data-translate-key="values_title">Our Core Values</h2>
+                <h2 class="text-3xl md:text-5xl font-bold pb-6 gradient-text" data-translate-key="values_title">Our Core Values</h2>
                 <p class="text-xl text-neutral-200 max-w-3xl mx-auto" data-translate-key="values_subtitle">
                     The principles that guide our innovation and partnership with you.
                 </p>
@@ -529,7 +594,7 @@
     <section id="business-model" class="py-20 bg-primary-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text" data-translate-key="business_model_title">Our Business Model</h2>
+                <h2 class="text-3xl md:text-5xl font-bold pb-6 gradient-text" data-translate-key="business_model_title">Our Business Model</h2>
                 <p class="text-xl text-neutral-200 max-w-3xl mx-auto" data-translate-key="business_model_subtitle">
                     Flexible SaaS pricing with freemium and paid plans to suit every business size and budget.
                 </p>
@@ -538,40 +603,40 @@
             <!-- Business Model Details -->
             <div class="grid lg:grid-cols-5 gap-12 mb-16">
                 <div class="lg:col-span-3">
-                    <h3 class="text-2xl font-semibold text-white mb-6">Flexible Plans for Your Growth</h3>
-                    <p class="text-lg text-neutral-200 mb-8">Our Software-as-a-Service (SaaS) model ensures you only pay for what you need. Start for free and upgrade as your business expands.</p>
+                    <h3 class="text-2xl font-semibold text-white mb-6" data-translate-key="business_model_plans_title">Flexible Plans for Your Growth</h3>
+                    <p class="text-lg text-neutral-200 mb-8" data-translate-key="business_model_plans_desc">Our Software-as-a-Service (SaaS) model ensures you only pay for what you need. Start for free and upgrade as your business expands.</p>
                     <div class="space-y-6">
                         <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-6 card-hover">
-                            <h4 class="font-bold text-white mb-2">Freemium Plan</h4>
-                            <p class="text-neutral-300">Try basic features for free. Perfect for getting started.</p>
+                            <h4 class="font-bold text-white mb-2" data-translate-key="business_model_freemium_title">Freemium Plan</h4>
+                            <p class="text-neutral-300" data-translate-key="business_model_freemium_desc">Try basic features for free. Perfect for getting started.</p>
                         </div>
                         <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-6 card-hover">
-                            <h4 class="font-bold text-white mb-2">Premium Plans</h4>
-                            <p class="text-neutral-300">Unlock custom domains, in-depth analytics, and priority support.</p>
+                            <h4 class="font-bold text-white mb-2" data-translate-key="business_model_premium_title">Premium Plans</h4>
+                            <p class="text-neutral-300" data-translate-key="business_model_premium_desc">Unlock custom domains, in-depth analytics, and priority support.</p>
                         </div>
                         <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-6 card-hover">
-                            <h4 class="font-bold text-white mb-2">Custom Services</h4>
-                            <p class="text-neutral-300">For businesses requiring special integrations and additional features.</p>
+                            <h4 class="font-bold text-white mb-2" data-translate-key="business_model_custom_title">Custom Services</h4>
+                            <p class="text-neutral-300" data-translate-key="business_model_custom_desc">For businesses requiring special integrations and additional features.</p>
                         </div>
                     </div>
                 </div>
                 <div class="lg:col-span-2 bg-primary-elevated border border-neutral-500 rounded-xl p-8 card-hover">
-                    <h3 class="text-2xl font-semibold text-white mb-4">Additional Services</h3>
-                    <p class="text-neutral-200 mb-6">Everything you need to optimize and scale.</p>
+                    <h3 class="text-2xl font-semibold text-white mb-4" data-translate-key="business_model_services_title">Additional Services</h3>
+                    <p class="text-neutral-200 mb-6" data-translate-key="business_model_services_desc">Everything you need to optimize and scale.</p>
                     <ul class="space-y-4 text-neutral-300">
-                        <li class="flex items-center">
+                        <li class="flex items-center" data-translate-key="business_model_services_1">
                             <span class="text-accent-blue mr-3 text-lg">•</span>
                             Online training & webinars
                         </li>
-                        <li class="flex items-center">
+                        <li class="flex items-center" data-translate-key="business_model_services_2">
                             <span class="text-accent-blue mr-3 text-lg">•</span>
                             Local & international courier integration
                         </li>
-                        <li class="flex items-center">
+                        <li class="flex items-center" data-translate-key="business_model_services_3">
                             <span class="text-accent-blue mr-3 text-lg">•</span>
                             Automated email & social media marketing
                         </li>
-                        <li class="flex items-center">
+                        <li class="flex items-center" data-translate-key="business_model_services_4">
                             <span class="text-accent-blue mr-3 text-lg">•</span>
                             Complete sales performance reports
                         </li>
@@ -583,19 +648,19 @@
                 <!-- Free Plan -->
                 <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-8 card-hover">
                     <div class="text-center mb-6">
-                        <h3 class="text-2xl font-bold mb-2">Freemium Plan</h3>
-                        <p class="text-4xl font-bold gradient-text">Rp.0,-</p>
-                        <p class="text-neutral-300">Perfect for getting started</p>
+                        <h3 class="text-2xl font-bold mb-2" data-translate-key="business_model_free_plan_title">Freemium Plan</h3>
+                        <p class="text-4xl font-bold gradient-text" data-translate-key="business_model_free_plan_price">Rp.0,-</p>
+                        <p class="text-neutral-300" data-translate-key="business_model_free_plan_desc">Perfect for getting started</p>
                     </div>
                     <ul class="space-y-3 mb-8">
-                        <li class="flex items-center text-neutral-300">
+                        <li class="flex items-center text-neutral-300" data-translate-key="business_model_free_plan_feature">
                             <svg class="w-5 h-5 text-accent-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
                             Community support
                         </li>
                     </ul>
-                    <button class="w-full border border-neutral-400 text-neutral-200 py-3 rounded-lg font-medium hover:bg-neutral-400 hover:text-primary-dark transition-all duration-200">
+                    <button id="free-plan-signup-btn" class="w-full border border-neutral-400 text-neutral-200 py-3 rounded-lg font-medium hover:bg-neutral-400 hover:text-primary-dark hover:font-semibold transition-all duration-200" data-translate-key="business_model_free_plan_cta">
                         Get Started Free
                     </button>
                 </div>
@@ -603,46 +668,46 @@
                 <!-- Pro Plan -->
                 <div class="bg-primary-elevated border-2 border-accent-blue rounded-xl p-8 card-hover relative">
                     <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <span class="gradient-bg text-white px-4 py-2 rounded-full text-sm font-medium">Most Popular</span>
+                        <span class="gradient-bg text-white px-4 py-2 rounded-full text-sm font-medium" data-translate-key="business_model_pro_plan_popular">Most Popular</span>
                     </div>
                     <div class="text-center mb-6">
-                        <h3 class="text-2xl font-bold mb-2">Premium Plan</h3>
-                        <p class="text-4xl font-bold gradient-text">Rp.100.000,-</p>
-                        <p class="text-neutral-300">Per month</p>
+                        <h3 class="text-2xl font-bold mb-2" data-translate-key="business_model_pro_plan_title">Premium Plan</h3>
+                        <p class="text-4xl font-bold gradient-text" data-translate-key="business_model_pro_plan_price">Rp.100.000,-</p>
+                        <p class="text-neutral-300" data-translate-key="business_model_pro_plan_period">Per month</p>
                     </div>
                     <ul class="space-y-3 mb-8">
-                        <li class="flex items-center text-neutral-300">
+                        <li class="flex items-center text-neutral-300" data-translate-key="business_model_pro_plan_feature1">
                             <svg class="w-5 h-5 text-accent-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
+                            </svg>
                             Everything in Free
                         </li>
-                        <li class="flex items-center text-neutral-300">
+                        <li class="flex items-center text-neutral-300" data-translate-key="business_model_pro_plan_feature2">
                             <svg class="w-5 h-5 text-accent-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
                             Unlimited products
                         </li>
-                        <li class="flex items-center text-neutral-300">
+                        <li class="flex items-center text-neutral-300" data-translate-key="business_model_pro_plan_feature3">
                             <svg class="w-5 h-5 text-accent-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
                             Custom domain
                         </li>
-                        <li class="flex items-center text-neutral-300">
+                        <li class="flex items-center text-neutral-300" data-translate-key="business_model_pro_plan_feature4">
                             <svg class="w-5 h-5 text-accent-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
                             Advanced analytics
                         </li>
-                        <li class="flex items-center text-neutral-300">
+                        <li class="flex items-center text-neutral-300" data-translate-key="business_model_pro_plan_feature5">
                             <svg class="w-5 h-5 text-accent-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
                             Priority support
                         </li>
                     </ul>
-                    <button class="w-full gradient-bg text-white py-3 rounded-lg font-medium hover:brightness-110 transition-all duration-200">
+                    <button id="pro-plan-signup-btn" class="w-full gradient-bg text-white py-3 rounded-lg font-medium hover:brightness-110 hover:font-semibold transition-all duration-200" data-translate-key="business_model_pro_plan_cta">
                         Start Pro Plan
                     </button>
                 </div>
@@ -650,43 +715,43 @@
                 <!-- Enterprise Plan -->
                 <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-8 card-hover">
                     <div class="text-center mb-6">
-                        <h3 class="text-2xl font-bold mb-2">Enterprise</h3>
-                        <p class="text-4xl font-bold gradient-text">Custom</p>
-                        <p class="text-neutral-300">For large businesses</p>
+                        <h3 class="text-2xl font-bold mb-2" data-translate-key="business_model_enterprise_title">Enterprise</h3>
+                        <p class="text-4xl font-bold gradient-text" data-translate-key="business_model_enterprise_price">Custom</p>
+                        <p class="text-neutral-300" data-translate-key="business_model_enterprise_desc">For large businesses</p>
                     </div>
                     <ul class="space-y-3 mb-8">
-                        <li class="flex items-center text-neutral-300">
+                        <li class="flex items-center text-neutral-300" data-translate-key="business_model_enterprise_feature1">
                             <svg class="w-5 h-5 text-accent-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
+                            </svg>
                             Everything in Pro
                         </li>
-                        <li class="flex items-center text-neutral-300">
+                        <li class="flex items-center text-neutral-300" data-translate-key="business_model_enterprise_feature2">
                             <svg class="w-5 h-5 text-accent-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
                             Custom integrations
                         </li>
-                        <li class="flex items-center text-neutral-300">
+                        <li class="flex items-center text-neutral-300" data-translate-key="business_model_enterprise_feature3">
                             <svg class="w-5 h-5 text-accent-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
                             Dedicated support
                         </li>
-                        <li class="flex items-center text-neutral-300">
+                        <li class="flex items-center text-neutral-300" data-translate-key="business_model_enterprise_feature4">
                             <svg class="w-5 h-5 text-accent-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
                             White-label options
                         </li>
-                        <li class="flex items-center text-neutral-300">
+                        <li class="flex items-center text-neutral-300" data-translate-key="business_model_enterprise_feature5">
                             <svg class="w-5 h-5 text-accent-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
                             SLA guarantee
                         </li>
                     </ul>
-                    <button class="w-full border border-neutral-400 text-neutral-200 py-3 rounded-lg font-medium hover:bg-neutral-400 hover:text-primary-dark transition-all duration-200">
+                    <button class="w-full border border-neutral-400 text-neutral-200 py-3 rounded-lg font-medium hover:bg-neutral-400 hover:text-primary-dark transition-all duration-200" data-translate-key="business_model_enterprise_cta">
                         Contact Sales
                     </button>
                 </div>
@@ -698,8 +763,8 @@
     <section id="additional" class="py-20 bg-primary-surface">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text">Additional Services</h2>
-                <p class="text-xl text-neutral-200 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-bold pb-6 gradient-text" data-translate-key="additional_services_title">Additional Services</h2>
+                <p class="text-xl text-neutral-200 max-w-3xl mx-auto" data-translate-key="additional_services_subtitle">
                     Beyond our platform, we offer comprehensive services to help you succeed in the digital marketplace.
                 </p>
             </div>
@@ -709,11 +774,11 @@
                     <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-6">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                    </svg>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4" data-translate-key="additional_services_training_title">Training & Webinars</h3>
+                    <p class="text-neutral-300" data-translate-key="additional_services_training_desc">Online training sessions and webinars for sales optimization and digital marketing strategies.</p>
                 </div>
-                    <h3 class="text-xl font-semibold mb-4">Training & Webinars</h3>
-                    <p class="text-neutral-300">Online training sessions and webinars for sales optimization and digital marketing strategies.</p>
-        </div>
 
                 <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-8 card-hover text-center">
                     <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-6">
@@ -721,8 +786,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Courier Integration</h3>
-                    <p class="text-neutral-300">Seamless integration with local and international shipping couriers for efficient order fulfillment.</p>
+                    <h3 class="text-xl font-semibold mb-4" data-translate-key="additional_services_courier_title">Courier Integration</h3>
+                    <p class="text-neutral-300" data-translate-key="additional_services_courier_desc">Seamless integration with local and international shipping couriers for efficient order fulfillment.</p>
                 </div>
 
                 <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-8 card-hover text-center">
@@ -731,8 +796,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Marketing Automation</h3>
-                    <p class="text-neutral-300">Automated marketing features via email and social media to help grow your customer base.</p>
+                    <h3 class="text-xl font-semibold mb-4" data-translate-key="additional_services_marketing_title">Marketing Automation</h3>
+                    <p class="text-neutral-300" data-translate-key="additional_services_marketing_desc">Automated marketing features via email and social media to help grow your customer base.</p>
                 </div>
 
                 <div class="bg-primary-elevated border border-neutral-500 rounded-xl p-8 card-hover text-center">
@@ -741,8 +806,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Performance Reports</h3>
-                    <p class="text-neutral-300">Complete sales performance reports with actionable recommendations for business growth.</p>
+                    <h3 class="text-xl font-semibold mb-4" data-translate-key="additional_services_reports_title">Performance Reports</h3>
+                    <p class="text-neutral-300" data-translate-key="additional_services_reports_desc">Complete sales performance reports with actionable recommendations for business growth.</p>
                 </div>
             </div>
         </div>
@@ -757,8 +822,8 @@
             <p class="text-xl text-neutral-200 mb-8 max-w-2xl mx-auto" data-translate-key="cta_subtitle">
                 With Praxis, your path to digital success is more focused, faster, and more affordable. Let's take concrete action together to build the future of your business.
             </p>
-                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="scrollToSection('business-model')" class="gradient-bg text-white px-8 py-4 rounded-lg font-medium text-lg hover:brightness-110 transition-all duration-200 transform hover:scale-105" data-translate-key="cta_trial_button">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button id="cta-trial-signup-btn" class="gradient-bg text-white px-8 py-4 rounded-lg font-medium text-lg hover:brightness-110 transition-all duration-200 transform hover:scale-105" data-translate-key="cta_trial_button">
                         Start Your Free Trial
                     </button>
                     <button onclick="scrollToSection('business-model')" class="border border-neutral-400 text-neutral-200 px-8 py-4 rounded-lg font-medium text-lg hover:bg-neutral-400 hover:text-primary-dark transition-all duration-200" data-translate-key="cta_demo_button">
@@ -815,7 +880,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                                 </svg>
                             </div>
-                            <span class="text-neutral-300 font-medium">kangmas@praxis.id</span>
+                            <span class="text-neutral-300 font-medium">dakodeid@praxis.id</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
@@ -1392,7 +1457,7 @@
                     how_it_works_step2_title: "Pilih Template",
                     how_it_works_step2_desc: "Pilih dari koleksi template profesional kami yang sesuai dengan kebutuhan bisnis Anda.",
                     how_it_works_step3_title: "Tambah Produk",
-                    how_it_works_step3_desc: "Upload produk Anda, atur kategori, dan integrasikan metode pembayaran dengan mudah.",
+                    how_it_works_step3_desc: "Upload your products, organize categories, and integrate payment methods easily.",
                     how_it_works_step4_title: "Sesuaikan Toko",
                     how_it_works_step4_desc: "Sesuaikan toko Anda dengan logo, warna, dan konten promosi untuk mencocokkan merek Anda.",
                     how_it_works_step5_title: "Go Live",
@@ -1835,6 +1900,25 @@
 
         // Event listener for "Mulai Gratis" button to open signup modal directly
         document.getElementById('start-free-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('login-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            showSignupForm();
+        });
+        // Event listeners for pricing and CTA trial buttons to open signup modal directly
+        document.getElementById('free-plan-signup-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('login-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            showSignupForm();
+        });
+        document.getElementById('pro-plan-signup-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('login-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            showSignupForm();
+        });
+        document.getElementById('cta-trial-signup-btn').addEventListener('click', function(e) {
             e.preventDefault();
             document.getElementById('login-modal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
