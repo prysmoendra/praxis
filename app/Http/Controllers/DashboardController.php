@@ -100,12 +100,48 @@ class DashboardController extends Controller
         if ($store) {
             $store->is_locked = false;
             $store->save();
+            // Update onboarding status
+            $onboarding = $user->onboarding_status ?? [];
+            $onboarding['has_unlocked_store'] = true;
+            $user->onboarding_status = $onboarding;
+            $user->save();
         }
         return back()->with('success', 'Store unlocked!');
     }
 
     public function pos()
     {
+        $user = \Illuminate\Support\Facades\Auth::user();
+        $onboarding = $user->onboarding_status ?? [];
+        $onboarding['has_setup_pos'] = true;
+        $user->onboarding_status = $onboarding;
+        $user->save();
         return view('dashboard.pos.index');
+    }
+
+    /**
+     * Mark test order as completed in onboarding status.
+     */
+    public function markTestOrder(Request $request)
+    {
+        $user = \Illuminate\Support\Facades\Auth::user();
+        $onboarding = $user->onboarding_status ?? [];
+        $onboarding['has_placed_test_order'] = true;
+        $user->onboarding_status = $onboarding;
+        $user->save();
+        return response()->json(['success' => true]);
+    }
+
+    /**
+     * Mark POS setup as completed in onboarding status.
+     */
+    public function markSetupPos(Request $request)
+    {
+        $user = \Illuminate\Support\Facades\Auth::user();
+        $onboarding = $user->onboarding_status ?? [];
+        $onboarding['has_setup_pos'] = true;
+        $user->onboarding_status = $onboarding;
+        $user->save();
+        return response()->json(['success' => true]);
     }
 }

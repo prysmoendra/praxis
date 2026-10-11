@@ -10,7 +10,7 @@
             @csrf
             <div class="bg-white rounded-xl shadow p-8 space-y-6">
                 <div>
-                    <label class="block font-semibold mb-1 text-lg">Judul Produk</label>
+                    <label class="block font-semibold mb-1 text-lg">Nama Produk</label>
                     <input type="text" name="title" class="w-full border rounded px-3 py-2 text-lg" required>
                 </div>
                 <div>
@@ -28,9 +28,13 @@
                         <span class="text-gray-500 text-sm mb-2">atau klik untuk memilih file</span>
                         <input id="file-input" type="file" name="images[]" multiple class="absolute inset-0 opacity-0 cursor-pointer" style="height:100%;width:100%;">
                     </div>
+                    <!-- Preview Images -->
+                    <div id="preview-images" class="flex flex-wrap gap-4 mt-4"></div>
                     <script>
                         const dropArea = document.getElementById('drop-area');
                         const fileInput = document.getElementById('file-input');
+                        const previewImages = document.getElementById('preview-images');
+                        
                         dropArea.addEventListener('dragover', (e) => {
                             e.preventDefault();
                             dropArea.classList.add('bg-blue-50', 'border-blue-400');
@@ -42,7 +46,26 @@
                             e.preventDefault();
                             dropArea.classList.remove('bg-blue-50', 'border-blue-400');
                             fileInput.files = e.dataTransfer.files;
+                            showPreviewImages(fileInput.files);
                         });
+                        fileInput.addEventListener('change', (e) => {
+                            showPreviewImages(fileInput.files);
+                        });
+                        function showPreviewImages(files) {
+                            previewImages.innerHTML = '';
+                            if (!files || files.length === 0) return;
+                            Array.from(files).forEach(file => {
+                                if (!file.type.startsWith('image/')) return;
+                                const reader = new FileReader();
+                                reader.onload = (e) => {
+                                    const img = document.createElement('img');
+                                    img.src = e.target.result;
+                                    img.className = 'w-24 h-24 object-cover rounded border';
+                                    previewImages.appendChild(img);
+                                };
+                                reader.readAsDataURL(file);
+                            });
+                        }
                     </script>
                 </div>
                 <div>

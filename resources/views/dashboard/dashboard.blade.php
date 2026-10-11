@@ -521,15 +521,15 @@
     <!-- Quick Actions -->
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="bg-surface-card border border-border-primary rounded-xl p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-text-primary mb-4" data-translate-key="dashboard_quick_actions">Quick Actions</h3>
-            <div class="space-y-3">
-                <button class="w-full bg-interactive-primary text-interactive-primaryText py-2 px-4 rounded-lg text-sm font-semibold hover:bg-interactive-primary/90 transition-colors">
+            <h3 class="text-lg font-semibold text-text-primary mb-6" data-translate-key="dashboard_quick_actions">Quick Actions</h3>
+            <div class="space-y-4">
+                <a href="{{ route('products.create') }}" class="w-full bg-interactive-primary text-interactive-primaryText py-3 px-4 rounded-lg text-sm font-semibold hover:bg-interactive-primary/90 transition-colors block text-center">
                     <span data-translate-key="dashboard_add_product">Add New Product</span>
-                </button>
-                <button class="w-full bg-interactive-secondary text-interactive-secondaryText py-2 px-4 rounded-lg text-sm font-semibold border border-border-primary hover:bg-interactive-secondary/80 transition-colors">
+                </a>
+                <button class="w-full bg-interactive-secondary text-interactive-secondaryText py-3 px-4 rounded-lg text-sm font-semibold border border-border-primary hover:bg-interactive-secondary/80 transition-colors">
                     <span data-translate-key="dashboard_view_orders">View Orders</span>
                 </button>
-                <button class="w-full bg-interactive-secondary text-interactive-secondaryText py-2 px-4 rounded-lg text-sm font-semibold border border-border-primary hover:bg-interactive-secondary/80 transition-colors">
+                <button class="w-full bg-interactive-secondary text-interactive-secondaryText py-3 px-4 rounded-lg text-sm font-semibold border border-border-primary hover:bg-interactive-secondary/80 transition-colors">
                     <span data-translate-key="dashboard_store_settings">Store Settings</span>
                 </button>
             </div>

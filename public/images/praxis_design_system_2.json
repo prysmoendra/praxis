@@ -1,0 +1,256 @@
+{
+    "praxisDashboardDesignSystem": {
+    "metadata": {
+        "projectName": "Praxis Dashboard",
+        "baseInspiration": "Shopify Admin 'Summer 25' Edition",
+        "targetState": "New user onboarding / setup guide with full accordion",
+        "version": "1.1",
+        "lastUpdated": "2025-07-14T09:22:15+07:00",
+        "locationContext": "Bandung, West Java, Indonesia"
+    },
+    "styleGuide": {
+        "theme": "light",
+        "palette": {
+        "background": {
+            "main": "#F1F2F4",
+            "description": "The main light gray background for the entire dashboard."
+        },
+        "surface": {
+            "sidebar": "#FFFFFF",
+            "card": "#FFFFFF",
+            "popover": "#FFFFFF",
+            "topbar": "#1A1C1D",
+            "description": "White surfaces for primary containers like sidebars and cards, with a dark top bar."
+        },
+        "text": {
+            "primary": "#1A1C1D",
+            "description": "Dark, almost black, for primary headings and body content."
+        },
+        "textSecondary": {
+            "primary": "#6D7175",
+            "description": "Medium gray for subheadings, descriptions, and placeholder text."
+        },
+        "textOnDark": {
+            "primary": "#E3E5E7",
+            "description": "Light gray text for use on dark backgrounds like the top bar."
+        },
+        "interactive": {
+            "primary": "#2C6ECB",
+            "primaryText": "#FFFFFF",
+            "secondary": "#E3E5E7",
+            "secondaryText": "#1A1C1D",
+            "tertiary": "transparent",
+            "tertiaryText": "#1A1C1D",
+            "description": "Blue for primary actions, with light gray for secondary and transparent for tertiary actions."
+        },
+        "border": {
+            "primary": "#E1E3E5",
+            "interactive": "#8C9196",
+            "description": "Subtle, light gray borders for separating elements and interactive states."
+        },
+        "accent": {
+            "primary": "#47803C",
+            "description": "Green accent used for success states, highlights, or active indicators."
+        }
+        },
+        "typography": {
+        "fontFamily": "'Inter', -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', 'Helvetica Neue', sans-serif",
+        "scale": {
+            "headingLg": {
+            "fontSize": "1.25rem",
+            "fontWeight": "600"
+            },
+            "headingMd": {
+            "fontSize": "1rem",
+            "fontWeight": "600"
+            },
+            "body": {
+            "fontSize": "0.875rem",
+            "fontWeight": "400",
+            "lineHeight": "1.5"
+            },
+            "bodySemibold": {
+            "fontSize": "0.875rem",
+            "fontWeight": "600"
+            },
+            "caption": {
+            "fontSize": "0.8125rem",
+            "fontWeight": "400"
+            }
+        }
+        }
+    },
+    "layout": {
+        "mainStructure": "A three-part layout: a fixed left sidebar for navigation, a central top bar for search and account management, and a main content area that fills the remaining space.",
+        "spacingScale": {
+        "xs": "0.25rem",
+        "sm": "0.5rem",
+        "md": "1rem",
+        "lg": "1.5rem",
+        "xl": "2rem",
+        "xxl": "2.5rem",
+        "pagePadding": "var(--spacing-xl)",
+        "sidebarWidth": "240px",
+        "topbarHeight": "64px"
+        }
+    },
+    "components": {
+        "sidebarNavigation": {
+        "style": {
+            "backgroundColor": "var(--surface-sidebar)",
+            "padding": "var(--spacing-sm)",
+            "borderRight": "1px solid var(--border-primary)"
+        },
+        "navItem": {
+            "base": {
+            "display": "flex",
+            "alignItems": "center",
+            "padding": "var(--spacing-sm) var(--spacing-md)",
+            "borderRadius": "6px",
+            "color": "var(--text-primary)"
+            },
+            "hover": {
+            "backgroundColor": "var(--background-main)"
+            },
+            "active": {
+            "backgroundColor": "var(--interactive-secondary)",
+            "fontWeight": "600"
+            }
+        }
+        },
+        "topBar": {
+        "style": {
+            "backgroundColor": "var(--surface-topbar)",
+            "color": "var(--text-on-dark)",
+            "padding": "0 var(--spacing-lg)"
+        }
+        },
+        "card": {
+        "baseStyle": {
+            "backgroundColor": "var(--surface-card)",
+            "borderRadius": "12px",
+            "border": "1px solid var(--border-primary)",
+            "boxShadow": "0 1px 2px rgba(0, 0, 0, 0.04)"
+        }
+        },
+        "buttons": {
+        "baseStyle": {
+            "borderRadius": "8px",
+            "padding": "0.5rem 1rem",
+            "fontWeight": "600",
+            "fontSize": "var(--font-size-body)"
+        },
+        "variants": {
+            "primary": {
+            "backgroundColor": "#1A1C1D",
+            "color": "#FFFFFF",
+            "description": "Primary action button with dark background."
+            },
+            "secondary": {
+            "backgroundColor": "var(--interactive-secondary)",
+            "color": "var(--interactive-secondaryText)",
+            "border": "1px solid var(--border-primary)",
+            "description": "Secondary action button with light background."
+            }
+        }
+        },
+        "checkboxes": {
+        "style": {
+            "height": "20px",
+            "width": "20px",
+            "borderRadius": "50%",
+            "border": "2px solid var(--border-primary)"
+        },
+        "checked": {
+            "backgroundColor": "var(--accent-primary)",
+            "border": "none",
+            "icon": "White checkmark"
+        }
+        },
+        "accordion": {
+        "style": {
+            "width": "100%"
+        },
+        "item": {
+            "borderTop": "1px solid var(--border-primary)"
+        },
+        "trigger": {
+            "display": "flex",
+            "justifyContent": "space-between",
+            "alignItems": "center",
+            "width": "100%",
+            "cursor": "pointer",
+            "padding": "var(--spacing-md) 0"
+        },
+        "content": {
+            "paddingBottom": "var(--spacing-md)",
+            "description": "The panel that expands to show sub-tasks."
+        }
+        }
+    },
+    "structure": {
+        "pageLayout": {
+        "topBar": "Contains a search input and a user profile dropdown/popover on the far right.",
+        "leftSidebar": {
+            "position": "fixed",
+            "topSection": {
+            "items": ["Home", "Orders", "Products", "Customers", "Marketing", "Discounts", "Content", "Markets", "Analytics"]
+            },
+            "middleSection": {
+            "title": "Sales channels",
+            "items": ["Online Store", "Point of Sale"]
+            },
+            "bottomSection": {
+            "title": "Apps",
+            "items": ["Add"],
+            "footerItem": "Settings"
+            }
+        },
+        "mainContent": {
+            "padding": "var(--page-padding)",
+            "header": {
+            "elements": ["Progress indicator (e.g., '0 of 9 tasks complete')", "Main heading ('Setup guide')", "Descriptive paragraph"]
+            },
+            "contentBody": {
+            "type": "Accordion-based Onboarding Checklist",
+            "description": "A single card containing a full accordion. Each accordion item represents a major setup stage. When expanded, it reveals specific sub-tasks.",
+            "components": ["card", "accordion"],
+            "accordionStructure": {
+                "items": [
+                {
+                    "title": "Sell online",
+                    "subTasks": [
+                    { "title": "Add your first product", "description": "Write a description, add photos, and set pricing for the products you plan to sell.", "uiElements": ["button:primary", "button:secondary", "image:illustrative"] },
+                    { "title": "Design your store", "description": null, "uiElements": [] },
+                    { "title": "Customize your domain", "description": null, "uiElements": [] }
+                    ]
+                },
+                {
+                    "title": "Store settings",
+                    "subTasks": [
+                    { "title": "Add store name", "description": "Your temporary store name is currently My Store. The store name appears in your admin and your online store.", "uiElements": ["button:primary", "image:illustrative"] },
+                    { "title": "Review your shipping rates", "description": null, "uiElements": [] }
+                    ]
+                },
+                {
+                    "title": "Launch your online store",
+                    "subTasks": [
+                    { "title": "Place a test order", "description": "Make sure things are running smoothly by placing a test order from your own store.", "uiElements": ["button:primary", "image:illustrative"] },
+                    { "title": "Unlock your store", "description": null, "uiElements": [] }
+                    ]
+                },
+                {
+                    "title": "Set up Point of Sale",
+                    "subTasks": []
+                }
+                ]
+            }
+            },
+            "footer": {
+            "elements": ["A persistent banner at the bottom, e.g., 'X days left in your trial'"]
+            }
+        }
+        }
+    }
+    }
+}

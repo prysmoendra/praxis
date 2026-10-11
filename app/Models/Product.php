@@ -17,6 +17,10 @@ class Product extends Model
         'user_id',
     ];
 
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
+
     public function variants()
     {
         return $this->hasMany(ProductVariant::class);

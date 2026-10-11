@@ -13,6 +13,12 @@
                 <tr>
                     <th class="py-2 px-4 text-left">Name</th>
                     <th class="py-2 px-4 text-left">Description</th>
+                    <th class="py-2 px-4 text-left">Provinsi</th>
+                    <th class="py-2 px-4 text-left">Kota</th>
+                    <th class="py-2 px-4 text-left">Kecamatan</th>
+                    <th class="py-2 px-4 text-left">Kelurahan</th>
+                    <th class="py-2 px-4 text-left">Latitude</th>
+                    <th class="py-2 px-4 text-left">Longitude</th>
                     <th class="py-2 px-4">Actions</th>
                 </tr>
             </thead>
@@ -21,6 +27,12 @@
                     <tr class="border-t">
                         <td class="py-2 px-4">{{ $zone->name }}</td>
                         <td class="py-2 px-4">{{ $zone->description }}</td>
+                        <td class="py-2 px-4">{{ $zone->province }}</td>
+                        <td class="py-2 px-4">{{ $zone->city }}</td>
+                        <td class="py-2 px-4">{{ $zone->district }}</td>
+                        <td class="py-2 px-4">{{ $zone->village }}</td>
+                        <td class="py-2 px-4">{{ $zone->latitude }}</td>
+                        <td class="py-2 px-4">{{ $zone->longitude }}</td>
                         <td class="py-2 px-4 flex gap-2">
                             <a href="{{ route('shipping-zones.edit', $zone) }}" class="px-3 py-1 bg-yellow-400 text-white rounded hover:bg-yellow-500">Edit</a>
                             <form action="{{ route('shipping-zones.destroy', $zone) }}" method="POST" onsubmit="return confirm('Delete this zone?')">

@@ -147,8 +147,8 @@
                         <!-- Product Image -->
                         <div class="aspect-[3/4] overflow-hidden">
                             @if($product->images->count() > 0)
-                                <img src="{{ $product->images->first()->url }}" alt="{{ $product->title }}" 
-                                     class="w-full h-full object-cover group-hover:scale-105 transition-smooth">
+                                <img src="{{ asset('storage/' . $product->images->first()->url) }}" alt="{{ $product->title }}" 
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-smooth">
                             @else
                                 <div class="w-full h-full bg-gray-100 flex items-center justify-center group-hover:bg-gray-200 transition-smooth">
                                     <span class="text-gray-400 text-sm">{{ $product->title }}</span>
@@ -298,7 +298,7 @@
                 
                 <div class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
                     <input type="email" placeholder="Enter your email address" 
-                           class="flex-1 px-6 py-4 border-2 border-gray-200 rounded-none focus:ring-0 focus:border-gray-900 focus:outline-none focus-ring text-lg transition-smooth">
+                            class="flex-1 px-6 py-4 border-2 border-gray-200 rounded-none focus:ring-0 focus:border-gray-900 focus:outline-none focus-ring text-lg transition-smooth">
                     <button class="bg-gray-900 text-white px-8 py-4 font-medium hover:bg-gray-800 transition-smooth transform hover:scale-105">
                         Subscribe
                     </button>

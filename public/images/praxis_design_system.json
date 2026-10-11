@@ -1,0 +1,341 @@
+{
+  "designSystem": {
+    "name": "Praxis E-commerce Builder",
+    "target": "UMKM (Small-Medium Enterprises)",
+    "version": "1.0.0",
+    "theme": {
+      "primary": "dark",
+      "style": "modern-minimalist",
+      "approach": "premium-professional"
+    }
+  },
+  "colorPalette": {
+    "primary": {
+      "dark": "#0D1117",
+      "darker": "#010409",
+      "surface": "#161B22",
+      "surface-elevated": "#21262D"
+    },
+    "accent": {
+      "blue": "#58A6FF",
+      "blue-bright": "#1F6FEB",
+      "purple": "#8B5CF6",
+      "green": "#3FB950",
+      "orange": "#FF8C00"
+    },
+    "neutral": {
+      "white": "#FFFFFF",
+      "gray-100": "#F0F6FC",
+      "gray-200": "#D0D7DE",
+      "gray-300": "#8B949E",
+      "gray-400": "#656D76",
+      "gray-500": "#484F58"
+    },
+    "semantic": {
+      "success": "#3FB950",
+      "warning": "#D29922",
+      "error": "#F85149",
+      "info": "#58A6FF"
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "primary": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+      "secondary": "SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif",
+      "mono": "SF Mono, Monaco, Inconsolata, monospace"
+    },
+    "fontSizes": {
+      "xs": "0.75rem",
+      "sm": "0.875rem",
+      "base": "1rem",
+      "lg": "1.125rem",
+      "xl": "1.25rem",
+      "2xl": "1.5rem",
+      "3xl": "1.875rem",
+      "4xl": "2.25rem",
+      "5xl": "3rem",
+      "6xl": "4rem"
+    },
+    "fontWeights": {
+      "light": 300,
+      "normal": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700,
+      "extrabold": 800
+    },
+    "lineHeights": {
+      "tight": 1.25,
+      "snug": 1.375,
+      "normal": 1.5,
+      "relaxed": 1.625,
+      "loose": 2
+    }
+  },
+  "spacing": {
+    "scale": "8px-based",
+    "values": {
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "xl": "32px",
+      "2xl": "48px",
+      "3xl": "64px",
+      "4xl": "96px",
+      "5xl": "128px"
+    }
+  },
+  "components": {
+    "navigation": {
+      "type": "top-bar",
+      "style": "clean-minimal",
+      "background": "dark-surface",
+      "height": "64px",
+      "items": {
+        "logo": {
+          "position": "left",
+          "style": "text-based",
+          "weight": "bold"
+        },
+        "menu": {
+          "position": "center",
+          "style": "horizontal-links",
+          "spacing": "wide"
+        },
+        "actions": {
+          "position": "right",
+          "style": "button-group"
+        }
+      }
+    },
+    "buttons": {
+      "primary": {
+        "background": "gradient-blue",
+        "color": "white",
+        "border": "none",
+        "borderRadius": "8px",
+        "padding": "12px 24px",
+        "fontWeight": "medium",
+        "shadow": "subtle"
+      },
+      "secondary": {
+        "background": "transparent",
+        "color": "gray-300",
+        "border": "1px solid gray-400",
+        "borderRadius": "8px",
+        "padding": "12px 24px",
+        "fontWeight": "medium"
+      },
+      "ghost": {
+        "background": "transparent",
+        "color": "gray-300",
+        "border": "none",
+        "borderRadius": "8px",
+        "padding": "12px 24px",
+        "fontWeight": "medium"
+      }
+    },
+    "cards": {
+      "default": {
+        "background": "surface-elevated",
+        "border": "1px solid gray-500",
+        "borderRadius": "12px",
+        "padding": "24px",
+        "shadow": "none"
+      },
+      "feature": {
+        "background": "surface-elevated",
+        "border": "1px solid gray-500",
+        "borderRadius": "16px",
+        "padding": "32px",
+        "shadow": "subtle-glow"
+      },
+      "product": {
+        "background": "surface",
+        "border": "1px solid gray-500",
+        "borderRadius": "8px",
+        "padding": "16px",
+        "shadow": "none"
+      }
+    },
+    "forms": {
+      "input": {
+        "background": "surface-elevated",
+        "border": "1px solid gray-500",
+        "borderRadius": "8px",
+        "padding": "12px 16px",
+        "fontSize": "base",
+        "color": "white",
+        "focusBorder": "blue-bright"
+      },
+      "label": {
+        "fontSize": "sm",
+        "fontWeight": "medium",
+        "color": "gray-200",
+        "marginBottom": "8px"
+      }
+    }
+  },
+  "layouts": {
+    "hero": {
+      "type": "centered",
+      "background": "dark-gradient",
+      "padding": "128px 32px",
+      "textAlign": "center",
+      "elements": {
+        "headline": {
+          "fontSize": "4xl-6xl",
+          "fontWeight": "bold",
+          "color": "white",
+          "marginBottom": "24px"
+        },
+        "subheadline": {
+          "fontSize": "xl",
+          "color": "gray-200",
+          "marginBottom": "32px",
+          "maxWidth": "600px"
+        },
+        "cta": {
+          "buttonStyle": "primary",
+          "spacing": "16px"
+        }
+      }
+    },
+    "features": {
+      "type": "grid",
+      "columns": "3",
+      "gap": "32px",
+      "padding": "64px 32px",
+      "background": "dark",
+      "cardStyle": "feature"
+    },
+    "dashboard": {
+      "type": "sidebar-main",
+      "sidebar": {
+        "width": "280px",
+        "background": "surface",
+        "padding": "24px",
+        "border": "1px solid gray-500"
+      },
+      "main": {
+        "background": "dark",
+        "padding": "32px",
+        "overflow": "auto"
+      }
+    },
+    "productGrid": {
+      "type": "responsive-grid",
+      "columns": {
+        "mobile": "1",
+        "tablet": "2",
+        "desktop": "3-4"
+      },
+      "gap": "24px",
+      "padding": "32px"
+    }
+  },
+  "visualElements": {
+    "gradients": {
+      "primary": "linear-gradient(135deg, #1F6FEB 0%, #8B5CF6 100%)",
+      "background": "linear-gradient(180deg, #0D1117 0%, #161B22 100%)",
+      "card": "linear-gradient(145deg, #21262D 0%, #161B22 100%)"
+    },
+    "shadows": {
+      "subtle": "0 1px 3px rgba(0, 0, 0, 0.1)",
+      "medium": "0 4px 6px rgba(0, 0, 0, 0.1)",
+      "large": "0 10px 25px rgba(0, 0, 0, 0.2)",
+      "glow": "0 0 20px rgba(88, 166, 255, 0.1)"
+    },
+    "borderRadius": {
+      "sm": "4px",
+      "md": "8px",
+      "lg": "12px",
+      "xl": "16px",
+      "2xl": "24px",
+      "full": "9999px"
+    },
+    "animations": {
+      "hover": {
+        "scale": "1.02",
+        "transition": "all 0.2s ease-in-out"
+      },
+      "button": {
+        "hover": "brightness(1.1)",
+        "active": "scale(0.98)",
+        "transition": "all 0.15s ease"
+      },
+      "card": {
+        "hover": "translateY(-2px)",
+        "shadow": "0 8px 25px rgba(0, 0, 0, 0.15)",
+        "transition": "all 0.3s ease"
+      }
+    }
+  },
+  "iconography": {
+    "style": "outline",
+    "weight": "1.5px",
+    "library": "lucide-react",
+    "sizes": {
+      "xs": "14px",
+      "sm": "16px",
+      "md": "20px",
+      "lg": "24px",
+      "xl": "32px"
+    }
+  },
+  "breakpoints": {
+    "mobile": "320px",
+    "tablet": "768px",
+    "desktop": "1024px",
+    "wide": "1440px"
+  },
+  "designPrinciples": {
+    "contrast": "high-contrast for readability",
+    "spacing": "generous whitespace for breathing room",
+    "hierarchy": "clear visual hierarchy through typography and spacing",
+    "accessibility": "WCAG AA compliance",
+    "performance": "optimized for fast loading",
+    "mobile": "mobile-first responsive design"
+  },
+  "pageTemplates": {
+    "landing": {
+      "sections": ["hero", "features", "testimonials", "pricing", "cta"],
+      "style": "marketing-focused"
+    },
+    "dashboard": {
+      "sections": ["sidebar", "header", "main-content", "stats"],
+      "style": "data-driven"
+    },
+    "product": {
+      "sections": ["gallery", "details", "specs", "reviews", "related"],
+      "style": "e-commerce-focused"
+    },
+    "builder": {
+      "sections": ["toolbar", "canvas", "properties", "layers"],
+      "style": "editor-interface"
+    }
+  },
+  "interactions": {
+    "hover": {
+      "buttons": "brightness increase + subtle scale",
+      "cards": "elevation + border glow",
+      "links": "color transition + underline"
+    },
+    "focus": {
+      "inputs": "blue border + subtle glow",
+      "buttons": "outline + slight scale"
+    },
+    "loading": {
+      "skeleton": "animated gradient",
+      "spinner": "rotating circle",
+      "progress": "animated bar"
+    }
+  },
+  "contentStrategy": {
+    "tone": "professional yet approachable",
+    "language": "clear and concise",
+    "imagery": "high-quality, professional photography",
+    "illustrations": "modern, minimalist style"
+  }
+}

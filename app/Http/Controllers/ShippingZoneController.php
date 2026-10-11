@@ -30,6 +30,12 @@ class ShippingZoneController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'province' => 'required|string',
+            'city' => 'required|string',
+            'district' => 'required|string',
+            'village' => 'required|string',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
         ]);
         $zone = $store->shippingZones()->create($validated);
         

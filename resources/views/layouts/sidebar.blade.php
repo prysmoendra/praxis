@@ -6,11 +6,19 @@
     <nav class="flex-1 px-2 py-4 space-y-2">
         <ul class="space-y-1">
             <li>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg font-medium text-text-primary hover:bg-neutral-200 transition group">
+                <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg font-medium text-text-primary hover:bg-neutral-200 transition group">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="w-5 h-5 text-neutral-600 group-hover:text-primary" fill="currentColor">
                         <path fill-rule="evenodd" d="M6.344 1.692a2.25 2.25 0 0 1 3.312 0l3.854 4.19c.637.691.99 1.598.99 2.538v3.33a2.75 2.75 0 0 1-2.75 2.75h-1.75a1.5 1.5 0 0 1-1.5-1.5v-2h-1v2a1.5 1.5 0 0 1-1.5 1.5h-1.75a2.75 2.75 0 0 1-2.75-2.75v-3.33c0-.94.353-1.847.99-2.539zm2.208 1.016a.75.75 0 0 0-1.104 0l-3.854 4.189a2.25 2.25 0 0 0-.594 1.523v3.33c0 .69.56 1.25 1.25 1.25h1.75v-2a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v2h1.75c.69 0 1.25-.56 1.25-1.25v-3.33a2.25 2.25 0 0 0-.594-1.523l-3.854-4.19Z"></path>
                     </svg>
                     <span class="sidebar-label" data-translate-key="sidebar_home">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('dashboard.products.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg font-medium text-text-primary hover:bg-neutral-200 transition group">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="w-5 h-5 text-neutral-600 group-hover:text-primary" fill="currentColor">
+                        <path fill-rule="evenodd" d="M6.575 2.649a3.75 3.75 0 0 1 2.7-1.149h1.975a3.25 3.25 0 0 1 3.25 3.25v2.187c0 .883-.36 1.728-.996 2.34l-4.747 4.572a2.5 2.5 0 0 1-3.502-.033l-2.898-2.898a2.75 2.75 0 0 1-.036-3.852zm4.425 3.351a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path>
+                    </svg>
+                    <span class="sidebar-label" data-translate-key="sidebar_products">Products</span>
                 </a>
             </li>
             <li>
@@ -19,14 +27,6 @@
                         <path fill-rule="evenodd" d="M2.255 3.847a2.75 2.75 0 0 1 2.72-2.347h6.05a2.75 2.75 0 0 1 2.72 2.347l.66 4.46q.095.638.095 1.282v1.661a3.25 3.25 0 0 1-3.25 3.25h-6.5a3.25 3.25 0 0 1-3.25-3.25v-1.66q0-.645.094-1.283zm2.72-.847a1.25 1.25 0 0 0-1.236 1.067l-.583 3.933h2.484c.538 0 1.015.344 1.185.855l.159.474a.25.25 0 0 0 .237.171h1.558a.25.25 0 0 0 .237-.17l.159-.475a1.25 1.25 0 0 1 1.185-.855h2.484l-.583-3.933a1.25 1.25 0 0 0-1.236-1.067z"></path>
                     </svg>
                     <span class="sidebar-label" data-translate-key="sidebar_orders">Orders</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg font-medium text-text-primary hover:bg-neutral-200 transition group">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="w-5 h-5 text-neutral-600 group-hover:text-primary" fill="currentColor">
-                        <path fill-rule="evenodd" d="M6.575 2.649a3.75 3.75 0 0 1 2.7-1.149h1.975a3.25 3.25 0 0 1 3.25 3.25v2.187c0 .883-.36 1.728-.996 2.34l-4.747 4.572a2.5 2.5 0 0 1-3.502-.033l-2.898-2.898a2.75 2.75 0 0 1-.036-3.852zm4.425 3.351a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path>
-                    </svg>
-                    <span class="sidebar-label" data-translate-key="sidebar_products">Products</span>
                 </a>
             </li>
             <li>

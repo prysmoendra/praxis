@@ -44,6 +44,16 @@ class ProductController extends Controller
         $product->user_id = Auth::user()->id; // Associate with current user
         $product->save();
 
+        // Save default variant
+        $product->variants()->create([
+            'title' => $validated['title'],
+            'price' => $validated['price'],
+            'compare_at_price' => $validated['compare_at_price'] ?? null,
+            'sku' => $validated['sku'] ?? null,
+            'quantity' => $validated['quantity'] ?? 0,
+            'weight' => $validated['weight'] ?? null,
+        ]);
+
         // Save images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
@@ -70,6 +80,66 @@ class ProductController extends Controller
         //     'images' => $imagePaths,
         // ]);
 
-        return redirect()->route('dashboard')->with('success', 'Produk berhasil ditambahkan!');
+        return redirect()->route('dashboard.products.index')->with('success', 'Produk berhasil ditambahkan!');
+    }
+
+    public function index()
+    {
+        $products = \App\Models\Product::where('user_id', Auth::id())
+            ->with(['variants', 'images'])
+            ->latest()
+            ->get();
+        return view('products.index', compact('products'));
+    }
+
+    public function edit($id)
+    {
+        $product = \App\Models\Product::where('id', $id)
+            ->where('user_id', Auth::id())
+            ->with(['variants', 'images'])
+            ->firstOrFail();
+        $variant = $product->variants->first();
+        return view('products.edit', compact('product', 'variant'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+        $product = \App\Models\Product::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        $product->title = $validated['title'];
+        $product->description = $validated['description'];
+        $product->save();
+        return redirect()->route('dashboard.products.index')->with('success', 'Product updated successfully.');
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:active,draft,archived',
+        ]);
+        $product = \App\Models\Product::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        $product->status = $request->status;
+        $product->save();
+        return redirect()->route('dashboard.products.index')->with('success', 'Status produk berhasil diubah.');
+    }
+
+    public function destroy($id)
+    {
+        $product = \App\Models\Product::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        $product->delete();
+        return redirect()->route('dashboard.products.index')->with('success', 'Product deleted successfully.');
+    }
+
+    public function deleteImage($productId, $imageId)
+    {
+        $product = \App\Models\Product::where('id', $productId)->where('user_id', Auth::id())->firstOrFail();
+        $image = $product->images()->where('id', $imageId)->firstOrFail();
+        // Hapus file fisik
+        \Illuminate\Support\Facades\Storage::disk('public')->delete($image->url);
+        $image->delete();
+        return back()->with('success', 'Gambar berhasil dihapus.');
     }
 }

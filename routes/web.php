@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/orders/{id}', [App\Http\Controllers\OrderController::class, 'show'])->name('dashboard.orders.show');
     Route::put('/dashboard/orders/{id}/status', [App\Http\Controllers\OrderController::class, 'updateStatus'])->name('dashboard.orders.update-status');
     Route::get('/dashboard/orders/stats', [App\Http\Controllers\OrderController::class, 'getStats'])->name('dashboard.orders.stats');
+    Route::get('/dashboard/products', [App\Http\Controllers\ProductController::class, 'index'])->name('dashboard.products.index');
 });
 
 // Set store domain from dashboard onboarding
@@ -68,6 +69,11 @@ Route::get('/test-auth', function () {
 
 Route::get('/products/create', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
 Route::post('/products', [App\Http\Controllers\ProductController::class, 'store'])->name('products.store');
+Route::get('/products/{id}/edit', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
+Route::delete('/products/{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('products.destroy');
+Route::patch('/products/{id}/status', [App\Http\Controllers\ProductController::class, 'updateStatus'])->name('products.updateStatus');
+Route::put('/products/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('products.update');
+Route::delete('/products/{product}/images/{image}', [App\Http\Controllers\ProductController::class, 'deleteImage'])->name('products.deleteImage');
 
 // Theme routes
 Route::get('/online-store/themes', [App\Http\Controllers\ThemeController::class, 'index'])->name('themes.index');
@@ -100,3 +106,5 @@ Route::post('/dashboard/store/unlock', [DashboardController::class, 'unlockStore
 Route::get('/dashboard/pos', [DashboardController::class, 'pos'])->name('dashboard.pos');
 Route::resource('dashboard/shipping-zones', ShippingZoneController::class);
 Route::resource('dashboard/shipping-rates', ShippingRateController::class);
+Route::post('/dashboard/onboarding/test-order', [DashboardController::class, 'markTestOrder'])->name('dashboard.onboarding.test-order');
+Route::post('/dashboard/onboarding/setup-pos', [DashboardController::class, 'markSetupPos'])->name('dashboard.onboarding.setup-pos');
